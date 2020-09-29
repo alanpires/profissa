@@ -1,8 +1,14 @@
 import React from "react";
-import "./App.css";
+import FreeNavigation from "./components/free-navigation";
+import RestrictedNavigation from "./components/restricted-navigation";
 
 const App = () => {
-  return <div></div>;
+  return (
+    <div>
+      <FreeNavigation />
+      <RestrictedNavigation />
+    </div>
+  );
 };
 
 export default App;
