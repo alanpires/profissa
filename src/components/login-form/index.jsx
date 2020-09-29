@@ -52,6 +52,7 @@ const LoginForm = () => {
             type="text"
           />
 
+          {/* InputContainer*/}
           <StylezedInput
             icon="fas fa-lock"
             name="password"

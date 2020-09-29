@@ -1,11 +1,61 @@
 import styled from "styled-components";
-import { Button } from "antd";
+import { Form, Button } from "antd";
 import { Link } from "react-router-dom";
 
 export const Title = styled.div`
   font-size: 25px;
   font-weight: bold;
   font-family: "Poppins", sans-serif;
+`;
+
+export const Wave = styled.img`
+  position: fixed;
+  width: 55%;
+  height: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+`;
+
+export const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 7rem;
+  padding: 0 2rem;
+`;
+
+export const BoxImg = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+export const ImgGoals = styled.img`
+  width: 500px;
+`;
+
+export const LoginContainer = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: center;
+`;
+
+export const StyledForm = styled(Form)`
+  width: 360px;
+`;
+
+export const Avatar = styled.img`
+  width: 100px;
+`;
+
+export const H2Form = styled.h2`
+  font-size: 2.9rem;
+  text-transform: uppercase;
+  margin: 15px 0;
+  color: #333;
+  font-family: "Poppins", sans-serif !important;
 `;
 
 export const LinkA = styled(Link)`
