@@ -6,7 +6,7 @@ import Login from "../../pages/login";
 import SignupClient from "../../pages/signup-client";
 import SignupProfessional from "../../pages/singup-professional";
 
-export const restrictedArea = [
+export const restrictedRoutes = [
   { path: "/client-profile", name: "ClientProfile", component: ClientProfile },
   { path: "/homepage", name: "Homepage", component: Homepage },
   {
@@ -21,7 +21,7 @@ export const restrictedArea = [
   },
 ];
 
-export const freeArea = [
+export const freeRoutes = [
   { path: "/", name: "Login", component: Login },
   { path: "/signup-client", name: "SignupClient", component: SignupClient },
   {

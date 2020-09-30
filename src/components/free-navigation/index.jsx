@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch } from "react-router-dom";
-import RoutersNotAuthenticated from "../route/routes/free-route";
+import RoutersNotAuthenticated from "../route/routes/free-navigation-route";
 
 const FreeNavigation = () => {
   return (
