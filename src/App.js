@@ -1,8 +1,12 @@
 import React from "react";
-import "./App.css";
+import LoginModal from "./components/login-modal";
 
 const App = () => {
-  return <div></div>;
+  return (
+    <div>
+      <LoginModal />
+    </div>
+  );
 };
 
 export default App;
