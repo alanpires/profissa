@@ -1,4 +1,4 @@
-import { LOGIN, LOGIN_ERROR } from "./type";
+import { DECODER, LOGIN, LOGIN_ERROR } from "./type";
 import axios from "axios";
 
 const login = (token) => ({
@@ -22,5 +22,20 @@ export const requestLogin = (data) => (dispatch) => {
     .catch((res) => {
       console.log(res);
       dispatch(loginError("request error"));
+    });
+};
+
+const userDecoder = (user) => ({
+  type: DECODER,
+  user,
+});
+
+export const requestUserDecoder = (id, token) => (dispatch) => {
+  axios
+    .get(`https://profissa-server.herokuapp.com/users/${id}`, token)
+    .then((res) => {
+      console.log(res);
+      dispatch(userDecoder(res));
+      localStorage.setItem("user", JSON.stringify(res.data.user));
     });
 };

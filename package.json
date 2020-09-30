@@ -10,6 +10,7 @@
     "axios": "^0.20.0",
     "chart.js": "^2.9.3",
     "framer-motion": "^2.7.6",
+    "jwt-decode": "^3.0.0",
     "lib-kenzie-academy": "^1.0.1",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.10.0",

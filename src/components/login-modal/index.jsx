@@ -3,7 +3,11 @@ import { Modal } from "lib-kenzie-academy";
 import { Form, Input, Button } from "antd";
 import { Title } from "./style";
 import { useDispatch, useSelector } from "react-redux";
-import { requestLogin } from "../../redux/actions/access-actions";
+import {
+  requestLogin,
+  requestUserDecoder,
+} from "../../redux/actions/access-actions";
+import jwt_decode from "jwt-decode";
 
 const layout = {
   labelCol: {
@@ -22,6 +26,10 @@ const tailLayout = {
 };
 
 const LoginModal = () => {
+  const token = useSelector((state) => state.access.token);
+  const decoded = jwt_decode(token);
+  console.log(decoded);
+
   const [showModal, setShowModal] = useState(true);
   const dispatch = useDispatch();
   const errorRequest = useSelector((state) => state.messagesLogin.errorRequest);
@@ -29,6 +37,9 @@ const LoginModal = () => {
   const onFinish = (values) => {
     console.log("Success:", values);
     dispatch(requestLogin(values));
+    if (token) {
+      dispatch(requestUserDecoder(decoded.sub, token));
+    }
   };
 
   return (
