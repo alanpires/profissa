@@ -1,8 +1,24 @@
 import React from "react";
-import "./App.css";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
+import SignUpClient from "./pages/signup-client";
 
 const App = () => {
-  return <div></div>;
+  return (
+    <>
+      <Router>
+        <Switch>
+          <Route component={SignUpClient} path="/signup-client" exact />
+          <Redirect to="/" />
+        </Switch>
+      </Router>
+    </>
+  );
 };
 
 export default App;
