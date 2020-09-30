@@ -1,12 +1,10 @@
 import React from "react";
-import FreeNavigation from "./components/free-navigation";
-import RestrictedNavigation from "./components/restricted-navigation";
+import Authentication from "./components/authentication";
 
 const App = () => {
   return (
     <div>
-      <FreeNavigation />
-      <RestrictedNavigation />
+      <Authentication />
     </div>
   );
 };

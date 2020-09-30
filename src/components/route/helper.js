@@ -6,14 +6,23 @@ import Login from "../../pages/login";
 import SignupClient from "../../pages/signup-client";
 import SignupProfessional from "../../pages/singup-professional";
 
-export const restrictedRoutes = [
+export const restrictedRoutesClient = [
   { path: "/client-profile", name: "ClientProfile", component: ClientProfile },
   { path: "/homepage", name: "Homepage", component: Homepage },
+  {
+    path: "/professional-showcase",
+    name: "ProfessionalShowcase",
+    component: ProfessionalShowcase,
+  },
+];
+
+export const restrictedRoutesProfessional = [
   {
     path: "/professional-profile",
     name: "ProfessionalProfile",
     component: ProfessionalProfile,
   },
+  { path: "/homepage", name: "Homepage", component: Homepage },
   {
     path: "/professional-showcase",
     name: "ProfessionalShowcase",
