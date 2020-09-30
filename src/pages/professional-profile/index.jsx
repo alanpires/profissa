@@ -1,7 +1,7 @@
 import React from "react";
 
 const ProfessionalProfile = () => {
-  return <div>Professional Profile</div>;
+  return <h1>Professional Profile</h1>;
 };
 
 export default ProfessionalProfile;

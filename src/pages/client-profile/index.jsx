@@ -1,7 +1,7 @@
 import React from "react";
 
 const ClientProfile = () => {
-  return <div>Client Profile</div>;
+  return <h1>Client Profile</h1>;
 };
 
 export default ClientProfile;
