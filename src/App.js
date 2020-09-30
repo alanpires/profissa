@@ -1,20 +1,28 @@
 import React from "react";
-<<<<<<< HEAD
 import Homepage from "../src/components/homepage";
-=======
 import Authentication from "./components/authentication";
 import LoginModal from "./components/login-modal";
->>>>>>> test
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
+import SignUpClient from "./pages/signup-client";
 
 const App = () => {
   return (
     <div>
-<<<<<<< HEAD
       <Homepage />
-=======
       <Authentication />
       <LoginModal />
->>>>>>> test
+      <Router>
+        <Switch>
+          <Route component={SignUpClient} path="/signup-client" exact />
+          <Redirect to="/" />
+        </Switch>
+      </Router>
     </div>
   );
 };
