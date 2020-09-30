@@ -1,10 +1,10 @@
 import React from "react";
-import LoginForm from "./components/login-form";
+import LoginModal from "./components/login-modal";
 
 const App = () => {
   return (
     <div>
-      <LoginForm />
+      <LoginModal />
     </div>
   );
 };
