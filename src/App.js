@@ -5,7 +5,7 @@ import Homepage from "./pages/homepage";
 const App = () => {
   return (
     <div>
-      <Authentication />
+      {/* <Authentication /> */}
       <Homepage />
     </div>
   );

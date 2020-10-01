@@ -1,30 +1,21 @@
 import React, { useState } from "react";
-import { Modal } from "lib-kenzie-academy";
-import { Form, Input, Button } from "antd";
-import { Title } from "./style";
 import { useDispatch, useSelector } from "react-redux";
+import jwt_decode from "jwt-decode";
+import { axiosConfig } from "./helper";
 import {
   requestLogin,
   requestUserDecoder,
 } from "../../redux/actions/access-actions";
-import jwt_decode from "jwt-decode";
-import { axiosConfig } from "./helper";
 
-const layout = {
-  labelCol: {
-    span: 8,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
-
-const tailLayout = {
-  wrapperCol: {
-    offset: 8,
-    span: 16,
-  },
-};
+import { Form, Input, Button } from "antd";
+import {
+  Title,
+  StyledModal,
+  StyledForm,
+  AdjustModal,
+  StyledInput,
+  StyledPassword,
+} from "./style";
 
 const LoginModal = () => {
   const [showModal, setShowModal] = useState(true);
@@ -35,27 +26,25 @@ const LoginModal = () => {
   const onFinish = (values) => {
     console.log("Success:", values);
     dispatch(requestLogin(values));
-    if (token) {
-      const decoded = jwt_decode(token);
-      console.log(decoded);
-      dispatch(requestUserDecoder(decoded.sub, axiosConfig(token)));
-    }
+    // if (token) {
+    //   const decoded = jwt_decode(token);
+    //   console.log(decoded);
+    //   dispatch(requestUserDecoder(decoded.sub, axiosConfig(token)));
+    // }
   };
 
   return (
-    <div>
-      <button onClick={() => setShowModal(true)}>Abrir modal</button>
-      <Modal isOpen={showModal}>
-        <Title>Conecte-se</Title>
-        <Form
-          {...layout}
+    <StyledModal class="Modal" isOpen={showModal}>
+      <AdjustModal>
+        <StyledForm
           name="basic"
           initialValues={{
             remember: true,
           }}
           onFinish={onFinish}
         >
-          <Form.Item
+          <Title>Conecte-se</Title>
+          <StyledForm.Item
             label="E-mail"
             name="email"
             validateTrigger={false}
@@ -68,10 +57,10 @@ const LoginModal = () => {
               },
             ]}
           >
-            <Input />
-          </Form.Item>
+            <StyledInput />
+          </StyledForm.Item>
 
-          <Form.Item
+          <StyledForm.Item
             label="Senha"
             name="password"
             validateTrigger={false}
@@ -89,18 +78,18 @@ const LoginModal = () => {
               },
             ]}
           >
-            <Input.Password />
-          </Form.Item>
+            <StyledInput />
+          </StyledForm.Item>
 
-          <Form.Item {...tailLayout}>
+          <StyledForm.Item>
             <Button type="primary" htmlType="submit">
               Submit
             </Button>
             <Button onClick={() => setShowModal(false)}>Return</Button>
-          </Form.Item>
-        </Form>
-      </Modal>
-    </div>
+          </StyledForm.Item>
+        </StyledForm>
+      </AdjustModal>
+    </StyledModal>
   );
 };
 

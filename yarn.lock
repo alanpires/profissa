@@ -6803,10 +6803,10 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lib-kenzie-academy@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/lib-kenzie-academy/-/lib-kenzie-academy-1.0.1.tgz#381dc710ec370789c677d08f5a615719297febf3"
-  integrity sha512-sIXcNY7hNErHF0tDiHXorZPcfgFT3cxNlUgN/ZBCc5p5+d0tb/XsR9GaoeKUhAlyQo/xfdZp5hclt9g55GdAEA==
+lib-kenzie-academy@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/lib-kenzie-academy/-/lib-kenzie-academy-1.0.3.tgz#190d6ef0bbf0331cf147d8be9d8dd03f99619428"
+  integrity sha512-7PtBfD47pNhZQOtsU8m9WhjozXaGKY4UfybUDqzgGxazPSVttCqgFTNr0rQR757QkFrs+WRciivRcEClGhbwRg==
   dependencies:
     "@types/enzyme" "^3.10.7"
     "@types/enzyme-adapter-react-16" "^1.0.6"
