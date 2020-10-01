@@ -10,22 +10,6 @@ import {
 import jwt_decode from "jwt-decode";
 import { axiosConfig } from "./helper";
 
-const layout = {
-  labelCol: {
-    span: 8,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
-
-const tailLayout = {
-  wrapperCol: {
-    offset: 8,
-    span: 16,
-  },
-};
-
 const LoginModal = () => {
   const [showModal, setShowModal] = useState(true);
   const dispatch = useDispatch();
@@ -35,11 +19,11 @@ const LoginModal = () => {
   const onFinish = (values) => {
     console.log("Success:", values);
     dispatch(requestLogin(values));
-    if (token) {
-      const decoded = jwt_decode(token);
-      console.log(decoded);
-      dispatch(requestUserDecoder(decoded.sub, axiosConfig(token)));
-    }
+    // if (token) {
+    //   const decoded = jwt_decode(token);
+    //   console.log(decoded);
+    //   dispatch(requestUserDecoder(decoded.sub, axiosConfig(token)));
+    // }
   };
 
   return (
@@ -48,7 +32,6 @@ const LoginModal = () => {
       <Modal isOpen={showModal}>
         <Title>Conecte-se</Title>
         <Form
-          {...layout}
           name="basic"
           initialValues={{
             remember: true,
@@ -92,7 +75,7 @@ const LoginModal = () => {
             <Input.Password />
           </Form.Item>
 
-          <Form.Item {...tailLayout}>
+          <Form.Item>
             <Button type="primary" htmlType="submit">
               Submit
             </Button>
