@@ -14,11 +14,8 @@ import SignUpClient from "./pages/signup-client";
 const App = () => {
   return (
     <div>
-      
       <Authentication />
-      
-      
-    
+      <LoginModal />
     </div>
   );
 };
