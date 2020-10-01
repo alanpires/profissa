@@ -1,15 +1,31 @@
 import React from "react";
 import { FormDiv } from "./style.js";
 import { Form, Input, Button, Checkbox } from "antd";
+import axios from 'axios'
+
 
 const FormUser = () => {
   const onFinish = (values) => {
-    console.log("Success:", values);
+ SignUp(values)
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
+
+  const SignUp = (data) => {
+    axios
+      .post("https://ka-users-api.herokuapp.com/users", {...data})
+      .then((res) => {
+        if (res.status === 201) {
+         
+          history.push("/");
+        } 
+      });
+  };
+
+
 
   return (
     <FormDiv>
@@ -43,7 +59,7 @@ const FormUser = () => {
           name="email"
           rules={[
             {
-              pattern: /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i,
+              pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
               message: "E-mail inválido.",
             },
             {
