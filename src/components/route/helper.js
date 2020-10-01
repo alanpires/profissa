@@ -21,11 +21,6 @@ export const restrictedRoutesProfessional = [
     name: "ProfessionalProfile",
     component: ProfessionalProfile,
   },
-  {
-    path: "/professional-showcase",
-    name: "ProfessionalShowcase",
-    component: ProfessionalShowcase,
-  },
 ];
 
 export const freeRoutes = [

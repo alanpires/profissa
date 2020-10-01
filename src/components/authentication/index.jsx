@@ -5,11 +5,18 @@ import RestrictedNavigationClient from "../restricted-navigation-client";
 import RestrictedNavigationProfessional from "../restricted-navigation-professional";
 import { useSelector } from "react-redux";
 
+import { axiosConfig } from "../../components/login-modal/helper";
+import axios from "axios";
+// {
+//   token: 'sfslfskdjflskdfjls',
+//   user_type: 'professional'
+// }
 const Authentication = () => {
   const history = useHistory();
   const location = useLocation();
   const userType = useSelector((state) => state.access.user.userType);
   const token = useSelector((state) => state.access.token);
+
   useEffect(() => {
     console.log(token, userType);
     if (!token) {

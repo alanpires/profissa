@@ -1,5 +1,9 @@
 import React from "react";
 import { ReactComponent as ImageHero } from "./image-hero.svg";
+import LisaimgSvg from "./photos/lisa.svg";
+import FernandoimgSvg from "./photos/fernando.svg";
+import RenataimgSvg from "./photos/renata.svg";
+import LucianoSvg from "./photos/luciano.svg";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosPin } from "react-icons/io";
 import {
@@ -18,6 +22,9 @@ import {
   DivHandleInputContent,
   SpanSubmitHomepage1,
   SpanSubmitHomepage2,
+  SectionProfilesPhotos,
+  Estrela,
+  DivProfileCards,
 } from "./style";
 
 const Homepage = () => {
@@ -56,6 +63,40 @@ const Homepage = () => {
       <ImgHero>
         <ImageHero />
       </ImgHero>
+      <SectionProfilesPhotos>
+        <h1>Profissas mais bem avaliados</h1>
+        <div>
+          <img src={LisaimgSvg} />
+          <p>Lisa Sanchez</p>
+          <span>
+            5.0 <Estrela /> 12 avaliações
+          </span>
+        </div>
+        <div>
+          <img src={FernandoimgSvg} />
+          <p>Fernando Ohara</p>
+          <span>
+            5.0 <Estrela /> 12 avaliações
+          </span>
+        </div>
+        <div>
+          <img src={RenataimgSvg} />
+          <p>Renata Silva</p>
+          <span>
+            5.0 <Estrela /> 12 avaliações
+          </span>
+        </div>
+        <div>
+          <img src={LucianoSvg} />
+          <p>Luciano Toguro</p>
+          <span>
+            5.0 <Estrela /> 12 avaliações
+          </span>
+        </div>
+      </SectionProfilesPhotos>
+      <DivProfileCards>
+        <h1>Outros profissas</h1>
+      </DivProfileCards>
     </ContainerFlexHomePage>
   );
 };
