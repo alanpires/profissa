@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "lib-kenzie-academy";
 import { Form, Input, Button } from "antd";
-import { Title } from "./style";
+import { Title, StyledDiv, StyleModal } from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import {
   requestLogin,
@@ -29,7 +29,7 @@ const LoginModal = () => {
   return (
     <div>
       <button onClick={() => setShowModal(true)}>Abrir modal</button>
-      <Modal isOpen={showModal}>
+      <StyleModal isOpen={showModal}>
         <Title>Conecte-se</Title>
         <Form
           name="basic"
@@ -82,7 +82,7 @@ const LoginModal = () => {
             <Button onClick={() => setShowModal(false)}>Return</Button>
           </Form.Item>
         </Form>
-      </Modal>
+      </StyleModal>
     </div>
   );
 };
