@@ -16,7 +16,7 @@ const FormUser = () => {
 
   const SignUp = (data) => {
     axios
-      .post("https://ka-users-api.herokuapp.com/users", {...data})
+      .post("https://profissa-server.herokuapp.com/register", {...data})
       .then((res) => {
         if (res.status === 201) {
          
