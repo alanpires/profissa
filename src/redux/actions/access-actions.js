@@ -35,7 +35,7 @@ export const requestUserDecoder = (id, token) => (dispatch) => {
     .get(`https://profissa-server.herokuapp.com/users/${id}`, token)
     .then((res) => {
       console.log(res);
-      dispatch(userDecoder(res));
-      localStorage.setItem("user", JSON.stringify(res.data.user));
+      dispatch(userDecoder(res.data));
+      localStorage.setItem("user", JSON.stringify(res.data));
     });
 };
