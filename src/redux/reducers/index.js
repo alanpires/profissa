@@ -1,3 +1,5 @@
 import { combineReducers } from "redux";
+import access from "./access";
+import messagesLogin from "./messages-login";
 
-export default combineReducers({});
+export default combineReducers({ access, messagesLogin });

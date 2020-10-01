@@ -1,9 +1,11 @@
 import React from "react";
-import Homepage from "../src/components/homepage";
+import Authentication from "./components/authentication";
+import Homepage from "./pages/homepage";
 
 const App = () => {
   return (
     <div>
+      <Authentication />
       <Homepage />
     </div>
   );
