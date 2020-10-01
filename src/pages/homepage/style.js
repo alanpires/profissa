@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BsStarFill } from "react-icons/bs";
 
 export const ContainerFlexHomePage = styled.div`
   display: flex;
@@ -161,6 +162,8 @@ export const SpanSubmitHomepage1 = styled.span`
   padding: 10px;
   background-color: #eaeaea;
   padding: 20px;
+  border-radius: 100px 0px 0px 100px;
+  border: 0.5px solid rgba(0, 0, 0, 0.16);
   input {
     background-color: #eaeaea;
     border: none;
@@ -171,8 +174,70 @@ export const SpanSubmitHomepage2 = styled.span`
   display: inline-block;
   padding: 20px;
   background-color: #eaeaea;
+  border-radius: 0px 100px 100px 0px;
+  border: 0.5px solid rgba(0, 0, 0, 0.16);
   input {
     background-color: #eaeaea;
     border: none;
+  }
+`;
+
+export const SectionProfilesPhotos = styled.section`
+  width: 100%;
+  display: flex;
+  position: absolute;
+  top: 570px;
+  h1 {
+    position: absolute;
+    left: 7vh;
+    font-family: Shrikhand;
+    font-size: 36px;
+  }
+  div {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    img {
+      width: 40vh;
+      height: 40vh;
+      max-width: 250px;
+      max-height: 250px;
+    }
+    p {
+      font-family: Roboto;
+      font-size: 24px;
+    }
+    span {
+      display: flex;
+      align-items: center;
+      margin-top: -20px;
+      font-size: 24px;
+    }
+  }
+`;
+
+export const Estrela = styled(BsStarFill)`
+  color: #ffed47;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+`;
+
+export const DivProfileCards = styled.div`
+  display: flex;
+  background-color: #a5a5a5;
+  position: absolute;
+  top: 660px;
+  width: 100%;
+  z-index: -1;
+  justify-content: center;
+  h1 {
+    margin-top: 310px;
+    font-family: Shrikhand;
+    font-size: 48px;
   }
 `;
