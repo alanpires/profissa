@@ -5,7 +5,7 @@ import LoginModal from "./components/login-modal";
 const App = () => {
   return (
     <div>
-      <Authentication />
+      {/* <Authentication /> */}
       <LoginModal />
     </div>
   );
