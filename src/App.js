@@ -6,7 +6,7 @@ const App = () => {
   return (
     <div>
       <Authentication />
-      <LoginModal />
+      {/* <LoginModal /> */}
     </div>
   );
 };
