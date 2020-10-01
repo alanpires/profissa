@@ -19,14 +19,24 @@ const Authentication = () => {
         history.push("/singup-professional");
       } else if (location.pathname === "/homepage") {
         history.push("/homepage");
+      } else {
+        history.push("/");
       }
     } else {
-      if (token) {
+      if (token && userType === "professional") {
         if (location.pathname === "/professional-profile") {
           history.push("/professional-profile");
         }
-      } else if (location.pathname === "/client-profile") {
-        history.push("/client-profile");
+      } else if (location.pathname === "/schedule") {
+        history.push("/schedule");
+      } else if (location.pathname === "/feedbacks") {
+        history.push("/feedbacks");
+      }
+
+      if (token && userType === "client") {
+        if (location.pathname === "/client-profile") {
+          history.push("/client-profile");
+        }
       } else if (location.pathname === "/professional-showcase") {
         history.push("/professional-showcase");
       }
