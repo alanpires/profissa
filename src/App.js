@@ -1,12 +1,12 @@
 import React from "react";
 import Authentication from "./components/authentication";
-import LoginModal from "./components/login-modal";
+import Homepage from "./pages/homepage";
 
 const App = () => {
   return (
     <div>
       {/* <Authentication /> */}
-      <LoginModal />
+      <Homepage />
     </div>
   );
 };
