@@ -8,6 +8,7 @@ import {
   requestUserDecoder,
 } from "../../redux/actions/access-actions";
 import jwt_decode from "jwt-decode";
+import { axiosConfig } from "./helper";
 
 const layout = {
   labelCol: {
@@ -26,12 +27,12 @@ const tailLayout = {
 };
 
 const LoginModal = () => {
-  const token = useSelector((state) => state.access.token);
   const user = useSelector((state) => state.access.user);
 
   const [showModal, setShowModal] = useState(true);
   const dispatch = useDispatch();
   const errorRequest = useSelector((state) => state.messagesLogin.errorRequest);
+  const token = useSelector((state) => state.access.token);
 
   const onFinish = (values) => {
     console.log("Success:", values);
@@ -39,10 +40,10 @@ const LoginModal = () => {
     if (token) {
       const decoded = jwt_decode(token);
       console.log(decoded);
-      dispatch(requestUserDecoder(decoded.sub, token));
+      dispatch(requestUserDecoder(decoded.sub, axiosConfig(token)));
     }
   };
-
+  console.log(user.type);
   return (
     <div>
       <button onClick={() => setShowModal(true)}>Abrir modal</button>

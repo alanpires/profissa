@@ -3,6 +3,9 @@ import { useHistory, useLocation } from "react-router-dom";
 import FreeNavigation from "../free-navigation";
 import RestrictedNavigationClient from "../restricted-navigation-client";
 import RestrictedNavigationProfessional from "../restricted-navigation-professional";
+import { useSelector } from "react-redux";
+import { axiosConfig } from "../../components/login-modal/helper";
+import axios from "axios";
 
 // {
 //   token: 'sfslfskdjflskdfjls',
@@ -12,8 +15,8 @@ import RestrictedNavigationProfessional from "../restricted-navigation-professio
 const Authentication = () => {
   const history = useHistory();
   const location = useLocation();
-  const token = undefined;
-  const userType = "professional";
+  const userType = useSelector((state) => state.access.user.type);
+  const token = useSelector((state) => state.access.token);
 
   useEffect(() => {
     console.log(token, userType);
@@ -28,28 +31,20 @@ const Authentication = () => {
         history.push("/");
       }
     } else {
-      // axios.get("https").then(() => {
-      if (
-        token && // === window.localStorage.getItem("token")
-        userType === "professional"
-      ) {
+      if (token) {
         if (location.pathname === "/professional-profile") {
           history.push("/professional-profile");
         }
-      } else if (
-        token && // === window.localStorage.getItem("token")
-        userType === "client"
-      ) {
+      } else if (token) {
         if (location.pathname === "/client-profile") {
           history.push("/client-profile");
         } else if (location.pathname === "/professional-showcase") {
           history.push("/professional-showcase");
         }
       }
-      // });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token, userType]);
+  }, [token]);
 
   if (!token) {
     return <FreeNavigation />;
