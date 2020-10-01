@@ -129,18 +129,19 @@ export const DivContentHomepage = styled.div`
 `;
 
 export const ButtomsearchHomepage = styled.button`
+  position: absolute;
   border-radius: 38px;
   border: 1px solid grey;
   padding: 15px 10px 15px 10px;
   transition: 0.3s;
-  margin-left: 80px;
+  margin-left: 50px;
+  font-size: 24px;
   &:hover {
     background-color: rgba(0, 0, 0, 0.22);
   }
 `;
 
 export const DivHandleInputContent = styled.div`
-  display: flex;
   justify-content: center;
   top: 150px;
   margin-top: 60px;
@@ -161,9 +162,17 @@ export const SpanSubmitHomepage1 = styled.span`
   padding: 10px;
   background-color: #eaeaea;
   padding: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  border-right: none;
+  border-radius: 100px 0px 0px 100px;
   input {
     background-color: #eaeaea;
     border: none;
+    color: black;
+    ::placeholder {
+      font-size: 24px;
+      color: black;
+    }
   }
 `;
 
@@ -171,8 +180,14 @@ export const SpanSubmitHomepage2 = styled.span`
   display: inline-block;
   padding: 20px;
   background-color: #eaeaea;
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  border-radius: 0px 100px 100px 0px;
   input {
     background-color: #eaeaea;
     border: none;
+    ::placeholder {
+      font-size: 24px;
+      color: black;
+    }
   }
 `;
