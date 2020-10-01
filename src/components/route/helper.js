@@ -29,9 +29,9 @@ export const restrictedRoutesProfessional = [
 ];
 
 export const freeRoutes = [
-  { path: "/", name: "Login", component: Login },
+  { path: "/", name: "Homepage", component: Homepage },
   { path: "/signup-client", name: "SignupClient", component: SignupClient },
-  { path: "/homepage", name: "Homepage", component: Homepage },
+  // { path: "/homepage", name: "Homepage", component: Homepage },
   {
     path: "/singup-professional",
     name: "SignupProfessional",
