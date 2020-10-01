@@ -19,8 +19,8 @@ const FormUser = () => {
       .post("https://profissa-server.herokuapp.com/register", {...data})
       .then((res) => {
         if (res.status === 201) {
-         
-          history.push("/");
+         console.log('usuario criado')
+      
         } 
       });
   };
