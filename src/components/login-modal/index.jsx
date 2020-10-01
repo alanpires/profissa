@@ -18,6 +18,8 @@ import {
 } from "./style";
 
 const LoginModal = () => {
+  const user = useSelector((state) => state.access.user);
+
   const [showModal, setShowModal] = useState(true);
   const dispatch = useDispatch();
   const errorRequest = useSelector((state) => state.messagesLogin.errorRequest);
@@ -32,7 +34,7 @@ const LoginModal = () => {
     //   dispatch(requestUserDecoder(decoded.sub, axiosConfig(token)));
     // }
   };
-
+  console.log(user.type);
   return (
     <StyledModal class="Modal" isOpen={showModal}>
       <AdjustModal>

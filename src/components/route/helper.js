@@ -8,7 +8,6 @@ import SignupProfessional from "../../pages/singup-professional";
 
 export const restrictedRoutesClient = [
   { path: "/client-profile", name: "ClientProfile", component: ClientProfile },
-  { path: "/homepage", name: "Homepage", component: Homepage },
   {
     path: "/professional-showcase",
     name: "ProfessionalShowcase",
@@ -22,17 +21,12 @@ export const restrictedRoutesProfessional = [
     name: "ProfessionalProfile",
     component: ProfessionalProfile,
   },
-  { path: "/homepage", name: "Homepage", component: Homepage },
-  {
-    path: "/professional-showcase",
-    name: "ProfessionalShowcase",
-    component: ProfessionalShowcase,
-  },
 ];
 
 export const freeRoutes = [
-  { path: "/", name: "Login", component: Login },
+  { path: "/", name: "Homepage", component: Homepage },
   { path: "/signup-client", name: "SignupClient", component: SignupClient },
+  // { path: "/homepage", name: "Homepage", component: Homepage },
   {
     path: "/singup-professional",
     name: "SignupProfessional",
