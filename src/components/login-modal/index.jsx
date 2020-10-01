@@ -27,19 +27,20 @@ const tailLayout = {
 
 const LoginModal = () => {
   const token = useSelector((state) => state.access.token);
-  const decoded = jwt_decode(token);
-  console.log(decoded);
+  const user = useSelector((state) => state.access.user);
+  // const decoded = jwt_decode(token);
+  // console.log(decoded);
 
   const [showModal, setShowModal] = useState(true);
   const dispatch = useDispatch();
-  const errorRequest = useSelector((state) => state.messagesLogin.errorRequest);
+  // const errorRequest = useSelector((state) => state.messagesLogin.errorRequest);
 
   const onFinish = (values) => {
     console.log("Success:", values);
     dispatch(requestLogin(values));
-    if (token) {
-      dispatch(requestUserDecoder(decoded.sub, token));
-    }
+    // if (token) {
+    //   dispatch(requestUserDecoder(decoded.sub, token));
+    // }
   };
 
   return (
@@ -75,11 +76,11 @@ const LoginModal = () => {
             label="Senha"
             name="password"
             validateTrigger={false}
-            extra={
-              errorRequest && (
-                <span style={{ color: "red" }}>{errorRequest}</span>
-              )
-            }
+            // extra={
+            //   errorRequest && (
+            //     <span style={{ color: "red" }}>{errorRequest}</span>
+            //   )
+            // }
             rules={[
               { required: true, message: "Por favor insira sua senha." },
               { min: 6, message: "Toda senha tem ao menos 6 caracteres." },

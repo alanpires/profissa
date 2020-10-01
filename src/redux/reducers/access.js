@@ -11,6 +11,7 @@ const access = (state = defaultState, action) => {
       return { ...state, token: action.token };
 
     case DECODER:
+      debugger;
       return { ...state, user: action.user };
 
     default:

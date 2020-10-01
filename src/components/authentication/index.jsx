@@ -12,7 +12,7 @@ import RestrictedNavigationProfessional from "../restricted-navigation-professio
 const Authentication = () => {
   const history = useHistory();
   const location = useLocation();
-  const token = true;
+  const token = undefined;
   const userType = "professional";
 
   useEffect(() => {
@@ -22,6 +22,8 @@ const Authentication = () => {
         history.push("/signup-client");
       } else if (location.pathname === "/singup-professional") {
         history.push("/singup-professional");
+      } else if (location.pathname === "/homepage") {
+        history.push("/homepage");
       } else {
         history.push("/");
       }
@@ -31,19 +33,14 @@ const Authentication = () => {
         token && // === window.localStorage.getItem("token")
         userType === "professional"
       ) {
-        if (location.pathname === "/homepage") {
-          history.push("/homepage");
-        } else if (location.pathname === "/professional-profile") {
+        if (location.pathname === "/professional-profile") {
           history.push("/professional-profile");
         }
       } else if (
         token && // === window.localStorage.getItem("token")
         userType === "client"
       ) {
-        if (location.pathname === "/homepage") {
-          history.push("/homepage");
-        } else if (location.pathname === "/client-profile") {
-          console.log(userType);
+        if (location.pathname === "/client-profile") {
           history.push("/client-profile");
         } else if (location.pathname === "/professional-showcase") {
           history.push("/professional-showcase");

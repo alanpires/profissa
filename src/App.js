@@ -1,5 +1,5 @@
 import React from "react";
-import Homepage from "../src/components/homepage";
+import Homepage from "./pages/homepage";
 import Authentication from "./components/authentication";
 import LoginModal from "./components/login-modal";
 import {
@@ -14,11 +14,7 @@ import SignUpClient from "./pages/signup-client";
 const App = () => {
   return (
     <div>
-      
       <Authentication />
-      
-      
-    
     </div>
   );
 };
