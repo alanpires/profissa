@@ -96,7 +96,7 @@ export const FormTitle = styled.div`
     font-size: 0px;
   }
   padding-bottom: 100px;
-  margin-top: -170px;
+  margin-top: 10px;
 `;
 
 export const Subtitle = styled.p`
