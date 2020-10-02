@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Input } from "antd";
 
 export const NewInput = styled(Input)`
-  height: 50px;
+  height: 45px;
   width: 600px;
   border-radius: 15px;
   margin-bottom: 20px;
