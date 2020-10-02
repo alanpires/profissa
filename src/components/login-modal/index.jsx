@@ -6,10 +6,6 @@ import {
   requestLogin,
   requestUserDecoder,
 } from "../../redux/actions/access-actions";
-<<<<<<< HEAD
-// import jwt_decode from "jwt-decode";
-=======
->>>>>>> master
 
 import { Form, Input, Button } from "antd";
 import {
@@ -22,15 +18,9 @@ import {
 } from "./style";
 
 const LoginModal = () => {
-<<<<<<< HEAD
-  const token = useSelector((state) => state.access.token);
-  // const decoded = jwt_decode(token);
-  // console.log(decoded);
-=======
   const user = useSelector((state) => state.access.user);
->>>>>>> master
 
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const dispatch = useDispatch();
   const errorRequest = useSelector((state) => state.messagesLogin.errorRequest);
   const token = useSelector((state) => state.access.token);
@@ -38,17 +28,11 @@ const LoginModal = () => {
   const onFinish = (values) => {
     console.log("Success:", values);
     dispatch(requestLogin(values));
-<<<<<<< HEAD
-    if (token) {
-      // dispatch(requestUserDecoder(decoded.sub, token));
-    }
-=======
     // if (token) {
     //   const decoded = jwt_decode(token);
     //   console.log(decoded);
     //   dispatch(requestUserDecoder(decoded.sub, axiosConfig(token)));
     // }
->>>>>>> master
   };
   console.log(user.type);
   return (
