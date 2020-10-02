@@ -1,5 +1,7 @@
 import { DECODER, LOGIN, LOGIN_ERROR } from "./type";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { axiosConfig } from "../../components/login-modal/helper";
 
 const login = (token) => ({
   type: LOGIN,
@@ -18,6 +20,12 @@ export const requestLogin = (data) => (dispatch) => {
       console.log(res.data);
       dispatch(login(res.data.accessToken));
       localStorage.setItem("token", res.data.accessToken);
+      if (res.data.accessToken) {
+        const decoded = jwt_decode(res.data.accessToken);
+        dispatch(
+          requestUserDecoder(decoded.sub, axiosConfig(res.data.accessToken))
+        );
+      }
     })
     .catch((res) => {
       console.log(res);
@@ -30,12 +38,12 @@ const userDecoder = (user) => ({
   user,
 });
 
-export const requestUserDecoder = (id, token) => (dispatch) => {
+const requestUserDecoder = (id, token) => (dispatch) => {
   axios
     .get(`https://profissa-server.herokuapp.com/users/${id}`, token)
     .then((res) => {
       console.log(res);
-      dispatch(userDecoder(res));
-      localStorage.setItem("user", JSON.stringify(res.data.user));
+      dispatch(userDecoder(res.data));
+      localStorage.setItem("user", JSON.stringify(res.data));
     });
 };
