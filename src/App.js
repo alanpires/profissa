@@ -14,9 +14,9 @@ import SignUpClient from "./pages/signup-client";
 const App = () => {
   return (
     <div>
-      <Homepage />
+      {/* <Homepage /> */}
       <Authentication />
-      <LoginModal />
+      {/* <LoginModal /> */}
       <Router>
         <Switch>
           <Route component={SignUpClient} path="/signup-client" exact />

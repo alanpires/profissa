@@ -7,7 +7,7 @@ import {
   requestLogin,
   requestUserDecoder,
 } from "../../redux/actions/access-actions";
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 
 const layout = {
   labelCol: {
@@ -27,10 +27,10 @@ const tailLayout = {
 
 const LoginModal = () => {
   const token = useSelector((state) => state.access.token);
-  const decoded = jwt_decode(token);
-  console.log(decoded);
+  // const decoded = jwt_decode(token);
+  // console.log(decoded);
 
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const errorRequest = useSelector((state) => state.messagesLogin.errorRequest);
 
@@ -38,7 +38,7 @@ const LoginModal = () => {
     console.log("Success:", values);
     dispatch(requestLogin(values));
     if (token) {
-      dispatch(requestUserDecoder(decoded.sub, token));
+      // dispatch(requestUserDecoder(decoded.sub, token));
     }
   };
 
