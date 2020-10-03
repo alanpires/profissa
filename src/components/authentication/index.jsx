@@ -32,6 +32,11 @@ const Authentication = () => {
         } else if (location.pathname === "/feedbacks") {
           history.push("/feedbacks");
         }
+      } else if (
+        location.pathname !== "/professional-profile" &&
+        location.pathname !== "/schedule" &&
+        location.pathname !== "/feedbacks"
+      ) {
         history.push("/professional-profile");
       }
 
@@ -41,6 +46,10 @@ const Authentication = () => {
         } else if (location.pathname === "/professional-showcase") {
           history.push("/professional-showcase");
         }
+      } else if (
+        location.pathname !== "/professional-showcase" &&
+        location.pathname !== "/client-profile"
+      ) {
         history.push("/client-profile");
       }
     }
@@ -50,16 +59,13 @@ const Authentication = () => {
 
   if (!token) {
     return <FreeNavigation />;
-  }
-  if (token && userType !== undefined && userType.length > 0) {
-    if (userType.pop() === "Profissa") {
+  } else if (token && userType) {
+    if (userType[0] === "Profissa") {
       return <RestrictedNavigationProfessional />;
-    } else if (userType.pop() === "Cliente") {
+    } else if (userType[0] === "Cliente") {
       return <RestrictedNavigationClient />;
     }
   }
-
-  console.log(userType);
   return <div>Loading</div>;
 };
 export default Authentication;
