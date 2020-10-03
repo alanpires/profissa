@@ -5,12 +5,6 @@ import RestrictedNavigationClient from "../restricted-navigation-client";
 import RestrictedNavigationProfessional from "../restricted-navigation-professional";
 import { useSelector } from "react-redux";
 
-import { axiosConfig } from "../../components/login-modal/helper";
-import axios from "axios";
-// {
-//   token: 'sfslfskdjflskdfjls',
-//   user_type: 'professional'
-// }
 const Authentication = () => {
   const history = useHistory();
   const location = useLocation();
@@ -37,9 +31,8 @@ const Authentication = () => {
           history.push("/schedule");
         } else if (location.pathname === "/feedbacks") {
           history.push("/feedbacks");
-        } else {
-          history.push("/professional-profile");
         }
+        history.push("/professional-profile");
       }
 
       if (token && userType === "Cliente") {
@@ -47,9 +40,8 @@ const Authentication = () => {
           history.push("/client-profile");
         } else if (location.pathname === "/professional-showcase") {
           history.push("/professional-showcase");
-        } else {
-          history.push("/client-profile");
         }
+        history.push("/client-profile");
       }
     }
 
@@ -59,7 +51,7 @@ const Authentication = () => {
   if (!token) {
     return <FreeNavigation />;
   }
-  if (token && userType.length > 0) {
+  if (token && userType !== undefined && userType.length > 0) {
     if (userType.pop() === "Profissa") {
       return <RestrictedNavigationProfessional />;
     } else if (userType.pop() === "Cliente") {
