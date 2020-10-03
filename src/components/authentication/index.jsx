@@ -14,11 +14,11 @@ import axios from "axios";
 const Authentication = () => {
   const history = useHistory();
   const location = useLocation();
-  const userType = useSelector((state) => state.access.user.userType);
+  const userType = useSelector((state) => state.access.user.select);
   const token = useSelector((state) => state.access.token);
 
   useEffect(() => {
-    console.log(token, userType);
+    console.log(userType);
     if (!token) {
       if (location.pathname === "/signup-client") {
         history.push("/signup-client");
@@ -30,7 +30,7 @@ const Authentication = () => {
         history.push("/");
       }
     } else {
-      if (token && userType === "professional") {
+      if (token && userType === "Profissa") {
         if (location.pathname === "/professional-profile") {
           history.push("/professional-profile");
         } else if (location.pathname === "/schedule") {
@@ -42,7 +42,7 @@ const Authentication = () => {
         }
       }
 
-      if (token && userType === "client") {
+      if (token && userType === "Cliente") {
         if (location.pathname === "/client-profile") {
           history.push("/client-profile");
         } else if (location.pathname === "/professional-showcase") {
@@ -59,12 +59,15 @@ const Authentication = () => {
   if (!token) {
     return <FreeNavigation />;
   }
-  if (token && userType === "professional") {
-    return <RestrictedNavigationProfessional />;
+  if (token && userType.length > 0) {
+    if (userType.pop() === "Profissa") {
+      return <RestrictedNavigationProfessional />;
+    } else if (userType.pop() === "Cliente") {
+      return <RestrictedNavigationClient />;
+    }
   }
-  if (token && userType === "client") {
-    return <RestrictedNavigationClient />;
-  }
+
+  console.log(userType);
   return <div>Loading</div>;
 };
 export default Authentication;
