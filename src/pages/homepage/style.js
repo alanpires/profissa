@@ -251,3 +251,32 @@ export const DivProfileCards = styled.div`
     font-size: 48px;
   }
 `;
+
+export const DivCard = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 400px;
+`;
+
+export const EstrelaCards = styled(BsStarFill)`
+  color: #ffed47;
+  width: 25px;
+  height: 24px;
+`;
+
+export const InfoCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  align-items: center;
+  p {
+    font-size: 12px;
+  }
+  h1 {
+    margin-top: -5px;
+    font-family: Shrikhand;
+    font-size: 24px;
+  }
+`;

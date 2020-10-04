@@ -4,6 +4,8 @@ import LisaimgSvg from "./photos/lisa.svg";
 import FernandoimgSvg from "./photos/fernando.svg";
 import RenataimgSvg from "./photos/renata.svg";
 import LucianoSvg from "./photos/luciano.svg";
+import RicardoSvg from "./photos/ricardo.svg";
+import { Card } from "lib-kenzie-academy";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosPin } from "react-icons/io";
 import {
@@ -25,9 +27,22 @@ import {
   SectionProfilesPhotos,
   Estrela,
   DivProfileCards,
+  DivCard,
+  InfoCard,
+  EstrelaCards,
 } from "./style";
+import { useEffect, useState } from "react";
+
+const getUsersUrl = "https://profissa-server.herokuapp.com/users";
 
 const Homepage = () => {
+  const [users, getUsersHomepage] = useState([]);
+  useEffect(() => {
+    fetch(getUsersUrl)
+      .then((res) => res.json())
+      .then((res) => getUsersHomepage(res));
+  }, []);
+
   return (
     <ContainerFlexHomePage>
       <header>
@@ -96,6 +111,28 @@ const Homepage = () => {
       </SectionProfilesPhotos>
       <DivProfileCards>
         <h1>Outros profissas</h1>
+        <DivCard>
+          {users ? (
+            users.map((user, index) => (
+              <Card key={index}>
+                <InfoCard>
+                  <img src={RicardoSvg} />
+                  <div>
+                    <EstrelaCards />
+                    <EstrelaCards />
+                    <EstrelaCards />
+                    <EstrelaCards />
+                    <EstrelaCards />
+                  </div>
+                  <p>12 avaliações</p>
+                  <h1>{user.name}</h1>
+                </InfoCard>
+              </Card>
+            ))
+          ) : (
+            <h1>Carregando</h1>
+          )}
+        </DivCard>
       </DivProfileCards>
     </ContainerFlexHomePage>
   );
