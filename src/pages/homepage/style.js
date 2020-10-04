@@ -239,7 +239,7 @@ export const Estrela = styled(BsStarFill)`
 
 export const DivProfileCards = styled.div`
   display: flex;
-  background-color: #a5a5a5;
+  background-color: #ffffff;
   position: absolute;
   top: 660px;
   width: 100%;

@@ -1,21 +1,32 @@
 import React from "react";
-import { FormDiv } from "./style.js";
+import { FormDiv, CheckboxText, NewInput } from "./style.js";
 import { Form, Input, Button, Checkbox } from "antd";
+import axios from "axios";
 
 const FormUser = () => {
   const onFinish = (values) => {
-    console.log("Success:", values);
+    SignUp(values);
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
+  const SignUp = (data) => {
+    axios
+      .post("https://profissa-server.herokuapp.com/register", { ...data })
+      .then((res) => {
+        if (res.status === 201) {
+          console.log("usuario criado");
+        }
+      });
+  };
+
   return (
     <FormDiv>
       <Form
         name="basic"
-        initialValues={{ remember: true }}
+        initialValues={{ ["checkbox-group"]: ["Cliente", "Profissa"] }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
@@ -37,13 +48,13 @@ const FormUser = () => {
             },
           ]}
         >
-          <Input placeholder="Escreva seu nome completo" size="large" />
+          <NewInput placeholder="Escreva seu nome completo" size="large" />
         </Form.Item>
         <Form.Item
           name="email"
           rules={[
             {
-              pattern: /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i,
+              pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
               message: "E-mail inválido.",
             },
             {
@@ -52,7 +63,7 @@ const FormUser = () => {
             },
           ]}
         >
-          <Input placeholder="Digite seu e-mail" size="large" />
+          <NewInput placeholder="Digite seu e-mail" size="large" />
         </Form.Item>
         <Form.Item
           name="password"
@@ -71,7 +82,11 @@ const FormUser = () => {
             },
           ]}
         >
-          <Input.Password placeholder="Digite sua senha" size="large" />
+          <NewInput
+            type="password"
+            placeholder="Digite sua senha"
+            size="large"
+          />
         </Form.Item>
 
         <Form.Item
@@ -91,7 +106,7 @@ const FormUser = () => {
             },
           ]}
         >
-          <Input placeholder="Digite seu CPF" size="large" />
+          <NewInput placeholder="Digite seu CPF" size="large" />
         </Form.Item>
         <Form.Item
           name="adress"
@@ -102,13 +117,20 @@ const FormUser = () => {
             },
           ]}
         >
-          <Input placeholder="Onde você mora?" size="large" />
+          <NewInput placeholder="Onde você mora?" size="large" />
         </Form.Item>
 
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Submit
+            Cadastrar
           </Button>
+        </Form.Item>
+        <Form.Item name="select" label="Selecione seu tipo de perfil">
+          <Checkbox.Group>
+            <Checkbox value="Cliente">Cliente</Checkbox>
+
+            <Checkbox value="Profissa">Profissa</Checkbox>
+          </Checkbox.Group>
         </Form.Item>
       </Form>
     </FormDiv>

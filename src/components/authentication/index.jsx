@@ -3,17 +3,19 @@ import { useHistory, useLocation } from "react-router-dom";
 import FreeNavigation from "../free-navigation";
 import RestrictedNavigationClient from "../restricted-navigation-client";
 import RestrictedNavigationProfessional from "../restricted-navigation-professional";
+import { useSelector } from "react-redux";
 
+import { axiosConfig } from "../../components/login-modal/helper";
+import axios from "axios";
 // {
 //   token: 'sfslfskdjflskdfjls',
 //   user_type: 'professional'
 // }
-
 const Authentication = () => {
   const history = useHistory();
   const location = useLocation();
-  const token = true;
-  const userType = "professional";
+  const userType = useSelector((state) => state.access.user.userType);
+  const token = useSelector((state) => state.access.token);
 
   useEffect(() => {
     console.log(token, userType);
@@ -22,49 +24,47 @@ const Authentication = () => {
         history.push("/signup-client");
       } else if (location.pathname === "/singup-professional") {
         history.push("/singup-professional");
+      } else if (location.pathname === "/homepage") {
+        history.push("/homepage");
       } else {
         history.push("/");
       }
     } else {
-      // axios.get("https").then(() => {
-      if (
-        token && // === window.localStorage.getItem("token")
-        userType === "professional"
-      ) {
-        if (location.pathname === "/homepage") {
-          history.push("/homepage");
-        } else if (location.pathname === "/professional-profile") {
+      if (token && userType === "professional") {
+        if (location.pathname === "/professional-profile") {
+          history.push("/professional-profile");
+        } else if (location.pathname === "/schedule") {
+          history.push("/schedule");
+        } else if (location.pathname === "/feedbacks") {
+          history.push("/feedbacks");
+        } else {
           history.push("/professional-profile");
         }
-      } else if (
-        token && // === window.localStorage.getItem("token")
-        userType === "client"
-      ) {
-        if (location.pathname === "/homepage") {
-          history.push("/homepage");
-        } else if (location.pathname === "/client-profile") {
-          console.log(userType);
+      }
+
+      if (token && userType === "client") {
+        if (location.pathname === "/client-profile") {
           history.push("/client-profile");
         } else if (location.pathname === "/professional-showcase") {
           history.push("/professional-showcase");
+        } else {
+          history.push("/client-profile");
         }
       }
-      // });
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token, userType]);
+  }, [token]);
 
   if (!token) {
     return <FreeNavigation />;
   }
-
   if (token && userType === "professional") {
     return <RestrictedNavigationProfessional />;
   }
-
   if (token && userType === "client") {
     return <RestrictedNavigationClient />;
   }
+  return <div>Loading</div>;
 };
-
 export default Authentication;
