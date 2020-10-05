@@ -135,7 +135,7 @@ export const DivContentHomepage = styled.div`
       margin-bottom: -10px;
       align-items: center;
       font-family: Shrikhand;
-      font-size: 15px;
+      font-size: 35px;
     }
   }
 `;
@@ -209,7 +209,7 @@ export const SpanSubmitHomepage2 = styled.span`
     background-color: #eaeaea;
     border: none;
     ::placeholder {
-      font-size: 24px;
+      font-size: 18px;
       color: black;
     }
   }

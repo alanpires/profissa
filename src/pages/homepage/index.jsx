@@ -6,6 +6,7 @@ import RenataimgSvg from "./photos/renata.svg";
 import LucianoSvg from "./photos/luciano.svg";
 import RicardoSvg from "./photos/ricardo.svg";
 import { Card } from "lib-kenzie-academy";
+import "./styles.css";
 import {
   ContainerFlexHomePage,
   LogoH1homepage,
@@ -69,7 +70,11 @@ const Homepage = () => {
             </SpanSubmitHomepage1>
             <SpanSubmitHomepage2>
               <IconLocal />
-              <input placeholder="localidade" />
+              <input
+                required
+                pattern="\d{5}\d{3}"
+                placeholder="CEP ex: 00000000"
+              />
             </SpanSubmitHomepage2>
             <ButtomsearchHomepage>buscar</ButtomsearchHomepage>
           </form>
@@ -114,7 +119,7 @@ const Homepage = () => {
         <DivCard>
           {users ? (
             users.map((user, index) => (
-              <Card key={index}>
+              <Card className="card" key={index}>
                 <InfoCard>
                   <img src={RicardoSvg} />
                   <div>
