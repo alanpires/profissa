@@ -7,8 +7,7 @@ import JobsProfissa from "./components/feedbacks-profissa";
 const App = () => {
   return (
     <div>
-      {/* <Authentication /> */}
-      {/* <LoginModal /> */}
+      {/* <Homepage /> */}
       <JobsProfissa />
     </div>
   );
