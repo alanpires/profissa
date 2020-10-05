@@ -4,8 +4,11 @@ import LisaimgSvg from "./photos/lisa.svg";
 import FernandoimgSvg from "./photos/fernando.svg";
 import RenataimgSvg from "./photos/renata.svg";
 import LucianoSvg from "./photos/luciano.svg";
-import { AiOutlineSearch } from "react-icons/ai";
-import { IoIosPin } from "react-icons/io";
+import RicardoSvg from "./photos/ricardo.svg";
+import { Card } from "lib-kenzie-academy";
+import { useHistory } from "react-router-dom";
+import LoginModal from "../../components/login-modal";
+import "./styles.css";
 import {
   ContainerFlexHomePage,
   LogoH1homepage,
@@ -25,16 +28,44 @@ import {
   SectionProfilesPhotos,
   Estrela,
   DivProfileCards,
+  DivCard,
+  InfoCard,
+  EstrelaCards,
+  IconSearch,
+  IconLocal,
 } from "./style";
+import { useEffect, useState } from "react";
+
+const getUsersUrl = "https://profissa-server.herokuapp.com/users";
 
 const Homepage = () => {
+  const history = useHistory();
+  const [users, getUsersHomepage] = useState(null);
+  useEffect(() => {
+    fetch(getUsersUrl)
+      .then((res) => res.json())
+      .then((res) => getUsersHomepage(res));
+  }, []);
+
+  const [showLogin, setShowLogin] = useState(false);
+
+  const preventDefaultForm = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <ContainerFlexHomePage>
+      {showLogin ? <LoginModal setShowLogin={setShowLogin} /> : null}
+
       <header>
         <LogoH1homepage>Profissa</LogoH1homepage>
         <DivButtonsContainer>
-          <ButtonhomePage1>Seja um profissa</ButtonhomePage1>
-          <ButtonhomePage2>login/cadastro</ButtonhomePage2>
+          <ButtonhomePage1 onClick={() => history.push("/signup-client")}>
+            Cadastro
+          </ButtonhomePage1>
+          <ButtonhomePage2 onClick={() => setShowLogin(!showLogin)}>
+            login
+          </ButtonhomePage2>
           <ButtonhomePage3>informações</ButtonhomePage3>
           <ButtonhomePage4>ajuda</ButtonhomePage4>
         </DivButtonsContainer>
@@ -47,9 +78,9 @@ const Homepage = () => {
         <h1>Você tem um problema,</h1>
         <h1>Eles tem a solução</h1>
         <DivHandleInputContent>
-          <form>
+          <form onSubmit={(e) => preventDefaultForm(e)}>
             <SpanSubmitHomepage1>
-              <AiOutlineSearch />
+              <IconSearch />
               <select>
                 <option selected>Serviços</option>
                 <optgroup label="Assistência técnica:">
@@ -103,8 +134,12 @@ const Homepage = () => {
               </select>
             </SpanSubmitHomepage1>
             <SpanSubmitHomepage2>
-              <IoIosPin />
-              <input placeholder="Localização" />
+              <IconLocal />
+              <input
+                required
+                pattern="\d{5}\d{3}"
+                placeholder="CEP ex: 00000000"
+              />
             </SpanSubmitHomepage2>
             <ButtomsearchHomepage>buscar</ButtomsearchHomepage>
           </form>
@@ -146,6 +181,28 @@ const Homepage = () => {
       </SectionProfilesPhotos>
       <DivProfileCards>
         <h1>Outros profissas</h1>
+        <DivCard>
+          {users ? (
+            users.map((user, index) => (
+              <Card className="card" key={index}>
+                <InfoCard>
+                  <img src={RicardoSvg} />
+                  <div>
+                    <EstrelaCards />
+                    <EstrelaCards />
+                    <EstrelaCards />
+                    <EstrelaCards />
+                    <EstrelaCards />
+                  </div>
+                  <p>12 avaliações</p>
+                  <h1>{user.name}</h1>
+                </InfoCard>
+              </Card>
+            ))
+          ) : (
+            <h1>Carregando</h1>
+          )}
+        </DivCard>
       </DivProfileCards>
     </ContainerFlexHomePage>
   );

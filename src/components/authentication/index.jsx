@@ -16,41 +16,31 @@ const Authentication = () => {
     if (!token) {
       if (location.pathname === "/signup-client") {
         history.push("/signup-client");
-      } else if (location.pathname === "/singup-professional") {
-        history.push("/singup-professional");
-      } else if (location.pathname === "/homepage") {
-        history.push("/homepage");
       } else {
         history.push("/");
       }
     } else {
-      if (token && userType === "Profissa") {
-        if (location.pathname === "/professional-profile") {
-          history.push("/professional-profile");
-        } else if (location.pathname === "/schedule") {
-          history.push("/schedule");
-        } else if (location.pathname === "/feedbacks") {
-          history.push("/feedbacks");
+      if (token && userType) {
+        if (userType[0] === "Profissa") {
+          if (location.pathname === "/professional-profile") {
+            history.push("/professional-profile");
+          } else if (location.pathname === "/schedule") {
+            history.push("/schedule");
+          } else if (location.pathname === "/feedbacks") {
+            history.push("/feedbacks");
+          } else {
+            history.push("/professional-profile");
+          }
         }
-      } else if (
-        location.pathname !== "/professional-profile" &&
-        location.pathname !== "/schedule" &&
-        location.pathname !== "/feedbacks"
-      ) {
-        history.push("/professional-profile");
-      }
-
-      if (token && userType === "Cliente") {
-        if (location.pathname === "/client-profile") {
-          history.push("/client-profile");
-        } else if (location.pathname === "/professional-showcase") {
-          history.push("/professional-showcase");
+        if (userType[0] === "Cliente") {
+          if (location.pathname === "/client-profile") {
+            history.push("/client-profile");
+          } else if (location.pathname === "/professional-showcase") {
+            history.push("/professional-showcase");
+          } else {
+            history.push("/client-profile");
+          }
         }
-      } else if (
-        location.pathname !== "/professional-showcase" &&
-        location.pathname !== "/client-profile"
-      ) {
-        history.push("/client-profile");
       }
     }
 
