@@ -6,6 +6,7 @@ import RenataimgSvg from "./photos/renata.svg";
 import LucianoSvg from "./photos/luciano.svg";
 import RicardoSvg from "./photos/ricardo.svg";
 import { Card } from "lib-kenzie-academy";
+import { useHistory } from "react-router-dom";
 import LoginModal from "../../components/login-modal";
 import "./styles.css";
 import {
@@ -38,6 +39,7 @@ import { useEffect, useState } from "react";
 const getUsersUrl = "https://profissa-server.herokuapp.com/users";
 
 const Homepage = () => {
+  const history = useHistory();
   const [users, getUsersHomepage] = useState(null);
   useEffect(() => {
     fetch(getUsersUrl)
@@ -47,15 +49,22 @@ const Homepage = () => {
 
   const [showLogin, setShowLogin] = useState(false);
 
+  const preventDefaultForm = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <ContainerFlexHomePage>
       {showLogin ? <LoginModal setShowLogin={setShowLogin} /> : null}
+
       <header>
         <LogoH1homepage>Profissa</LogoH1homepage>
         <DivButtonsContainer>
-          <ButtonhomePage1>Seja um profissa</ButtonhomePage1>
+          <ButtonhomePage1 onClick={() => history.push("/signup-client")}>
+            Cadastro
+          </ButtonhomePage1>
           <ButtonhomePage2 onClick={() => setShowLogin(!showLogin)}>
-            login/cadastro
+            login
           </ButtonhomePage2>
           <ButtonhomePage3>informações</ButtonhomePage3>
           <ButtonhomePage4>ajuda</ButtonhomePage4>
@@ -69,7 +78,7 @@ const Homepage = () => {
         <h1>Você tem um problema,</h1>
         <h1>Eles tem a solução</h1>
         <DivHandleInputContent>
-          <form>
+          <form onSubmit={(e) => preventDefaultForm(e)}>
             <SpanSubmitHomepage1>
               <IconSearch />
               <input placeholder="serviços" />
