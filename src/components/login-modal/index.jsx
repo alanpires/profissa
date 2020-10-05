@@ -17,7 +17,7 @@ import {
   StyledPassword,
 } from "./style";
 
-const LoginModal = () => {
+const LoginModal = ({ setShowLogin }) => {
   const user = useSelector((state) => state.access.user);
 
   const [showModal, setShowModal] = useState(true);
@@ -87,7 +87,7 @@ const LoginModal = () => {
             <Button type="primary" htmlType="submit">
               Submit
             </Button>
-            <Button onClick={() => setShowModal(false)}>Return</Button>
+            <Button onClick={() => setShowLogin(false)}>Return</Button>
           </StyledForm.Item>
         </StyledForm>
       </AdjustModal>
