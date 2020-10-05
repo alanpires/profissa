@@ -6,8 +6,6 @@ import RenataimgSvg from "./photos/renata.svg";
 import LucianoSvg from "./photos/luciano.svg";
 import RicardoSvg from "./photos/ricardo.svg";
 import { Card } from "lib-kenzie-academy";
-import { AiOutlineSearch } from "react-icons/ai";
-import { IoIosPin } from "react-icons/io";
 import {
   ContainerFlexHomePage,
   LogoH1homepage,
@@ -30,13 +28,15 @@ import {
   DivCard,
   InfoCard,
   EstrelaCards,
+  IconSearch,
+  IconLocal,
 } from "./style";
 import { useEffect, useState } from "react";
 
 const getUsersUrl = "https://profissa-server.herokuapp.com/users";
 
 const Homepage = () => {
-  const [users, getUsersHomepage] = useState([]);
+  const [users, getUsersHomepage] = useState(null);
   useEffect(() => {
     fetch(getUsersUrl)
       .then((res) => res.json())
@@ -64,11 +64,11 @@ const Homepage = () => {
         <DivHandleInputContent>
           <form>
             <SpanSubmitHomepage1>
-              <AiOutlineSearch />
+              <IconSearch />
               <input placeholder="serviços" />
             </SpanSubmitHomepage1>
             <SpanSubmitHomepage2>
-              <IoIosPin />
+              <IconLocal />
               <input placeholder="localidade" />
             </SpanSubmitHomepage2>
             <ButtomsearchHomepage>buscar</ButtomsearchHomepage>
