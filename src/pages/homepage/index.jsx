@@ -6,6 +6,7 @@ import RenataimgSvg from "./photos/renata.svg";
 import LucianoSvg from "./photos/luciano.svg";
 import RicardoSvg from "./photos/ricardo.svg";
 import { Card } from "lib-kenzie-academy";
+import LoginModal from "../../components/login-modal";
 import "./styles.css";
 import {
   ContainerFlexHomePage,
@@ -44,13 +45,18 @@ const Homepage = () => {
       .then((res) => getUsersHomepage(res));
   }, []);
 
+  const [showLogin, setShowLogin] = useState(false);
+
   return (
     <ContainerFlexHomePage>
+      {showLogin ? <LoginModal setShowLogin={setShowLogin} /> : null}
       <header>
         <LogoH1homepage>Profissa</LogoH1homepage>
         <DivButtonsContainer>
           <ButtonhomePage1>Seja um profissa</ButtonhomePage1>
-          <ButtonhomePage2>login/cadastro</ButtonhomePage2>
+          <ButtonhomePage2 onClick={() => setShowLogin(!showLogin)}>
+            login/cadastro
+          </ButtonhomePage2>
           <ButtonhomePage3>informações</ButtonhomePage3>
           <ButtonhomePage4>ajuda</ButtonhomePage4>
         </DivButtonsContainer>
