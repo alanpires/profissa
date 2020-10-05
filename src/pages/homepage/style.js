@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { BsStarFill } from "react-icons/bs";
+import { AiOutlineSearch } from "react-icons/ai";
+import { IoIosPin } from "react-icons/io";
 
 export const ContainerFlexHomePage = styled.div`
   display: flex;
@@ -118,22 +120,39 @@ export const ImgProfileHeaderTopHomepage = styled.img`
 
 export const DivContentHomepage = styled.div`
   position: absolute;
-  top: 30vh;
+  top: 200px;
   left: 7vh;
-
   h1 {
     margin-bottom: -10px;
     align-items: center;
     font-family: Shrikhand;
     font-size: 48px;
   }
+  @media (max-width: 1260px) {
+    position: absolute;
+    top: 200px;
+    h1 {
+      margin-bottom: -10px;
+      align-items: center;
+      font-family: Shrikhand;
+      font-size: 35px;
+    }
+  }
+`;
+
+export const IconSearch = styled(AiOutlineSearch)`
+  width: 20px;
+  height: 20px;
+`;
+
+export const IconLocal = styled(IoIosPin)`
+  width: 20px;
+  height: 20px;
 `;
 
 export const ButtomsearchHomepage = styled.button`
-  position: absolute;
   border-radius: 38px;
   border: 1px solid grey;
-  padding: 15px 10px 15px 10px;
   transition: 0.3s;
   margin-left: 50px;
   font-size: 24px;
@@ -147,6 +166,9 @@ export const DivHandleInputContent = styled.div`
   top: 150px;
   margin-top: 60px;
   border-radius: 18px;
+  form {
+    display: flex;
+  }
 `;
 
 export const ImgHero = styled.div`
@@ -156,10 +178,12 @@ export const ImgHero = styled.div`
   z-index: -1;
   right: 50px;
   top: 150px;
+  @media (max-width: 1260px) {
+    visibility: hidden;
+  }
 `;
 
 export const SpanSubmitHomepage1 = styled.span`
-  display: inline-block;
   padding: 10px;
   background-color: #eaeaea;
   padding: 20px;
@@ -177,7 +201,6 @@ export const SpanSubmitHomepage1 = styled.span`
 `;
 
 export const SpanSubmitHomepage2 = styled.span`
-  display: inline-block;
   padding: 20px;
   background-color: #eaeaea;
   border-radius: 0px 100px 100px 0px;
@@ -186,7 +209,7 @@ export const SpanSubmitHomepage2 = styled.span`
     background-color: #eaeaea;
     border: none;
     ::placeholder {
-      font-size: 24px;
+      font-size: 18px;
       color: black;
     }
   }
@@ -239,7 +262,7 @@ export const Estrela = styled(BsStarFill)`
 
 export const DivProfileCards = styled.div`
   display: flex;
-  background-color: #a5a5a5;
+  background-color: #ffffff;
   position: absolute;
   top: 660px;
   width: 100%;
@@ -249,5 +272,34 @@ export const DivProfileCards = styled.div`
     margin-top: 310px;
     font-family: Shrikhand;
     font-size: 48px;
+  }
+`;
+
+export const DivCard = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 400px;
+`;
+
+export const EstrelaCards = styled(BsStarFill)`
+  color: #ffed47;
+  width: 25px;
+  height: 24px;
+`;
+
+export const InfoCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  align-items: center;
+  p {
+    font-size: 12px;
+  }
+  h1 {
+    margin-top: -5px;
+    font-family: Shrikhand;
+    font-size: 24px;
   }
 `;
