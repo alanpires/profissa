@@ -13,10 +13,7 @@ import {
   ContainerFlexHomePage,
   LogoH1homepage,
   DivButtonsContainer,
-  ButtonhomePage1,
-  ButtonhomePage2,
-  ButtonhomePage3,
-  ButtonhomePage4,
+  ButtonhomePage,
   DivUserTop,
   ImgProfileHeaderTopHomepage,
   DivContentHomepage,
@@ -60,14 +57,15 @@ const Homepage = () => {
       <header>
         <LogoH1homepage>Profissa</LogoH1homepage>
         <DivButtonsContainer>
-          <ButtonhomePage1 onClick={() => history.push("/signup-client")}>
+          <ButtonhomePage>Seja um Profissa</ButtonhomePage>
+          <ButtonhomePage onClick={() => history.push("/signup-client")}>
             Cadastro
-          </ButtonhomePage1>
-          <ButtonhomePage2 onClick={() => setShowLogin(!showLogin)}>
+          </ButtonhomePage>
+          <ButtonhomePage onClick={() => setShowLogin(!showLogin)}>
             login
-          </ButtonhomePage2>
-          <ButtonhomePage3>informações</ButtonhomePage3>
-          <ButtonhomePage4>ajuda</ButtonhomePage4>
+          </ButtonhomePage>
+          <ButtonhomePage>informações</ButtonhomePage>
+          <ButtonhomePage>ajuda</ButtonhomePage>
         </DivButtonsContainer>
         <DivUserTop>
           <p>Alan</p>

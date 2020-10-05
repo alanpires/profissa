@@ -22,37 +22,7 @@ export const DivButtonsContainer = styled.div`
   top: 23px;
 `;
 
-export const ButtonhomePage1 = styled.button`
-  border-radius: 38px;
-  border: none;
-  padding: 10px 15px 10px 15px;
-  margin-left: 10px;
-  transition: 0.3s;
-  padding-left: 50px;
-  padding-right: 50px;
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.22);
-  }
-`;
-
-export const ButtonhomePage2 = styled.button`
-  border-radius: 38px;
-  border: none;
-  padding: 10px 15px 10px 15px;
-  margin-left: 10px;
-  transition: 0.3s;
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.22);
-  }
-  @media (max-width: 850px) and (min-width: 650px) {
-    margin-right: 50px;
-  }
-  @media (max-width: 650) and (min-width: 650px) {
-    margin-right: 50px;
-  }
-`;
-
-export const ButtonhomePage3 = styled.button`
+export const ButtonhomePage = styled.button`
   border-radius: 38px;
   border: none;
   padding: 10px 15px 10px 15px;
@@ -71,26 +41,8 @@ export const ButtonhomePage3 = styled.button`
     top: 50px;
     left: 50px;
   }
-`;
-
-export const ButtonhomePage4 = styled.button`
-  border-radius: 38px;
-  border: none;
-  padding: 10px 15px 10px 15px;
-  margin-left: 10px;
-  transition: 0.3s;
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.22);
-  }
-  @media (max-width: 850px) and (min-width: 650px) {
-    position: absolute;
-    top: 50px;
-    right: 90px;
-  }
-  @media (max-width: 650px) and (min-width: 650px) {
-    position: absolute;
-    top: 50px;
-    right: 90px;
+  &:focus {
+    outline: none;
   }
 `;
 
