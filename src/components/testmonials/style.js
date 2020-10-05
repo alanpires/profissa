@@ -12,7 +12,13 @@ export const DivTestmonials = styled.div`
     padding-left: 20px;
     padding-top: 30px;
   }
+
+  @media (max-width: 425px) {
+    width: 100%;
+    height: 30%;
+  }
 `;
+
 export const DivInfoClient = styled.div`
   width: 100px;
   height: 100px;

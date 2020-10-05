@@ -1,6 +1,6 @@
 import React from "react";
 import Testmonials from "../testmonials/index";
-import { DivContent } from "./style";
+import { DivContent, DivPositionExample } from "./style";
 import ellipse4 from "./img-example/ellipse4.png";
 import ellipse5 from "./img-example/ellipse5.png";
 
@@ -32,17 +32,19 @@ const FeedbacksProfissa = () => {
     },
   ];
   return (
-    <DivContent>
-      <h1>Feedbacks recebidos</h1>
-      {example.map((info, key) => (
-        <Testmonials
-          key={key}
-          image={info.image}
-          name={info.name}
-          feedback={info.feedback}
-        />
-      ))}
-    </DivContent>
+    <DivPositionExample>
+      <DivContent>
+        <h1>Feedbacks recebidos</h1>
+        {example.map((info, key) => (
+          <Testmonials
+            key={key}
+            image={info.image}
+            name={info.name}
+            feedback={info.feedback}
+          />
+        ))}
+      </DivContent>
+    </DivPositionExample>
   );
 };
 
