@@ -95,7 +95,7 @@ const Homepage = () => {
         <h1>Você tem um problema,</h1>
         <h1>Eles tem a solução</h1>
         <DivHandleInputContent>
-          <form onSubmit={(e) => preventDefaultForm(e)}>
+          <form onSubmit={(e) => e.preventDefault}>
             <SpanSubmitHomepage1>
               <IconSearch />
               <select>
