@@ -35,18 +35,27 @@ import {
   IconLocal,
 } from "./style";
 import { useEffect, useState } from "react";
+import { requestProfissasHomepage } from "../../redux/actions/profissas-homepage";
+import { useDispatch, useSelector } from "react-redux";
 
 const Homepage = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
-  const [users, setUsers] = useState(null);
+  const [usersHome, setUsersHome] = useState(null);
   const [inputTest, setInputTest] = useState({ serv: "", cep: 0 })
   const [url, setUrl] = useState("https://profissa-server.herokuapp.com/users")
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
-      .then((res) => setUsers(res));
+      .then((res) => setUsersHome(res));
   }, [url]);
 
+  const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
+
+  useEffect(() => {
+    dispatch(requestProfissasHomepage());
+  }, [dispatch]);
+  console.log(users);
   const [showLogin, setShowLogin] = useState(false);
 
   const onClickSearch = (e) => {
@@ -59,7 +68,6 @@ const Homepage = () => {
   return (
     <ContainerFlexHomePage>
       {showLogin ? <LoginModal setShowLogin={setShowLogin} /> : null}
-
       <header>
         <LogoH1homepage>Profissa</LogoH1homepage>
         <DivButtonsContainer>
@@ -83,17 +91,66 @@ const Homepage = () => {
         <DivHandleInputContent>
           <SpanSubmitHomepage1>
             <IconSearch />
-            <input placeholder="serviços" onChange={(e) => setInputTest({ ...inputTest, serv: e.target.value })} />
+            <select onChange={(e) => setInputTest({ ...inputTest, serv: e.target.value })}>
+              <option selected>Serviços</option>
+              <optgroup label="Assistência técnica:">
+                <option>Celulares</option>
+                <option>Computadores</option>
+                <option>Eletrodomésticos</option>
+              </optgroup>
+              <optgroup label="Aulas particulares: ">
+                <option>Idiomas</option>
+                <option>Artesanato</option>
+                <option>Reforço escolar</option>
+                <option>Gastronomia</option>
+                <option>Música</option>
+              </optgroup>
+              <optgroup label="Automóveis:">
+                <option>Funilaria</option>
+                <option>Mecânica</option>
+                <option>Guincho</option>
+                <option>Elétrica</option>
+                <option>Limpeza</option>
+              </optgroup>
+              <optgroup label="Reformas e Construções:">
+                <option>Pedreiro</option>
+                <option>Eletricista</option>
+                <option>Jardineiro</option>
+                <option>Engenheiro</option>
+                <option>Vidraceiro</option>
+                <option>Carpinteiro</option>
+                <option>Arquiteto</option>
+              </optgroup>
+              <optgroup label="Saúde e beleza:">
+                <option>Cuidador(a)</option>
+                <option>Dentista</option>
+                <option>Cabeleireiro</option>
+                <option>Enfermagem</option>
+                <option>Esteticista</option>
+                <option>Fisioterapeuta</option>
+                <option>Manicure</option>
+                <option>Médico(a)</option>
+                <option>Nutricionista</option>
+                <option>Pedicure</option>
+                <option>Personal Trainer</option>
+                <option>Psicólogo(a)</option>
+              </optgroup>
+              <optgroup label="Serviços domésticos:">
+                <option>Babá</option>
+                <option>Cozinheiro(a)</option>
+                <option>Diarista</option>
+                <option>Passadeira(o)</option>
+              </optgroup>
+            </select>
           </SpanSubmitHomepage1>
           <SpanSubmitHomepage2>
             <IconLocal />
             <input
-              required
               placeholder="CEP ex: 00000000"
               onChange={(e) => setInputTest({ ...inputTest, cep: Number(e.target.value) })}
             />
           </SpanSubmitHomepage2>
-          <ButtomsearchHomepage onClick={onClickSearch}>Buscar</ButtomsearchHomepage>
+          <ButtomsearchHomepage onClick={onClickSearch}>buscar</ButtomsearchHomepage>
         </DivHandleInputContent>
       </DivContentHomepage>
       <ImgHero>
@@ -133,8 +190,8 @@ const Homepage = () => {
       <DivProfileCards>
         <h1>Outros profissas</h1>
         <DivCard>
-          {users ? (
-            users.map((user, index) => (
+          {usersHome ? (
+            usersHome.map((user, index) => (
               <Card className="card" key={index}>
                 <InfoCard>
                   <img src={RicardoSvg} />
@@ -147,6 +204,7 @@ const Homepage = () => {
                   </div>
                   <p>12 avaliações</p>
                   <h1>{user.name}</h1>
+                  <h1>{user.service}</h1>
                 </InfoCard>
               </Card>
             ))
