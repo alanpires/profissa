@@ -1,13 +1,14 @@
 import React from "react";
 import Authentication from "./components/authentication";
-import LoginModal from "./components/login-modal";
-import JobsProfissa from "./components/feedbacks-profissa";
+import ProfessionalShowcase from "./pages/professional-showcase";
+import FeedbacksProfissa from "./components/feedbacks-profissa";
 
 const App = () => {
   return (
     <div>
-      {/* <JobsProfissa /> */}
-      <Authentication />
+      {/* <Authentication /> */}
+      <ProfessionalShowcase />
+      <FeedbacksProfissa />
     </div>
   );
 };
