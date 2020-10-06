@@ -35,31 +35,21 @@ import {
   IconLocal,
 } from "./style";
 import { useEffect, useState } from "react";
-import { requestProfissasHomepage } from "../../redux/actions/profissas-homepage";
-import { useDispatch, useSelector } from "react-redux";
 
 const Homepage = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
   const [usersHome, setUsersHome] = useState(null);
-  const [inputTest, setInputTest] = useState({ serv: "", cep: 0 })
+  const [input, setInput] = useState({ serv: "", cep: 0 })
   const [url, setUrl] = useState("https://profissa-server.herokuapp.com/users")
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((res) => setUsersHome(res));
   }, [url]);
-
-  const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
-
-  useEffect(() => {
-    dispatch(requestProfissasHomepage());
-  }, [dispatch]);
-  console.log(users);
   const [showLogin, setShowLogin] = useState(false);
 
   const onClickSearch = (e) => {
-    const { serv, cep } = inputTest
+    const { serv, cep } = input
     const servStr = serv !== "" ? `&service_like=${serv}` : ""
     const cepStr = cep ? `cep_gte=${cep - 50}&cep_lte=${cep + 50}` : ""
     setUrl("https://profissa-server.herokuapp.com/users?" + cepStr + servStr)
@@ -91,7 +81,7 @@ const Homepage = () => {
         <DivHandleInputContent>
           <SpanSubmitHomepage1>
             <IconSearch />
-            <select onChange={(e) => setInputTest({ ...inputTest, serv: e.target.value })}>
+            <select onChange={(e) => setInput({ ...input, serv: e.target.value })}>
               <option selected>Serviços</option>
               <optgroup label="Assistência técnica:">
                 <option>Celulares</option>
@@ -147,7 +137,7 @@ const Homepage = () => {
             <IconLocal />
             <input
               placeholder="CEP ex: 00000000"
-              onChange={(e) => setInputTest({ ...inputTest, cep: Number(e.target.value) })}
+              onChange={(e) => setInput({ ...input, cep: Number(e.target.value) })}
             />
           </SpanSubmitHomepage2>
           <ButtomsearchHomepage onClick={onClickSearch}>buscar</ButtomsearchHomepage>
