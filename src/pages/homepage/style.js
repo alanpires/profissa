@@ -18,6 +18,7 @@ export const LogoH1homepage = styled.h1`
 
 export const DivButtonsContainer = styled.div`
   position: absolute;
+  display: flex;
   right: 20%;
   top: 23px;
 `;
@@ -47,27 +48,26 @@ export const ButtonhomePage = styled.button`
 `;
 
 export const DivUserTop = styled.div`
-  position: absolute;
-  right: 20px;
-  top: 14px;
+  display: flex;
+  margin-right: -200px;
+  margin-left: 50px;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
   height: 60px;
   width: 150px;
   background-color: rgba(0, 0, 0, 0.18);
   border-radius: 31px;
   p {
-    position: absolute;
-    top: 18px;
-    left: 20px;
+    margin-top: 10px;
+    margin-left: 20px;
   }
-`;
-
-export const ImgProfileHeaderTopHomepage = styled.img`
-  position: absolute;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  right: 10px;
-  top: 7px;
+  img {
+    margin-right: 10px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+  }
 `;
 
 export const DivContentHomepage = styled.div`

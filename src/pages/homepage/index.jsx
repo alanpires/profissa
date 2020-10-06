@@ -5,6 +5,7 @@ import FernandoimgSvg from "./photos/fernando.svg";
 import RenataimgSvg from "./photos/renata.svg";
 import LucianoSvg from "./photos/luciano.svg";
 import RicardoSvg from "./photos/ricardo.svg";
+import UserDefault from "./photos/userDefault.jpg";
 import { Card } from "lib-kenzie-academy";
 import { useHistory } from "react-router-dom";
 import LoginModal from "../../components/login-modal";
@@ -39,17 +40,21 @@ const Homepage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
+  const storeHome = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(requestProfissasHomepage());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(users);
   const [showLogin, setShowLogin] = useState(false);
 
   const preventDefaultForm = (e) => {
     e.preventDefault();
   };
+
+  const userLoged = storeHome.access.user.name;
+  console.log("aqui");
+  console.log(userLoged);
 
   return (
     <ContainerFlexHomePage>
@@ -66,11 +71,13 @@ const Homepage = () => {
           </ButtonhomePage>
           <ButtonhomePage>informações</ButtonhomePage>
           <ButtonhomePage>ajuda</ButtonhomePage>
+          {userLoged ? (
+            <DivUserTop>
+              <p>{userLoged}</p>
+              <img src={UserDefault} />
+            </DivUserTop>
+          ) : null}
         </DivButtonsContainer>
-        <DivUserTop>
-          <p>Alan</p>
-          <ImgProfileHeaderTopHomepage src="https://d3vn5rg72hh8yg.cloudfront.net/cdn/imagesource/previews/1820/de4f2bad614f383b90efa1b59a7f25f3/3/9bc32b4d42f417316732bfba8d42d6c1/545900.jpg" />
-        </DivUserTop>
       </header>
       <DivContentHomepage>
         <h1>Você tem um problema,</h1>
@@ -80,7 +87,7 @@ const Homepage = () => {
             <SpanSubmitHomepage1>
               <IconSearch />
               <select>
-                <option selected>Serviços</option>
+                <option value="Serviços">Serviços</option>
                 <optgroup label="Assistência técnica:">
                   <option>Celulares</option>
                   <option>Computadores</option>
