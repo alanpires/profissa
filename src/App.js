@@ -1,17 +1,19 @@
 import React from "react";
 import Authentication from "./components/authentication";
+import ProfessionalShowcase from "./pages/professional-showcase";
+import FeedbacksProfissa from "./components/feedbacks-profissa";
+import ClientProfile from "./pages/client-profile";
+import Carousel from "./components/swiperCarousel";
 import Homepage from "./pages/homepage";
-
-import './App.css'
-import LoginModal from "./components/login-modal";
-import JobsProfissa from "./components/feedbacks-profissa";
 
 const App = () => {
   return (
     <div>
+      {/* <Authentication /> */}
+      {/* <ProfessionalShowcase />
+      <FeedbacksProfissa /> */}
       <Homepage />
-      {/* <JobsProfissa /> */}
-      <Authentication />
+      {/* <Carousel /> */}
     </div>
   );
 };

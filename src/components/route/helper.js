@@ -32,4 +32,5 @@ export const freeRoutes = [
     name: "SignupProfessional",
     component: SignupProfessional,
   },
+  // { path: "/profile", name: "Profile", component:  },
 ];

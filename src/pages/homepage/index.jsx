@@ -5,6 +5,7 @@ import FernandoimgSvg from "./photos/fernando.svg";
 import RenataimgSvg from "./photos/renata.svg";
 import LucianoSvg from "./photos/luciano.svg";
 import RicardoSvg from "./photos/ricardo.svg";
+import UserDefault from "./photos/userDefault.jpg";
 import { Card } from "lib-kenzie-academy";
 import { useHistory } from "react-router-dom";
 import LoginModal from "../../components/login-modal";
@@ -13,12 +14,7 @@ import {
   ContainerFlexHomePage,
   LogoH1homepage,
   DivButtonsContainer,
-  ButtonhomePage1,
-  ButtonhomePage2,
-  ButtonhomePage3,
-  ButtonhomePage4,
-  DivUserTop,
-  ImgProfileHeaderTopHomepage,
+  ButtonhomePage,
   DivContentHomepage,
   ImgHero,
   ButtomsearchHomepage,
@@ -48,11 +44,11 @@ const Homepage = () => {
   }, [url]);
   const [showLogin, setShowLogin] = useState(false);
 
-  const onClickSearch = (e) => {
-    const { serv, cep } = input
-    const servStr = serv !== "" ? `&service_like=${serv}` : ""
-    const cepStr = cep ? `cep_gte=${cep - 50}&cep_lte=${cep + 50}` : ""
-    setUrl("https://profissa-server.herokuapp.com/users?" + cepStr + servStr)
+  const onClickSearch = () => {
+    const { serv, cep } = input;
+    const servStr = serv !== "" ? `&service_like=${serv}` : "";
+    const cepStr = cep ? `cep_gte=${cep - 50}&cep_lte=${cep + 50}` : "";
+    setUrl("https://profissa-server.herokuapp.com/users?" + cepStr + servStr);
   };
 
   return (
@@ -61,19 +57,16 @@ const Homepage = () => {
       <header>
         <LogoH1homepage>Profissa</LogoH1homepage>
         <DivButtonsContainer>
-          <ButtonhomePage1 onClick={() => history.push("/signup-client")}>
+          <ButtonhomePage>Seja um Profissa</ButtonhomePage>
+          <ButtonhomePage onClick={() => history.push("/signup-client")}>
             Cadastro
-          </ButtonhomePage1>
-          <ButtonhomePage2 onClick={() => setShowLogin(!showLogin)}>
+          </ButtonhomePage>
+          <ButtonhomePage onClick={() => setShowLogin(!showLogin)}>
             login
-          </ButtonhomePage2>
-          <ButtonhomePage3>informações</ButtonhomePage3>
-          <ButtonhomePage4>ajuda</ButtonhomePage4>
+          </ButtonhomePage>
+          <ButtonhomePage>informações</ButtonhomePage>
+          <ButtonhomePage>ajuda</ButtonhomePage>
         </DivButtonsContainer>
-        <DivUserTop>
-          <p>Alan</p>
-          <ImgProfileHeaderTopHomepage src="https://d3vn5rg72hh8yg.cloudfront.net/cdn/imagesource/previews/1820/de4f2bad614f383b90efa1b59a7f25f3/3/9bc32b4d42f417316732bfba8d42d6c1/545900.jpg" />
-        </DivUserTop>
       </header>
       <DivContentHomepage>
         <h1>Você tem um problema,</h1>
