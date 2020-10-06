@@ -39,15 +39,6 @@ import { useDispatch, useSelector } from "react-redux";
 const Homepage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [usersHome, setUsersHome] = useState(null);
-  const [inputTest, setInputTest] = useState({ serv: "", cep: 0 });
-  const [url, setUrl] = useState("https://profissa-server.herokuapp.com/users");
-  useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((res) => setUsersHome(res));
-  }, [url]);
-
   const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
   const storeHome = useSelector((state) => state);
 
@@ -57,11 +48,8 @@ const Homepage = () => {
   }, []);
   const [showLogin, setShowLogin] = useState(false);
 
-  const onClickSearch = (e) => {
-    const { serv, cep } = inputTest;
-    const servStr = serv !== "" ? `&service_like=${serv}` : "";
-    const cepStr = cep ? `cep_gte=${cep - 50}&cep_lte=${cep + 50}` : "";
-    setUrl("https://profissa-server.herokuapp.com/users?" + cepStr + servStr);
+  const preventDefaultForm = (e) => {
+    e.preventDefault();
   };
 
   const userLoged = storeHome.access.user.name;
@@ -199,8 +187,8 @@ const Homepage = () => {
       <DivProfileCards>
         <h1>Outros profissas</h1>
         <DivCard>
-          {usersHome ? (
-            usersHome.map((user, index) => (
+          {users ? (
+            users.map((user, index) => (
               <Card className="card" key={index}>
                 <InfoCard>
                   <img src={RicardoSvg} />
