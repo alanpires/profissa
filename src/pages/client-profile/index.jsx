@@ -1,12 +1,16 @@
 import React from "react";
-import { MainDiv } from "./style.js";
+import { MainDiv, LeftDiv } from "./style.js";
 import AvatarCard from "../../components/avatar-card";
+import Sidebar from "../../components/sidebar";
 
 const ClientProfile = () => {
   return (
     <>
       <MainDiv>
-        <AvatarCard />
+        <LeftDiv>
+          <AvatarCard />
+          <Sidebar />
+        </LeftDiv>
       </MainDiv>
     </>
   );
