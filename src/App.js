@@ -5,13 +5,16 @@ import Homepage from "./pages/homepage";
 import './App.css'
 import LoginModal from "./components/login-modal";
 import JobsProfissa from "./components/feedbacks-profissa";
+import Carousel from "./components/swiperCarousel";
 
 const App = () => {
   return (
     <div>
-      <Homepage />
+      <Carousel />
+      {/* <Homepage /> */}
+
       {/* <JobsProfissa /> */}
-      <Authentication />
+      {/* <Authentication /> */}
     </div>
   );
 };
