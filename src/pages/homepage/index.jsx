@@ -35,18 +35,19 @@ import {
   IconLocal,
 } from "./style";
 import { useEffect, useState } from "react";
-
-const getUsersUrl = "https://profissa-server.herokuapp.com/users";
+import { requestProfissasHomepage } from "../../redux/actions/profissas-homepage";
+import { useDispatch, useSelector } from "react-redux";
 
 const Homepage = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
-  const [users, getUsersHomepage] = useState(null);
-  useEffect(() => {
-    fetch(getUsersUrl)
-      .then((res) => res.json())
-      .then((res) => getUsersHomepage(res));
-  }, []);
+  const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
 
+  useEffect(() => {
+    dispatch(requestProfissasHomepage());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  console.log(users);
   const [showLogin, setShowLogin] = useState(false);
 
   const preventDefaultForm = (e) => {
@@ -56,7 +57,6 @@ const Homepage = () => {
   return (
     <ContainerFlexHomePage>
       {showLogin ? <LoginModal setShowLogin={setShowLogin} /> : null}
-
       <header>
         <LogoH1homepage>Profissa</LogoH1homepage>
         <DivButtonsContainer>
@@ -196,6 +196,7 @@ const Homepage = () => {
                   </div>
                   <p>12 avaliações</p>
                   <h1>{user.name}</h1>
+                  <h1>{user.service}</h1>
                 </InfoCard>
               </Card>
             ))
