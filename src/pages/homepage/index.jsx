@@ -36,21 +36,24 @@ import {
 } from "./style";
 import { useEffect, useState } from "react";
 
-const getUsersUrl = "https://profissa-server.herokuapp.com/users";
-
 const Homepage = () => {
   const history = useHistory();
-  const [users, getUsersHomepage] = useState(null);
+  const [users, setUsers] = useState(null);
+  const [inputTest, setInputTest] = useState({ serv: "", cep: 0 })
+  const [url, setUrl] = useState("https://profissa-server.herokuapp.com/users")
   useEffect(() => {
-    fetch(getUsersUrl)
+    fetch(url)
       .then((res) => res.json())
-      .then((res) => getUsersHomepage(res));
-  }, []);
+      .then((res) => setUsers(res));
+  }, [url]);
 
   const [showLogin, setShowLogin] = useState(false);
 
-  const preventDefaultForm = (e) => {
-    e.preventDefault();
+  const onClickSearch = (e) => {
+    const { serv, cep } = inputTest
+    const servStr = serv !== "" ? `&service_like=${serv}` : ""
+    const cepStr = cep ? `cep_gte=${cep - 50}&cep_lte=${cep + 50}` : ""
+    setUrl("https://profissa-server.herokuapp.com/users?" + cepStr + servStr)
   };
 
   return (
@@ -78,21 +81,19 @@ const Homepage = () => {
         <h1>Você tem um problema,</h1>
         <h1>Eles tem a solução</h1>
         <DivHandleInputContent>
-          <form onSubmit={(e) => preventDefaultForm(e)}>
-            <SpanSubmitHomepage1>
-              <IconSearch />
-              <input placeholder="serviços" />
-            </SpanSubmitHomepage1>
-            <SpanSubmitHomepage2>
-              <IconLocal />
-              <input
-                required
-                pattern="\d{5}\d{3}"
-                placeholder="CEP ex: 00000000"
-              />
-            </SpanSubmitHomepage2>
-            <ButtomsearchHomepage>buscar</ButtomsearchHomepage>
-          </form>
+          <SpanSubmitHomepage1>
+            <IconSearch />
+            <input placeholder="serviços" onChange={(e) => setInputTest({ ...inputTest, serv: e.target.value })} />
+          </SpanSubmitHomepage1>
+          <SpanSubmitHomepage2>
+            <IconLocal />
+            <input
+              required
+              placeholder="CEP ex: 00000000"
+              onChange={(e) => setInputTest({ ...inputTest, cep: Number(e.target.value) })}
+            />
+          </SpanSubmitHomepage2>
+          <ButtomsearchHomepage onClick={onClickSearch}>Buscar</ButtomsearchHomepage>
         </DivHandleInputContent>
       </DivContentHomepage>
       <ImgHero>
@@ -150,8 +151,8 @@ const Homepage = () => {
               </Card>
             ))
           ) : (
-            <h1>Carregando</h1>
-          )}
+              <h1>Carregando</h1>
+            )}
         </DivCard>
       </DivProfileCards>
     </ContainerFlexHomePage>
