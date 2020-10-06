@@ -1,7 +1,15 @@
 import React from "react";
+import { MainDiv } from "./style.js";
+import AvatarCard from "../../components/avatar-card";
 
 const ClientProfile = () => {
-  return <h1>Client Profile</h1>;
+  return (
+    <>
+      <MainDiv>
+        <AvatarCard />
+      </MainDiv>
+    </>
+  );
 };
 
 export default ClientProfile;
