@@ -8,11 +8,10 @@ import { useSelector } from "react-redux";
 const Authentication = () => {
   const history = useHistory();
   const location = useLocation();
-  const userType = useSelector((state) => state.access.user.select);
+  const userSelect = useSelector((state) => state.access.user.select);
   const token = useSelector((state) => state.access.token);
 
   useEffect(() => {
-    console.log(userType);
     if (!token) {
       if (location.pathname === "/signup-client") {
         history.push("/signup-client");
@@ -20,8 +19,8 @@ const Authentication = () => {
         history.push("/");
       }
     } else {
-      if (token && userType) {
-        if (userType[0] === "Profissa") {
+      if (token && userSelect) {
+        if (userSelect[0] === "Profissa") {
           if (location.pathname === "/professional-profile") {
             history.push("/professional-profile");
           } else if (location.pathname === "/schedule") {
@@ -32,7 +31,7 @@ const Authentication = () => {
             history.push("/professional-profile");
           }
         }
-        if (userType[0] === "Cliente") {
+        if (userSelect[0] === "Cliente") {
           if (location.pathname === "/client-profile") {
             history.push("/client-profile");
           } else if (location.pathname === "/professional-showcase") {
@@ -49,10 +48,10 @@ const Authentication = () => {
 
   if (!token) {
     return <FreeNavigation />;
-  } else if (token && userType) {
-    if (userType[0] === "Profissa") {
+  } else if (token && userSelect) {
+    if (userSelect[0] === "Profissa") {
       return <RestrictedNavigationProfessional />;
-    } else if (userType[0] === "Cliente") {
+    } else if (userSelect[0] === "Cliente") {
       return <RestrictedNavigationClient />;
     }
   }
