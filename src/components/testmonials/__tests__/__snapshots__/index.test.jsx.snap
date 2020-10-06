@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testmonials Test renders correctly 1`] = `
+<div
+  className="sc-bdnylx jUGZkC"
+>
+  <div
+    className="sc-gtssRu eEZLDO"
+  >
+    <div
+      className="sc-dlnjPT hDdslF"
+    >
+      <img
+        src=""
+      />
+    </div>
+    <p>
+      Roberto
+    </p>
+  </div>
+  <span>
+    muito Bom
+  </span>
+</div>
+`;
+
+exports[`Testmonials Test renders correctly 2`] = `
+<div
+  className="sc-bdnylx jUGZkC"
+>
+  <div
+    className="sc-gtssRu eEZLDO"
+  >
+    <div
+      className="sc-dlnjPT hDdslF"
+    >
+      <img
+        src="Com imagem"
+      />
+    </div>
+    <p>
+      Fernando
+    </p>
+  </div>
+  <span>
+    Muito Bom
+  </span>
+</div>
+`;

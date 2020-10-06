@@ -32,18 +32,19 @@ import {
   IconLocal,
 } from "./style";
 import { useEffect, useState } from "react";
-
-const getUsersUrl = "https://profissa-server.herokuapp.com/users";
+import { requestProfissasHomepage } from "../../redux/actions/profissas-homepage";
+import { useDispatch, useSelector } from "react-redux";
 
 const Homepage = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
-  const [users, getUsersHomepage] = useState(null);
-  useEffect(() => {
-    fetch(getUsersUrl)
-      .then((res) => res.json())
-      .then((res) => getUsersHomepage(res));
-  }, []);
+  const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
 
+  useEffect(() => {
+    dispatch(requestProfissasHomepage());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  console.log(users);
   const [showLogin, setShowLogin] = useState(false);
 
   const preventDefaultForm = (e) => {
@@ -53,7 +54,6 @@ const Homepage = () => {
   return (
     <ContainerFlexHomePage>
       {showLogin ? <LoginModal setShowLogin={setShowLogin} /> : null}
-
       <header>
         <LogoH1homepage>Profissa</LogoH1homepage>
         <DivButtonsContainer>
@@ -79,7 +79,57 @@ const Homepage = () => {
           <form onSubmit={(e) => preventDefaultForm(e)}>
             <SpanSubmitHomepage1>
               <IconSearch />
-              <input placeholder="serviços" />
+              <select>
+                <option selected>Serviços</option>
+                <optgroup label="Assistência técnica:">
+                  <option>Celulares</option>
+                  <option>Computadores</option>
+                  <option>Eletrodomésticos</option>
+                </optgroup>
+                <optgroup label="Aulas particulares: ">
+                  <option>Idiomas</option>
+                  <option>Artesanato</option>
+                  <option>Reforço escolar</option>
+                  <option>Gastronomia</option>
+                  <option>Música</option>
+                </optgroup>
+                <optgroup label="Automóveis:">
+                  <option>Funilaria</option>
+                  <option>Mecânica</option>
+                  <option>Guincho</option>
+                  <option>Elétrica</option>
+                  <option>Limpeza</option>
+                </optgroup>
+                <optgroup label="Reformas e Construções:">
+                  <option>Pedreiro</option>
+                  <option>Eletricista</option>
+                  <option>Jardineiro</option>
+                  <option>Engenheiro</option>
+                  <option>Vidraceiro</option>
+                  <option>Carpinteiro</option>
+                  <option>Arquiteto</option>
+                </optgroup>
+                <optgroup label="Saúde e beleza:">
+                  <option>Cuidador(a)</option>
+                  <option>Dentista</option>
+                  <option>Cabeleireiro</option>
+                  <option>Enfermagem</option>
+                  <option>Esteticista</option>
+                  <option>Fisioterapeuta</option>
+                  <option>Manicure</option>
+                  <option>Médico(a)</option>
+                  <option>Nutricionista</option>
+                  <option>Pedicure</option>
+                  <option>Personal Trainer</option>
+                  <option>Psicólogo(a)</option>
+                </optgroup>
+                <optgroup label="Serviços domésticos:">
+                  <option>Babá</option>
+                  <option>Cozinheiro(a)</option>
+                  <option>Diarista</option>
+                  <option>Passadeira(o)</option>
+                </optgroup>
+              </select>
             </SpanSubmitHomepage1>
             <SpanSubmitHomepage2>
               <IconLocal />
@@ -144,6 +194,7 @@ const Homepage = () => {
                   </div>
                   <p>12 avaliações</p>
                   <h1>{user.name}</h1>
+                  <h1>{user.service}</h1>
                 </InfoCard>
               </Card>
             ))

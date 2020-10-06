@@ -17,7 +17,7 @@ const FormUser = () => {
       .post("https://profissa-server.herokuapp.com/register", { ...data })
       .then((res) => {
         if (res.status === 201) {
-          console.log("usuario criado");
+          console.log("usuario criado", res);
         }
       });
   };
@@ -26,7 +26,7 @@ const FormUser = () => {
     <FormDiv>
       <Form
         name="basic"
-        initialValues={{ ["checkbox-group"]: ["Cliente", "Profissa"] }}
+        initialValues={{ "checkbox-group": ["Cliente", "Profissa"] }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
