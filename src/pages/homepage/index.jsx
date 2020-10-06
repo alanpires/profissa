@@ -5,6 +5,7 @@ import FernandoimgSvg from "./photos/fernando.svg";
 import RenataimgSvg from "./photos/renata.svg";
 import LucianoSvg from "./photos/luciano.svg";
 import RicardoSvg from "./photos/ricardo.svg";
+import UserDefault from "./photos/userDefault.jpg";
 import { Card } from "lib-kenzie-academy";
 import { useHistory } from "react-router-dom";
 import LoginModal from "../../components/login-modal";
@@ -13,10 +14,7 @@ import {
   ContainerFlexHomePage,
   LogoH1homepage,
   DivButtonsContainer,
-  ButtonhomePage1,
-  ButtonhomePage2,
-  ButtonhomePage3,
-  ButtonhomePage4,
+  ButtonhomePage,
   DivUserTop,
   ImgProfileHeaderTopHomepage,
   DivContentHomepage,
@@ -41,18 +39,34 @@ import { useDispatch, useSelector } from "react-redux";
 const Homepage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [usersHome, setUsersHome] = useState(null);
+  const [inputTest, setInputTest] = useState({ serv: "", cep: 0 });
+  const [url, setUrl] = useState("https://profissa-server.herokuapp.com/users");
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((res) => setUsersHome(res));
+  }, [url]);
+
   const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
+  const storeHome = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(requestProfissasHomepage());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(users);
   const [showLogin, setShowLogin] = useState(false);
 
-  const preventDefaultForm = (e) => {
-    e.preventDefault();
+  const onClickSearch = (e) => {
+    const { serv, cep } = inputTest;
+    const servStr = serv !== "" ? `&service_like=${serv}` : "";
+    const cepStr = cep ? `cep_gte=${cep - 50}&cep_lte=${cep + 50}` : "";
+    setUrl("https://profissa-server.herokuapp.com/users?" + cepStr + servStr);
   };
+
+  const userLoged = storeHome.access.user.name;
+  console.log("aqui");
+  console.log(userLoged);
 
   return (
     <ContainerFlexHomePage>
@@ -60,29 +74,32 @@ const Homepage = () => {
       <header>
         <LogoH1homepage>Profissa</LogoH1homepage>
         <DivButtonsContainer>
-          <ButtonhomePage1 onClick={() => history.push("/signup-client")}>
+          <ButtonhomePage>Seja um Profissa</ButtonhomePage>
+          <ButtonhomePage onClick={() => history.push("/signup-client")}>
             Cadastro
-          </ButtonhomePage1>
-          <ButtonhomePage2 onClick={() => setShowLogin(!showLogin)}>
+          </ButtonhomePage>
+          <ButtonhomePage onClick={() => setShowLogin(!showLogin)}>
             login
-          </ButtonhomePage2>
-          <ButtonhomePage3>informações</ButtonhomePage3>
-          <ButtonhomePage4>ajuda</ButtonhomePage4>
+          </ButtonhomePage>
+          <ButtonhomePage>informações</ButtonhomePage>
+          <ButtonhomePage>ajuda</ButtonhomePage>
+          {userLoged ? (
+            <DivUserTop>
+              <p>{userLoged}</p>
+              <img src={UserDefault} />
+            </DivUserTop>
+          ) : null}
         </DivButtonsContainer>
-        <DivUserTop>
-          <p>Alan</p>
-          <ImgProfileHeaderTopHomepage src="https://d3vn5rg72hh8yg.cloudfront.net/cdn/imagesource/previews/1820/de4f2bad614f383b90efa1b59a7f25f3/3/9bc32b4d42f417316732bfba8d42d6c1/545900.jpg" />
-        </DivUserTop>
       </header>
       <DivContentHomepage>
         <h1>Você tem um problema,</h1>
         <h1>Eles tem a solução</h1>
         <DivHandleInputContent>
-          <form onSubmit={(e) => preventDefaultForm(e)}>
+          <form onSubmit={(e) => e.preventDefault}>
             <SpanSubmitHomepage1>
               <IconSearch />
               <select>
-                <option selected>Serviços</option>
+                <option value="Serviços">Serviços</option>
                 <optgroup label="Assistência técnica:">
                   <option>Celulares</option>
                   <option>Computadores</option>
@@ -182,8 +199,8 @@ const Homepage = () => {
       <DivProfileCards>
         <h1>Outros profissas</h1>
         <DivCard>
-          {users ? (
-            users.map((user, index) => (
+          {usersHome ? (
+            usersHome.map((user, index) => (
               <Card className="card" key={index}>
                 <InfoCard>
                   <img src={RicardoSvg} />
