@@ -1,7 +1,15 @@
 import React from "react";
+import { Titles, ItemsRow } from "./style.js";
 
-function SidebarRow() {
-  return <div></div>;
-}
+const SideBarRow = ({ src, Icon, title }) => {
+  return (
+    <>
+      <ItemsRow>
+        {Icon && <Icon />}
+        <Titles>{title}</Titles>
+      </ItemsRow>
+    </>
+  );
+};
 
-export default SidebarRow;
+export default SideBarRow;
