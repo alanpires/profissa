@@ -5,6 +5,7 @@ import FernandoimgSvg from "./photos/fernando.svg";
 import RenataimgSvg from "./photos/renata.svg";
 import LucianoSvg from "./photos/luciano.svg";
 import RicardoSvg from "./photos/ricardo.svg";
+import UserDefault from "./photos/userDefault.jpg";
 import { Card } from "lib-kenzie-academy";
 import { useHistory } from "react-router-dom";
 import LoginModal from "../../components/login-modal";
@@ -13,10 +14,7 @@ import {
   ContainerFlexHomePage,
   LogoH1homepage,
   DivButtonsContainer,
-  ButtonhomePage1,
-  ButtonhomePage2,
-  ButtonhomePage3,
-  ButtonhomePage4,
+  ButtonhomePage,
   DivUserTop,
   ImgProfileHeaderTopHomepage,
   DivContentHomepage,
@@ -42,8 +40,8 @@ const Homepage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [usersHome, setUsersHome] = useState(null);
-  const [inputTest, setInputTest] = useState({ serv: "", cep: 0 })
-  const [url, setUrl] = useState("https://profissa-server.herokuapp.com/users")
+  const [inputTest, setInputTest] = useState({ serv: "", cep: 0 });
+  const [url, setUrl] = useState("https://profissa-server.herokuapp.com/users");
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
@@ -51,19 +49,24 @@ const Homepage = () => {
   }, [url]);
 
   const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
+  const storeHome = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(requestProfissasHomepage());
-  }, [dispatch]);
-  console.log(users);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [showLogin, setShowLogin] = useState(false);
 
   const onClickSearch = (e) => {
-    const { serv, cep } = inputTest
-    const servStr = serv !== "" ? `&service_like=${serv}` : ""
-    const cepStr = cep ? `cep_gte=${cep - 50}&cep_lte=${cep + 50}` : ""
-    setUrl("https://profissa-server.herokuapp.com/users?" + cepStr + servStr)
+    const { serv, cep } = inputTest;
+    const servStr = serv !== "" ? `&service_like=${serv}` : "";
+    const cepStr = cep ? `cep_gte=${cep - 50}&cep_lte=${cep + 50}` : "";
+    setUrl("https://profissa-server.herokuapp.com/users?" + cepStr + servStr);
   };
+
+  const userLoged = storeHome.access.user.name;
+  console.log("aqui");
+  console.log(userLoged);
 
   return (
     <ContainerFlexHomePage>
@@ -71,86 +74,92 @@ const Homepage = () => {
       <header>
         <LogoH1homepage>Profissa</LogoH1homepage>
         <DivButtonsContainer>
-          <ButtonhomePage1 onClick={() => history.push("/signup-client")}>
+          <ButtonhomePage>Seja um Profissa</ButtonhomePage>
+          <ButtonhomePage onClick={() => history.push("/signup-client")}>
             Cadastro
-          </ButtonhomePage1>
-          <ButtonhomePage2 onClick={() => setShowLogin(!showLogin)}>
+          </ButtonhomePage>
+          <ButtonhomePage onClick={() => setShowLogin(!showLogin)}>
             login
-          </ButtonhomePage2>
-          <ButtonhomePage3>informações</ButtonhomePage3>
-          <ButtonhomePage4>ajuda</ButtonhomePage4>
+          </ButtonhomePage>
+          <ButtonhomePage>informações</ButtonhomePage>
+          <ButtonhomePage>ajuda</ButtonhomePage>
+          {userLoged ? (
+            <DivUserTop>
+              <p>{userLoged}</p>
+              <img src={UserDefault} />
+            </DivUserTop>
+          ) : null}
         </DivButtonsContainer>
-        <DivUserTop>
-          <p>Alan</p>
-          <ImgProfileHeaderTopHomepage src="https://d3vn5rg72hh8yg.cloudfront.net/cdn/imagesource/previews/1820/de4f2bad614f383b90efa1b59a7f25f3/3/9bc32b4d42f417316732bfba8d42d6c1/545900.jpg" />
-        </DivUserTop>
       </header>
       <DivContentHomepage>
         <h1>Você tem um problema,</h1>
         <h1>Eles tem a solução</h1>
         <DivHandleInputContent>
-          <SpanSubmitHomepage1>
-            <IconSearch />
-            <select onChange={(e) => setInputTest({ ...inputTest, serv: e.target.value })}>
-              <option selected>Serviços</option>
-              <optgroup label="Assistência técnica:">
-                <option>Celulares</option>
-                <option>Computadores</option>
-                <option>Eletrodomésticos</option>
-              </optgroup>
-              <optgroup label="Aulas particulares: ">
-                <option>Idiomas</option>
-                <option>Artesanato</option>
-                <option>Reforço escolar</option>
-                <option>Gastronomia</option>
-                <option>Música</option>
-              </optgroup>
-              <optgroup label="Automóveis:">
-                <option>Funilaria</option>
-                <option>Mecânica</option>
-                <option>Guincho</option>
-                <option>Elétrica</option>
-                <option>Limpeza</option>
-              </optgroup>
-              <optgroup label="Reformas e Construções:">
-                <option>Pedreiro</option>
-                <option>Eletricista</option>
-                <option>Jardineiro</option>
-                <option>Engenheiro</option>
-                <option>Vidraceiro</option>
-                <option>Carpinteiro</option>
-                <option>Arquiteto</option>
-              </optgroup>
-              <optgroup label="Saúde e beleza:">
-                <option>Cuidador(a)</option>
-                <option>Dentista</option>
-                <option>Cabeleireiro</option>
-                <option>Enfermagem</option>
-                <option>Esteticista</option>
-                <option>Fisioterapeuta</option>
-                <option>Manicure</option>
-                <option>Médico(a)</option>
-                <option>Nutricionista</option>
-                <option>Pedicure</option>
-                <option>Personal Trainer</option>
-                <option>Psicólogo(a)</option>
-              </optgroup>
-              <optgroup label="Serviços domésticos:">
-                <option>Babá</option>
-                <option>Cozinheiro(a)</option>
-                <option>Diarista</option>
-                <option>Passadeira(o)</option>
-              </optgroup>
-            </select>
-          </SpanSubmitHomepage1>
-          <SpanSubmitHomepage2>
-            <IconLocal />
-            <input
-              placeholder="CEP ex: 00000000"
-              onChange={(e) => setInputTest({ ...inputTest, cep: Number(e.target.value) })}
-            />
-          </SpanSubmitHomepage2>
-          <ButtomsearchHomepage onClick={onClickSearch}>buscar</ButtomsearchHomepage>
+          <form onSubmit={(e) => preventDefaultForm(e)}>
+            <SpanSubmitHomepage1>
+              <IconSearch />
+              <select>
+                <option value="Serviços">Serviços</option>
+                <optgroup label="Assistência técnica:">
+                  <option>Celulares</option>
+                  <option>Computadores</option>
+                  <option>Eletrodomésticos</option>
+                </optgroup>
+                <optgroup label="Aulas particulares: ">
+                  <option>Idiomas</option>
+                  <option>Artesanato</option>
+                  <option>Reforço escolar</option>
+                  <option>Gastronomia</option>
+                  <option>Música</option>
+                </optgroup>
+                <optgroup label="Automóveis:">
+                  <option>Funilaria</option>
+                  <option>Mecânica</option>
+                  <option>Guincho</option>
+                  <option>Elétrica</option>
+                  <option>Limpeza</option>
+                </optgroup>
+                <optgroup label="Reformas e Construções:">
+                  <option>Pedreiro</option>
+                  <option>Eletricista</option>
+                  <option>Jardineiro</option>
+                  <option>Engenheiro</option>
+                  <option>Vidraceiro</option>
+                  <option>Carpinteiro</option>
+                  <option>Arquiteto</option>
+                </optgroup>
+                <optgroup label="Saúde e beleza:">
+                  <option>Cuidador(a)</option>
+                  <option>Dentista</option>
+                  <option>Cabeleireiro</option>
+                  <option>Enfermagem</option>
+                  <option>Esteticista</option>
+                  <option>Fisioterapeuta</option>
+                  <option>Manicure</option>
+                  <option>Médico(a)</option>
+                  <option>Nutricionista</option>
+                  <option>Pedicure</option>
+                  <option>Personal Trainer</option>
+                  <option>Psicólogo(a)</option>
+                </optgroup>
+                <optgroup label="Serviços domésticos:">
+                  <option>Babá</option>
+                  <option>Cozinheiro(a)</option>
+                  <option>Diarista</option>
+                  <option>Passadeira(o)</option>
+                </optgroup>
+              </select>
+            </SpanSubmitHomepage1>
+            <SpanSubmitHomepage2>
+              <IconLocal />
+              <input
+                required
+                pattern="\d{5}\d{3}"
+                placeholder="CEP ex: 00000000"
+              />
+            </SpanSubmitHomepage2>
+            <ButtomsearchHomepage>buscar</ButtomsearchHomepage>
+          </form>
         </DivHandleInputContent>
       </DivContentHomepage>
       <ImgHero>
@@ -209,8 +218,8 @@ const Homepage = () => {
               </Card>
             ))
           ) : (
-              <h1>Carregando</h1>
-            )}
+            <h1>Carregando</h1>
+          )}
         </DivCard>
       </DivProfileCards>
     </ContainerFlexHomePage>
