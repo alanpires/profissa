@@ -68,12 +68,12 @@ const HomeSearch = () => {
           </ButtonhomePage>
           <ButtonhomePage>informações</ButtonhomePage>
           <ButtonhomePage>ajuda</ButtonhomePage>
-          {/* {userLoged ? ( */}
-          <DivUserTop>
-            <p>{userLoged}</p>
-            <img src={UserDefault} />
-          </DivUserTop>
-          {/* ) : null} */}
+          {userLoged ? (
+            <DivUserTop>
+              <p>{userLoged}</p>
+              <img src={UserDefault} />
+            </DivUserTop>
+          ) : null}
         </DivButtonsContainer>
       </Header>
       <DivHandleInputContent>

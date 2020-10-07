@@ -59,6 +59,13 @@ export const DivHandleInputContent = styled.div`
     align-items:center;
     justify-content:center;
     margin: 140px 0 20px 0;
+
+    &+h1{
+        font-size:24px;
+        font-weight:bold;
+        align-self:flex-start;
+        margin-left:21vw;
+    }
 `;
 
 export const Header = styled.div`
