@@ -28,7 +28,7 @@ const Authentication = () => {
           } else if (location.pathname === "/feedbacks") {
             history.push("/feedbacks");
           } else {
-            history.push("/professional-profile");
+            history.push("/");
           }
         }
         if (userSelect[0] === "Cliente") {
@@ -37,7 +37,7 @@ const Authentication = () => {
           } else if (location.pathname === "/professional-showcase") {
             history.push("/professional-showcase");
           } else {
-            history.push("/client-profile");
+            history.push("/");
           }
         }
       }
