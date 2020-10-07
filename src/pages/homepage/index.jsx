@@ -39,14 +39,14 @@ import { useDispatch, useSelector } from "react-redux";
 const Homepage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [usersHome, setUsersHome] = useState(null);
+  // const [usersHome, setUsersHome] = useState(null);
   const [inputTest, setInputTest] = useState({ serv: "", cep: 0 });
   const [url, setUrl] = useState("https://profissa-server.herokuapp.com/users");
-  useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((res) => setUsersHome(res));
-  }, [url]);
+  // useEffect(() => {
+  //   fetch(url)
+  //     .then((res) => res.json())
+  //     .then((res) => setUsersHome(res));
+  // }, [url]);
 
   const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
   const storeHome = useSelector((state) => state);
@@ -199,8 +199,8 @@ const Homepage = () => {
       <DivProfileCards>
         <h1>Outros profissas</h1>
         <DivCard>
-          {usersHome ? (
-            usersHome.map((user, index) => (
+          {users ? (
+            users.map((user, index) => (
               <Card className="card" key={index}>
                 <InfoCard>
                   <img src={RicardoSvg} />
