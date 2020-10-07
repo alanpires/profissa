@@ -7,7 +7,7 @@ import LucianoSvg from "./photos/luciano.svg";
 import RicardoSvg from "./photos/ricardo.svg";
 import UserDefault from "./photos/userDefault.jpg";
 import { Card } from "lib-kenzie-academy";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import LoginModal from "../../components/login-modal";
 import "./styles.css";
 import {
@@ -201,21 +201,27 @@ const Homepage = () => {
         <DivCard>
           {users ? (
             users.map((user, index) => (
-              <Card className="card" key={index}>
-                <InfoCard>
-                  <img src={RicardoSvg} />
-                  <div>
-                    <EstrelaCards />
-                    <EstrelaCards />
-                    <EstrelaCards />
-                    <EstrelaCards />
-                    <EstrelaCards />
-                  </div>
-                  <p>12 avaliações</p>
-                  <h1>{user.name}</h1>
-                  <h1>{user.service}</h1>
-                </InfoCard>
-              </Card>
+              <div
+                onClick={() =>
+                  history.push(`/professional-showcase/${user.id}`)
+                }
+              >
+                <Card className="card" key={index}>
+                  <InfoCard>
+                    <img src={RicardoSvg} />
+                    <div>
+                      <EstrelaCards />
+                      <EstrelaCards />
+                      <EstrelaCards />
+                      <EstrelaCards />
+                      <EstrelaCards />
+                    </div>
+                    <p>12 avaliações</p>
+                    <h1>{user.name}</h1>
+                    <h1>{user.service}</h1>
+                  </InfoCard>
+                </Card>
+              </div>
             ))
           ) : (
             <h1>Carregando</h1>
