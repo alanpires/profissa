@@ -15,6 +15,8 @@ import {
   LogoH1homepage,
   DivButtonsContainer,
   ButtonhomePage,
+  DivUserTop,
+  ImgProfileHeaderTopHomepage,
   DivContentHomepage,
   ImgHero,
   ButtomsearchHomepage,
@@ -31,25 +33,40 @@ import {
   IconLocal,
 } from "./style";
 import { useEffect, useState } from "react";
+import { requestProfissasHomepage } from "../../redux/actions/profissas-homepage";
+import { useDispatch, useSelector } from "react-redux";
 
 const Homepage = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [usersHome, setUsersHome] = useState(null);
-  const [input, setInput] = useState({ serv: "", cep: 0 })
-  const [url, setUrl] = useState("https://profissa-server.herokuapp.com/users")
+  const [inputTest, setInputTest] = useState({ serv: "", cep: 0 });
+  const [url, setUrl] = useState("https://profissa-server.herokuapp.com/users");
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((res) => setUsersHome(res));
   }, [url]);
+
+  const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
+  const storeHome = useSelector((state) => state);
+
+  useEffect(() => {
+    dispatch(requestProfissasHomepage());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [showLogin, setShowLogin] = useState(false);
 
-  const onClickSearch = () => {
-    const { serv, cep } = input;
+  const onClickSearch = (e) => {
+    const { serv, cep } = inputTest;
     const servStr = serv !== "" ? `&service_like=${serv}` : "";
     const cepStr = cep ? `cep_gte=${cep - 50}&cep_lte=${cep + 50}` : "";
     setUrl("https://profissa-server.herokuapp.com/users?" + cepStr + servStr);
   };
+
+  const userLoged = storeHome.access.user.name;
+  console.log("aqui");
+  console.log(userLoged);
 
   return (
     <ContainerFlexHomePage>
@@ -66,74 +83,83 @@ const Homepage = () => {
           </ButtonhomePage>
           <ButtonhomePage>informações</ButtonhomePage>
           <ButtonhomePage>ajuda</ButtonhomePage>
+          {userLoged ? (
+            <DivUserTop>
+              <p>{userLoged}</p>
+              <img src={UserDefault} />
+            </DivUserTop>
+          ) : null}
         </DivButtonsContainer>
       </header>
       <DivContentHomepage>
         <h1>Você tem um problema,</h1>
         <h1>Eles tem a solução</h1>
         <DivHandleInputContent>
-          <SpanSubmitHomepage1>
-            <IconSearch />
-            <select onChange={(e) => setInput({ ...input, serv: e.target.value })}>
-              <option selected>Serviços</option>
-              <optgroup label="Assistência técnica:">
-                <option>Celulares</option>
-                <option>Computadores</option>
-                <option>Eletrodomésticos</option>
-              </optgroup>
-              <optgroup label="Aulas particulares: ">
-                <option>Idiomas</option>
-                <option>Artesanato</option>
-                <option>Reforço escolar</option>
-                <option>Gastronomia</option>
-                <option>Música</option>
-              </optgroup>
-              <optgroup label="Automóveis:">
-                <option>Funilaria</option>
-                <option>Mecânica</option>
-                <option>Guincho</option>
-                <option>Elétrica</option>
-                <option>Limpeza</option>
-              </optgroup>
-              <optgroup label="Reformas e Construções:">
-                <option>Pedreiro</option>
-                <option>Eletricista</option>
-                <option>Jardineiro</option>
-                <option>Engenheiro</option>
-                <option>Vidraceiro</option>
-                <option>Carpinteiro</option>
-                <option>Arquiteto</option>
-              </optgroup>
-              <optgroup label="Saúde e beleza:">
-                <option>Cuidador(a)</option>
-                <option>Dentista</option>
-                <option>Cabeleireiro</option>
-                <option>Enfermagem</option>
-                <option>Esteticista</option>
-                <option>Fisioterapeuta</option>
-                <option>Manicure</option>
-                <option>Médico(a)</option>
-                <option>Nutricionista</option>
-                <option>Pedicure</option>
-                <option>Personal Trainer</option>
-                <option>Psicólogo(a)</option>
-              </optgroup>
-              <optgroup label="Serviços domésticos:">
-                <option>Babá</option>
-                <option>Cozinheiro(a)</option>
-                <option>Diarista</option>
-                <option>Passadeira(o)</option>
-              </optgroup>
-            </select>
-          </SpanSubmitHomepage1>
-          <SpanSubmitHomepage2>
-            <IconLocal />
-            <input
-              placeholder="CEP ex: 00000000"
-              onChange={(e) => setInput({ ...input, cep: Number(e.target.value) })}
-            />
-          </SpanSubmitHomepage2>
-          <ButtomsearchHomepage onClick={onClickSearch}>buscar</ButtomsearchHomepage>
+          <form onSubmit={(e) => e.preventDefault}>
+            <SpanSubmitHomepage1>
+              <IconSearch />
+              <select>
+                <option value="Serviços">Serviços</option>
+                <optgroup label="Assistência técnica:">
+                  <option>Celulares</option>
+                  <option>Computadores</option>
+                  <option>Eletrodomésticos</option>
+                </optgroup>
+                <optgroup label="Aulas particulares: ">
+                  <option>Idiomas</option>
+                  <option>Artesanato</option>
+                  <option>Reforço escolar</option>
+                  <option>Gastronomia</option>
+                  <option>Música</option>
+                </optgroup>
+                <optgroup label="Automóveis:">
+                  <option>Funilaria</option>
+                  <option>Mecânica</option>
+                  <option>Guincho</option>
+                  <option>Elétrica</option>
+                  <option>Limpeza</option>
+                </optgroup>
+                <optgroup label="Reformas e Construções:">
+                  <option>Pedreiro</option>
+                  <option>Eletricista</option>
+                  <option>Jardineiro</option>
+                  <option>Engenheiro</option>
+                  <option>Vidraceiro</option>
+                  <option>Carpinteiro</option>
+                  <option>Arquiteto</option>
+                </optgroup>
+                <optgroup label="Saúde e beleza:">
+                  <option>Cuidador(a)</option>
+                  <option>Dentista</option>
+                  <option>Cabeleireiro</option>
+                  <option>Enfermagem</option>
+                  <option>Esteticista</option>
+                  <option>Fisioterapeuta</option>
+                  <option>Manicure</option>
+                  <option>Médico(a)</option>
+                  <option>Nutricionista</option>
+                  <option>Pedicure</option>
+                  <option>Personal Trainer</option>
+                  <option>Psicólogo(a)</option>
+                </optgroup>
+                <optgroup label="Serviços domésticos:">
+                  <option>Babá</option>
+                  <option>Cozinheiro(a)</option>
+                  <option>Diarista</option>
+                  <option>Passadeira(o)</option>
+                </optgroup>
+              </select>
+            </SpanSubmitHomepage1>
+            <SpanSubmitHomepage2>
+              <IconLocal />
+              <input
+                required
+                pattern="\d{5}\d{3}"
+                placeholder="CEP ex: 00000000"
+              />
+            </SpanSubmitHomepage2>
+            <ButtomsearchHomepage>buscar</ButtomsearchHomepage>
+          </form>
         </DivHandleInputContent>
       </DivContentHomepage>
       <ImgHero>
@@ -192,8 +218,8 @@ const Homepage = () => {
               </Card>
             ))
           ) : (
-              <h1>Carregando</h1>
-            )}
+            <h1>Carregando</h1>
+          )}
         </DivCard>
       </DivProfileCards>
     </ContainerFlexHomePage>
