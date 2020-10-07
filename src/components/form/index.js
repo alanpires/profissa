@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { FormDiv, CheckboxText, NewInput } from "./style.js";
 import { Form, Input, Button, Checkbox } from "antd";
 import axios from "axios";
 
 const FormUser = () => {
+  const [cep, setCep] = useState("");
+
+  const requestApi = () => {
+    if (cep.length !== 8) {
+      return;
+    }
+
+    fetch(`https://viacep.com.br/ws/${cep}/json/`);
+  };
+
   const onFinish = (values) => {
     SignUp(values);
   };
@@ -88,7 +98,6 @@ const FormUser = () => {
             size="large"
           />
         </Form.Item>
-
         <Form.Item
           name="cpf"
           rules={[
@@ -109,21 +118,25 @@ const FormUser = () => {
           <NewInput placeholder="Digite seu CPF" size="large" />
         </Form.Item>
         <Form.Item
-          name="adress"
+          name="cep"
+          onChange={(e) => setCep(e.target.value)}
+          onBlur={requestApi}
           rules={[
             {
               required: true,
-              message: "Por favor digite seu endereço",
+              message: "Por favor digite seu CEP",
+            },
+            {
+              pattern: /^[0-9]*$/,
+              message: "Deve conter apenas números, sem caracteres especiais",
+            },
+            {
+              min: 8,
+              message: "Deve conter 8 números",
             },
           ]}
         >
-          <NewInput placeholder="Onde você mora?" size="large" />
-        </Form.Item>
-
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Cadastrar
-          </Button>
+          <NewInput placeholder="Digite seu CEP" size="large" />
         </Form.Item>
         <Form.Item name="select" label="Selecione seu tipo de perfil">
           <Checkbox.Group>
@@ -131,6 +144,11 @@ const FormUser = () => {
 
             <Checkbox value="Profissa">Profissa</Checkbox>
           </Checkbox.Group>
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Cadastrar
+          </Button>
         </Form.Item>
       </Form>
     </FormDiv>
