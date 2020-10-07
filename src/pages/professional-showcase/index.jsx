@@ -19,6 +19,7 @@ import {
 } from "./style";
 import { Estrela } from "../homepage/style";
 import LisaimgSvg from "../homepage/photos/lisa.svg";
+import FeedbacksProfissa from "../../components/feedbacks-profissa";
 
 const ProfessionalShowcase = () => {
   return (
@@ -85,6 +86,7 @@ const ProfessionalShowcase = () => {
             </TextSidebarRight>
           </SidebarRight>
         </ProfessionalPersonalSkills>
+        <FeedbacksProfissa />
       </GeneralContainer>
     </>
   );

@@ -34,29 +34,40 @@ import {
 } from "./style";
 import { useEffect, useState } from "react";
 import { requestProfissasHomepage } from "../../redux/actions/profissas-homepage";
+import { requestFeedbacks } from "../../redux/actions/feedbacks-request";
 import { useDispatch, useSelector } from "react-redux";
+import { sortProfissas } from "./helper";
 
 const Homepage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [usersHome, setUsersHome] = useState(null);
+  // const [users, setusers] = useState(null);
   const [inputTest, setInputTest] = useState({ serv: "", cep: 0 });
   const [url, setUrl] = useState("https://profissa-server.herokuapp.com/users");
-  useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((res) => setUsersHome(res));
-  }, [url]);
+  // useEffect(() => {
+  //   fetch(url)
+  //     .then((res) => res.json())
+  //     .then((res) => setusers(res));
+  // }, [url]);
 
   const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
+  const feedbacks = useSelector(
+    (state) => state.ProfissaFeedbacks.feedbacksRequest
+  );
+  console.log(users);
+  console.log(feedbacks);
   const storeHome = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(requestProfissasHomepage());
+    dispatch(requestFeedbacks());
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const [showLogin, setShowLogin] = useState(false);
+  console.log(sortProfissas(feedbacks, users));
 
+  const [showLogin, setShowLogin] = useState(false);
+  console.log(users);
   const onClickSearch = (e) => {
     const { serv, cep } = inputTest;
     const servStr = serv !== "" ? `&service_like=${serv}` : "";
@@ -199,8 +210,8 @@ const Homepage = () => {
       <DivProfileCards>
         <h1>Outros profissas</h1>
         <DivCard>
-          {usersHome ? (
-            usersHome.map((user, index) => (
+          {users ? (
+            users.map((user, index) => (
               <Card className="card" key={index}>
                 <InfoCard>
                   <img src={RicardoSvg} />

@@ -6,15 +6,27 @@ export const filterProfissa = (array) => {
   }, {});
   let profissaArrayOrdened = [];
 
+  // console.log(servicesCount);
   if (servicesCount) {
     Object.keys(servicesCount).map((serviceName) => {
       array.map((profissa) => {
         if (profissa.service === serviceName) {
-          profissaArrayOrdened.push(profissa);
+          profissaArrayOrdened.push({
+            id: profissa.id,
+            name: profissa.name,
+            email: profissa.email,
+            service: profissa.service,
+            stars: 0,
+          });
         }
       });
     });
   }
-
+  console.log(profissaArrayOrdened);
   return profissaArrayOrdened;
 };
+
+// export const filterStars = (array) => {
+//   const StarsCount = array.map(({ stars }) => {
+
+// };
