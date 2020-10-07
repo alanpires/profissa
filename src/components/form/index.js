@@ -5,14 +5,22 @@ import axios from "axios";
 
 const FormUser = () => {
   const [cep, setCep] = useState("");
-
+  const [input, showInput] = useState(false);
+  const [userData, setuserData] = useState({});
   const requestApi = () => {
     if (cep.length !== 8) {
       return;
     }
 
-    fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((res) => res.json())
+      .then((data) => {
+        setuserData(data);
+        showInput(true);
+      });
   };
+
+  console.log(userData);
 
   const onFinish = (values) => {
     SignUp(values);
@@ -36,7 +44,9 @@ const FormUser = () => {
     <FormDiv>
       <Form
         name="basic"
-        initialValues={{ "checkbox-group": ["Cliente", "Profissa"] }}
+        initialValues={{
+          "checkbox-group": ["Cliente", "Profissa"],
+        }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
@@ -64,7 +74,7 @@ const FormUser = () => {
           name="email"
           rules={[
             {
-              pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+              type: "email",
               message: "E-mail inválido.",
             },
             {
@@ -138,6 +148,27 @@ const FormUser = () => {
         >
           <NewInput placeholder="Digite seu CEP" size="large" />
         </Form.Item>
+        {input && (
+          <>
+            <NewInput
+              size="large"
+              value={userData.logradouro}
+              name="logradouro"
+            />
+            <NewInput
+              size="large"
+              value={userData.complemento}
+              name="complemento"
+            />
+            <NewInput size="large" value={userData.bairro} name="bairro" />
+            <NewInput
+              size="large"
+              value={userData.localidade}
+              name="localidade"
+            />
+            <NewInput size="large" value={userData.uf} name="uf" />
+          </>
+        )}
         <Form.Item name="select" label="Selecione seu tipo de perfil">
           <Checkbox.Group>
             <Checkbox value="Cliente">Cliente</Checkbox>

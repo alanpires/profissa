@@ -41,7 +41,7 @@ export const RightDiv = styled.div`
 export const Title = styled.div`
   font-family: "Shrikhand", sans-serif;
   font-size: 48px;
-  width: 35vw;
+  /* width: 35vw; */
   display: flex;
   align-items: center;
   justify-content: center;
