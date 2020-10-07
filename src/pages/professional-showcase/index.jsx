@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   GeneralContainer,
   Header,
@@ -21,10 +21,15 @@ import { Estrela } from "../homepage/style";
 import LisaimgSvg from "../homepage/photos/lisa.svg";
 import FeedbacksProfissa from "../../components/feedbacks-profissa";
 import Carousel from "../../components/swiperCarousel";
+import ToHireProfessionalModal from "../../components/to-hire-professional-modal";
 
 const ProfessionalShowcase = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  console.log(showModal);
   return (
     <>
+      {showModal && <ToHireProfessionalModal />}
       <Header>Header Fixo</Header>
       <GeneralContainer>
         <ProfessionalPersonalInfos>
@@ -38,7 +43,7 @@ const ProfessionalShowcase = () => {
             </Container>
           </ContainerInfos>
           <ContainerButton>
-            <ButtonToHireProfessional>
+            <ButtonToHireProfessional onClick={() => setShowModal(!showModal)}>
               Contratar profissional
             </ButtonToHireProfessional>
           </ContainerButton>
