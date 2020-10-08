@@ -95,6 +95,7 @@ const ProfessionalShowcase = () => {
             </TextSidebarRight>
           </SidebarRight>
         </ProfessionalPersonalSkills>
+        <FeedbacksProfissa />
       </GeneralContainer>
       <Carousel />
       <FeedbacksProfissa />

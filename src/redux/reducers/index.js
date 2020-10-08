@@ -3,10 +3,12 @@ import access from "./access";
 import messagesLogin from "./messages-login";
 import ProfissaHomepage from "./profissas-homepage";
 import schedules from "./schedules";
+import ProfissaFeedbacks from "./request-feedback";
 
 export default combineReducers({
   access,
   messagesLogin,
   ProfissaHomepage,
   schedules,
+  ProfissaFeedbacks,
 });
