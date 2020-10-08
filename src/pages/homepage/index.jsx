@@ -3,7 +3,7 @@ import { ReactComponent as ImageHero } from "./image-hero.svg";
 import BestRating from "../../components/best-rating";
 import UserDefault from "./photos/userDefault.jpg";
 import { Card } from "lib-kenzie-academy";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import LoginModal from "../../components/login-modal";
 import RicardoSvg from "./photos/ricardo.svg";
 import "./styles.css";
@@ -191,21 +191,27 @@ const Homepage = () => {
         <DivCard>
           {users && feedbacks ? (
             sortProfissas(feedbacks, users).map((user, index) => (
-              <Card className="card" key={index}>
-                <InfoCard>
-                  <img src={RicardoSvg} />
-                  <div>
-                    {Array.from({ length: user.stars }, (v, k) => k).map(
-                      (key) => {
-                        return <EstrelaCards key={key} />;
-                      }
-                    )}
-                  </div>
-                  <p>{user.avaliations} avaliações</p>
-                  <h1>{user.name}</h1>
-                  <h1>{user.service}</h1>
-                </InfoCard>
-              </Card>
+              <div
+                onClick={() =>
+                  history.push(`/professional-showcase/${user.id}`)
+                }
+              >
+                <Card className="card" key={index}>
+                  <InfoCard>
+                    <img src={RicardoSvg} />
+                    <div>
+                      {Array.from({ length: user.stars }, (v, k) => k).map(
+                        (key) => {
+                          return <EstrelaCards key={key} />;
+                        }
+                      )}
+                    </div>
+                    <p>{user.avaliations} avaliações</p>
+                    <h1>{user.name}</h1>
+                    <h1>{user.service}</h1>
+                  </InfoCard>
+                </Card>
+              </div>
             ))
           ) : (
             <h1>Carregando</h1>
