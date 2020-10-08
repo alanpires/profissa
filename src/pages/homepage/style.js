@@ -2,55 +2,30 @@ import styled from "styled-components";
 import { BsStarFill } from "react-icons/bs";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosPin } from "react-icons/io";
+import { GrUserWorker } from "react-icons/gr";
 
 export const ContainerFlexHomePage = styled.div`
+  width: 100%;
   display: flex;
 `;
 
 export const LogoH1homepage = styled.h1`
-  position: absolute;
-  margin-top: 22px;
-  left: 2%;
   color: black;
+  margin-left: 20px;
   @media (max-width: 650) and (min-width: 650px) {
   }
 `;
 
-export const DivButtonsContainer = styled.div`
-  position: absolute;
+export const HeaderContainer = styled.header`
+  width: 100%;
   display: flex;
-  right: 20%;
-  top: 23px;
-`;
-
-export const ButtonhomePage = styled.button`
-  border-radius: 38px;
-  border: none;
-  padding: 10px 15px 10px 15px;
-  margin-left: 10px;
-  transition: 0.3s;
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.22);
-  }
-  @media (max-width: 850px) and (min-width: 650px) {
-    position: absolute;
-    top: 50px;
-    left: 50px;
-  }
-  @media (max-width: 650) and (min-width: 650px) {
-    position: absolute;
-    top: 50px;
-    left: 50px;
-  }
-  &:focus {
-    outline: none;
-  }
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
 `;
 
 export const DivUserTop = styled.div`
   display: flex;
-  margin-right: -200px;
-  margin-left: 50px;
   align-items: center;
   justify-content: center;
   justify-content: space-between;
@@ -83,6 +58,11 @@ export const DivContentHomepage = styled.div`
   @media (max-width: 1260px) {
     position: absolute;
     top: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
     h1 {
       margin-bottom: -10px;
       align-items: center;
@@ -106,7 +86,7 @@ export const ButtomsearchHomepage = styled.button`
   border-radius: 38px;
   border: 1px solid grey;
   transition: 0.3s;
-  margin-left: 50px;
+  margin-left: 20px;
   font-size: 24px;
   &:hover {
     background-color: rgba(0, 0, 0, 0.22);
@@ -114,12 +94,16 @@ export const ButtomsearchHomepage = styled.button`
 `;
 
 export const DivHandleInputContent = styled.div`
+  display: flex;
   justify-content: center;
-  top: 150px;
   margin-top: 60px;
   border-radius: 18px;
   form {
     display: flex;
+  }
+  @media (max-width: 1260px) {
+    margin: auto;
+    margin-top: 100px;
   }
 `;
 
@@ -171,7 +155,7 @@ export const SectionProfilesPhotos = styled.section`
   width: 100%;
   display: flex;
   position: absolute;
-  top: 570px;
+  top: 100vh;
   h1 {
     position: absolute;
     left: 7vh;
@@ -191,7 +175,8 @@ export const SectionProfilesPhotos = styled.section`
       max-height: 250px;
     }
     p {
-      font-family: Roboto;
+      font-weight: 700;
+      font-family: Poppins;
       font-size: 24px;
     }
     span {
@@ -216,7 +201,7 @@ export const DivProfileCards = styled.div`
   display: flex;
   background-color: #ffffff;
   position: absolute;
-  top: 660px;
+  top: 115vh;
   width: 100%;
   z-index: -1;
   justify-content: center;
@@ -250,8 +235,19 @@ export const InfoCard = styled.div`
     font-size: 12px;
   }
   h1 {
-    margin-top: -5px;
+    margin-top: -15px;
     font-family: Shrikhand;
     font-size: 24px;
   }
+  img {
+    width: 60px;
+  }
+  h2 {
+    display: flex;
+    align-items: center;
+  }
+`;
+
+export const StyledIconWork = styled(GrUserWorker)`
+  margin-right: 5px;
 `;
