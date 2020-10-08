@@ -5,8 +5,8 @@ import ProfessionalShowcase from "./pages/professional-showcase";
 const App = () => {
   return (
     <div>
-      {/* <Authentication /> */}
-      <ProfessionalShowcase />
+      <Authentication />
+      {/* <ProfessionalShowcase /> */}
     </div>
   );
 };
