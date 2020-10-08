@@ -10,13 +10,11 @@ import {
   ButtonhomePage,
   DivUserTop,
   ButtomsearchHomepage,
-  DivHandleInputContent,
+  Form,
   ContainerInput,
   DivProfileCards,
   InfoCard,
   EstrelaCards,
-  IconSearch,
-  IconLocal,
   Header,
   BoxInput
 } from "./style";
@@ -29,29 +27,30 @@ import { IoIosPin } from "react-icons/io";
 
 const HomeSearch = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const [inputTest, setInputTest] = useState({ serv: "", cep: 0 });
-  const [url, setUrl] = useState("https://profissa-server.herokuapp.com/users");
-
   const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
+  const history = useHistory();
+  const [input, setInput] = useState({ serv: "", cep: 0 });
+  const [usersHome, setUsersHome] = useState([])
   const storeHome = useSelector((state) => state);
-
-  useEffect(() => {
-    dispatch(requestProfissasHomepage());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const userLoged = storeHome.access.user.name;
   const [showLogin, setShowLogin] = useState(false);
 
-  const onClickSearch = (e) => {
-    const { serv, cep } = inputTest;
-    const servStr = serv !== "" ? `&service_like=${serv}` : "";
-    const cepStr = cep ? `cep_gte=${cep - 50}&cep_lte=${cep + 50}` : "";
-    setUrl("https://profissa-server.herokuapp.com/users?" + cepStr + servStr);
-  };
+  useEffect(() => {
+    if (usersHome.length === 0) {
+      dispatch(requestProfissasHomepage());
+      setUsersHome(users)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [users]);
 
-  const userLoged = storeHome.access.user.name;
-  console.log("aqui");
-  console.log(userLoged);
+  const onSubmit = (e) => {
+    e.preventDefault()
+    setUsersHome(
+      users.filter(
+        elem => (elem.service === input.serv || input.serv === "Serviços") || (elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50)
+      ))
+    console.log(usersHome, input)
+  };
 
   return (
     <ContainerFlexHomePage>
@@ -76,11 +75,11 @@ const HomeSearch = () => {
           ) : null}
         </DivButtonsContainer>
       </Header>
-      <DivHandleInputContent>
+      <Form onSubmit={onSubmit}>
         <ContainerInput>
           <BoxInput>
             <AiOutlineSearch />
-            <select>
+            <select onChange={(e) => setInput({ ...input, serv: e.target.value })}>
               <option value="Serviços">Serviços</option>
               <optgroup label="Assistência técnica:">
                 <option>Celulares</option>
@@ -136,18 +135,18 @@ const HomeSearch = () => {
 
             <IoIosPin />
             <input
-              required
               pattern="\d{5}\d{3}"
               placeholder="CEP ex: 00000000"
+              onChange={(e) => setInput({ ...input, cep: e.target.value })}
             />
           </BoxInput>
         </ContainerInput>
-        <ButtomsearchHomepage>buscar</ButtomsearchHomepage>
-      </DivHandleInputContent>
+        <ButtomsearchHomepage type="submit">Buscar</ButtomsearchHomepage>
+      </Form>
       <h1>230 Profissas encontrados</h1>
       <DivProfileCards>
-        {users ? (
-          users.map((user, index) => (
+        {usersHome ? (
+          usersHome.map((user, index) => (
             <Card key={index}>
               <InfoCard>
                 <img src={RicardoSvg} />
