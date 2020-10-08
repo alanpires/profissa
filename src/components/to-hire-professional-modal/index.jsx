@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { axiosConfig } from "../login-modal/helper";
+// import { axiosConfig } from "../login-modal/helper";
 import { requestSchedules } from "../../redux/actions/schedules-actions";
+import { useParams } from "react-router-dom";
 
 import { Form, Input, Button, DatePicker, Select } from "antd";
 import {
@@ -12,27 +14,45 @@ import {
   StyledInput,
 } from "./style";
 
-const ToHireProfessionalModal = () => {
+const ToHireProfessionalModal = ({ setShowModalProfissa }) => {
   const user = useSelector((state) => state.access.user);
-
   const [showModal, setShowModal] = useState(true);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.access.token);
+  const params = useParams();
+  const [profissa, setProfissa] = useState([]);
+
+  const axiosConfig = (token) => ({
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  useEffect(() => {
+    axios
+      .get(`https://profissa-server.herokuapp.com/users/${params.id}`)
+      .then((res) => {
+        setProfissa(res.data);
+        console.log(res.data);
+      });
+  }, [params.id]);
 
   const onFinish = (values) => {
     console.log("Success:", values);
     const data = {
-      userCreatorId: user.id,
-      profissaId: "teste",
+      clienteId: user.id,
+      profissaId: params.id,
+      profissa: profissa,
       typeService: values.typeService,
       details: values.details,
-      date: values.date,
+      schedule: values.date,
     };
+    console.log(data);
     dispatch(requestSchedules(data, axiosConfig(token)));
   };
 
   return (
-    <StyledModal class="Modal" isOpen={showModal}>
+    <StyledModal class="Modal" isOpen={true}>
       <AdjustModal>
         <StyledForm
           name="basic"
@@ -135,7 +155,7 @@ const ToHireProfessionalModal = () => {
             <Button type="primary" htmlType="submit">
               Submit
             </Button>
-            <Button onClick={() => setShowModal(false)}>Return</Button>
+            <Button onClick={() => setShowModalProfissa(false)}>Return</Button>
           </StyledForm.Item>
         </StyledForm>
       </AdjustModal>

@@ -8,7 +8,7 @@ const schedules = (schedules) => ({
 
 export const requestSchedules = (data, axiosConfig) => (dispatch) => {
   axios
-    .post("https://profissa-server.herokuapp.com/schedules", data, axiosConfig)
+    .post("https://profissa-server.herokuapp.com/schedule", data, axiosConfig)
     .then((res) => {
       console.log(res.data);
       dispatch(schedules(res.data));

@@ -24,12 +24,13 @@ import Carousel from "../../components/swiperCarousel";
 import ToHireProfessionalModal from "../../components/to-hire-professional-modal";
 
 const ProfessionalShowcase = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModalProfissa, setShowModalProfissa] = useState(false);
 
-  console.log(showModal);
   return (
     <>
-      {showModal && <ToHireProfessionalModal />}
+      {showModalProfissa && (
+        <ToHireProfessionalModal setShowModalProfissa={setShowModalProfissa} />
+      )}
       <Header>Header Fixo</Header>
       <GeneralContainer>
         <ProfessionalPersonalInfos>
@@ -43,7 +44,9 @@ const ProfessionalShowcase = () => {
             </Container>
           </ContainerInfos>
           <ContainerButton>
-            <ButtonToHireProfessional onClick={() => setShowModal(!showModal)}>
+            <ButtonToHireProfessional
+              onClick={() => setShowModalProfissa(!showModalProfissa)}
+            >
               Contratar profissional
             </ButtonToHireProfessional>
           </ContainerButton>
