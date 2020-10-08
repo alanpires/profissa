@@ -34,8 +34,6 @@ const Authentication = () => {
         if (userSelect[0] === "Cliente") {
           if (location.pathname === "/client-profile") {
             history.push("/client-profile");
-          } else if (location.pathname === "/professional-showcase") {
-            history.push("/professional-showcase");
           } else {
             history.push("/");
           }
