@@ -1,5 +1,4 @@
 export const sortProfissas = (feedbacks, profissas) => {
-  console.log(feedbacks, profissas);
   let profissasSorted = [];
   let stars = [];
   profissas.map((profissa, index) => {
@@ -14,16 +13,18 @@ export const sortProfissas = (feedbacks, profissas) => {
   stars.map((star) => {
     profissas.map((profissa) => {
       if (star.profissaId === profissa.id) {
-        profissasSorted.push({
-          ...profissa,
-          avaliations: star.stars.length,
-          stars: parseFloat(
-            (
-              star.stars.reduce((accum, curr) => accum + curr) /
-              star.stars.length
-            ).toFixed(2)
-          ),
-        });
+        if (star.stars.length > 0) {
+          profissasSorted.push({
+            ...profissa,
+            avaliations: star.stars.length,
+            stars: parseFloat(
+              (
+                star.stars.reduce((accum, curr) => accum + curr) /
+                star.stars.length
+              ).toFixed(2)
+            ),
+          });
+        }
       }
     });
   });
@@ -34,11 +35,43 @@ export const sortProfissas = (feedbacks, profissas) => {
     if (a.stars > b.stars) {
       return -1;
     }
-    // a must be equal to b
+
     return 0;
   });
 };
 
-// export const renderStars = () =>{
+export const loadBestRatingByProfession = (feedbacks, profissas) => {
+  let loadProfissas = sortProfissas(feedbacks, profissas);
+  const servicesCount = loadProfissas.reduce((current, { service }) => {
+    current[service] ? (current[service] += 1) : (current[service] = 1);
+    console.log(current);
+    return current;
+  }, {});
+  let arrayBestRating = [];
+  if (servicesCount) {
+    Object.keys(servicesCount).map((serviceName) => {
+      arrayBestRating.push({
+        service: serviceName,
+        professionals: loadProfissas.map((profissa) => {
+          if (profissa.service === serviceName) {
+            return profissa;
+          }
+        }),
+      });
+    });
+  }
+  console.log(arrayBestRating);
+  return arrayBestRating.map((service) => {
+    let bestProfissa = service.professionals.sort(function (a, b) {
+      if (a.stars < b.stars) {
+        return 1;
+      }
+      if (a.stars > b.stars) {
+        return -1;
+      }
 
-// }
+      return 0;
+    });
+    return bestProfissa[0];
+  });
+};

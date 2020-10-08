@@ -6,7 +6,7 @@ export const filterProfissa = (array) => {
   }, {});
   let profissaArrayOrdened = [];
 
-  // console.log(servicesCount);
+  console.log(servicesCount);
   if (servicesCount) {
     Object.keys(servicesCount).map((serviceName) => {
       array.map((profissa) => {
