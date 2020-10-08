@@ -4,10 +4,13 @@ import LisaimgSvg from "./photos/lisa.svg";
 import FernandoimgSvg from "./photos/fernando.svg";
 import RenataimgSvg from "./photos/renata.svg";
 import LucianoSvg from "./photos/luciano.svg";
-import RicardoSvg from "./photos/ricardo.svg";
 import { Card } from "lib-kenzie-academy";
-import { useHistory } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
+import BestRating from "../../components/best-rating";
+// import UserDefault from "./photos/userDefault.jpg";
+import { useHistory, Link } from "react-router-dom";
+import LoginModal from "../../components/login-modal";
+import RicardoSvg from "./photos/ricardo.svg";
 import "./styles.css";
 import {
   ContainerFlexHomePage,
@@ -29,7 +32,9 @@ import {
 } from "./style";
 import { useEffect, useState } from "react";
 import { requestProfissasHomepage } from "../../redux/actions/profissas-homepage";
+import { requestFeedbacks } from "../../redux/actions/feedbacks-request";
 import { useDispatch, useSelector } from "react-redux";
+import { sortProfissas, loadBestRatingByProfession } from "./helper";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -40,15 +45,24 @@ const Homepage = () => {
   // useEffect(() => {
   //   fetch(url)
   //     .then((res) => res.json())
+  //     .then((res) => setusers(res));
   //     .then((res) => setUsersHome(res));
   // }, [url]);
 
   const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
+  const feedbacks = useSelector(
+    (state) => state.ProfissaFeedbacks.feedbacksRequest
+  );
+
+  const storeHome = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(requestProfissasHomepage());
+    dispatch(requestFeedbacks());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const [showLogin, setShowLogin] = useState(false);
 
   const onClickSearch = (e) => {
     const { serv, cep } = inputTest;
@@ -137,63 +151,49 @@ const Homepage = () => {
         </ImgHero>
         <SectionProfilesPhotos>
           <h1>Profissas mais bem avaliados</h1>
-          <div>
-            <img src={LisaimgSvg} />
-            <p>Lisa Sanchez</p>
-            <span>
-              <Estrela /> 5.0
-            </span>
-            <h3>12 avaliações</h3>
-          </div>
-          <div>
-            <img src={FernandoimgSvg} />
-            <p>Fernando Ohara</p>
-            <span>
-              <Estrela /> 5.0
-            </span>
-            <h3>12 avaliações</h3>
-          </div>
-          <div>
-            <img src={RenataimgSvg} />
-            <p>Renata Silva</p>
-            <span>
-              <Estrela /> 5.0
-            </span>
-            <h3>12 avaliações</h3>
-          </div>
-          <div>
-            <img src={LucianoSvg} />
-            <p>Luciano Toguro</p>
-            <span>
-              <Estrela /> 5.0
-            </span>
-            <h3>12 avaliações</h3>
-          </div>
+          {users && feedbacks ? (
+            loadBestRatingByProfession(feedbacks, users).map(
+              (profissa, key) => {
+                return (
+                  <BestRating
+                    key={key}
+                    name={profissa.name}
+                    avaliations={profissa.avaliations}
+                    stars={profissa.stars}
+                  />
+                );
+              }
+            )
+          ) : (
+            <h1>Carregando</h1>
+          )}
         </SectionProfilesPhotos>
         <DivProfileCards>
           <h1>Outros profissas</h1>
           <DivCard>
-            {users ? (
-              users.map((user, index) => (
-                <Card className="card" key={index}>
-                  <InfoCard>
-                    <img src={RicardoSvg} />
-                    <div>
-                      <EstrelaCards />
-                      <EstrelaCards />
-                      <EstrelaCards />
-                      <EstrelaCards />
-                      <EstrelaCards />
-                    </div>
-                    <p>12 avaliações</p>
-                    <h1>{user.name}</h1>
-                    <h2>
-                      {console.log(user)}
-                      <StyledIconWork />
-                      {user.service}
-                    </h2>
-                  </InfoCard>
-                </Card>
+            {users && feedbacks ? (
+              sortProfissas(feedbacks, users).map((user, index) => (
+                <div
+                  onClick={() =>
+                    history.push(`/professional-showcase/${user.id}`)
+                  }
+                >
+                  <Card className="card" key={index}>
+                    <InfoCard>
+                      <img src={RicardoSvg} />
+                      <div>
+                        {Array.from({ length: user.stars }, (v, k) => k).map(
+                          (key) => {
+                            return <EstrelaCards key={key} />;
+                          }
+                        )}
+                      </div>
+                      <p>{user.avaliations} avaliações</p>
+                      <h1>{user.name}</h1>
+                      <h1>{user.service}</h1>
+                    </InfoCard>
+                  </Card>
+                </div>
               ))
             ) : (
               <h1>Carregando</h1>
