@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import FreeNavigation from "../free-navigation";
 import RestrictedNavigationClient from "../restricted-navigation-client";
 import RestrictedNavigationProfessional from "../restricted-navigation-professional";
@@ -10,6 +10,7 @@ const Authentication = () => {
   const location = useLocation();
   const userSelect = useSelector((state) => state.access.user.select);
   const token = useSelector((state) => state.access.token);
+  const { id } = useParams();
 
   useEffect(() => {
     if (!token) {
@@ -34,8 +35,8 @@ const Authentication = () => {
         if (userSelect[0] === "Cliente") {
           if (location.pathname === "/client-profile") {
             history.push("/client-profile");
-          } else if (location.pathname === "/professional-showcase") {
-            history.push("/professional-showcase");
+          } else if (location.pathname === `/professional-showcase/${id}`) {
+            history.push(`/professional-showcase/${id}`);
           } else {
             history.push("/");
           }
