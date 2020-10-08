@@ -38,13 +38,14 @@ import { sortProfissas, loadBestRatingByProfession } from "./helper";
 const Homepage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  // const [users, setusers] = useState(null);
+  // const [usersHome, setUsersHome] = useState(null);
   const [inputTest, setInputTest] = useState({ serv: "", cep: 0 });
   const [url, setUrl] = useState("https://profissa-server.herokuapp.com/users");
   // useEffect(() => {
   //   fetch(url)
   //     .then((res) => res.json())
   //     .then((res) => setusers(res));
+  //     .then((res) => setUsersHome(res));
   // }, [url]);
 
   const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
