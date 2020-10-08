@@ -1,14 +1,11 @@
 import React from "react";
 import { ReactComponent as ImageHero } from "./image-hero.svg";
-import LisaimgSvg from "./photos/lisa.svg";
-import FernandoimgSvg from "./photos/fernando.svg";
-import RenataimgSvg from "./photos/renata.svg";
-import LucianoSvg from "./photos/luciano.svg";
-import RicardoSvg from "./photos/ricardo.svg";
+import BestRating from "../../components/best-rating";
 import UserDefault from "./photos/userDefault.jpg";
 import { Card } from "lib-kenzie-academy";
 import { useHistory } from "react-router-dom";
 import LoginModal from "../../components/login-modal";
+import RicardoSvg from "./photos/ricardo.svg";
 import "./styles.css";
 import {
   ContainerFlexHomePage,
@@ -34,7 +31,9 @@ import {
 } from "./style";
 import { useEffect, useState } from "react";
 import { requestProfissasHomepage } from "../../redux/actions/profissas-homepage";
+import { requestFeedbacks } from "../../redux/actions/feedbacks-request";
 import { useDispatch, useSelector } from "react-redux";
+import { sortProfissas, loadBestRatingByProfession } from "./helper";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -45,16 +44,23 @@ const Homepage = () => {
   // useEffect(() => {
   //   fetch(url)
   //     .then((res) => res.json())
+  //     .then((res) => setusers(res));
   //     .then((res) => setUsersHome(res));
   // }, [url]);
 
   const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
+  const feedbacks = useSelector(
+    (state) => state.ProfissaFeedbacks.feedbacksRequest
+  );
+
   const storeHome = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(requestProfissasHomepage());
+    dispatch(requestFeedbacks());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const [showLogin, setShowLogin] = useState(false);
 
   const onClickSearch = (e) => {
@@ -65,8 +71,6 @@ const Homepage = () => {
   };
 
   const userLoged = storeHome.access.user.name;
-  console.log("aqui");
-  console.log(userLoged);
 
   return (
     <ContainerFlexHomePage>
@@ -167,51 +171,37 @@ const Homepage = () => {
       </ImgHero>
       <SectionProfilesPhotos>
         <h1>Profissas mais bem avaliados</h1>
-        <div>
-          <img src={LisaimgSvg} />
-          <p>Lisa Sanchez</p>
-          <span>
-            5.0 <Estrela /> 12 avaliações
-          </span>
-        </div>
-        <div>
-          <img src={FernandoimgSvg} />
-          <p>Fernando Ohara</p>
-          <span>
-            5.0 <Estrela /> 12 avaliações
-          </span>
-        </div>
-        <div>
-          <img src={RenataimgSvg} />
-          <p>Renata Silva</p>
-          <span>
-            5.0 <Estrela /> 12 avaliações
-          </span>
-        </div>
-        <div>
-          <img src={LucianoSvg} />
-          <p>Luciano Toguro</p>
-          <span>
-            5.0 <Estrela /> 12 avaliações
-          </span>
-        </div>
+        {users && feedbacks ? (
+          loadBestRatingByProfession(feedbacks, users).map((profissa, key) => {
+            return (
+              <BestRating
+                key={key}
+                name={profissa.name}
+                avaliations={profissa.avaliations}
+                stars={profissa.stars}
+              />
+            );
+          })
+        ) : (
+          <h1>Carregando</h1>
+        )}
       </SectionProfilesPhotos>
       <DivProfileCards>
         <h1>Outros profissas</h1>
         <DivCard>
-          {users ? (
-            users.map((user, index) => (
+          {users && feedbacks ? (
+            sortProfissas(feedbacks, users).map((user, index) => (
               <Card className="card" key={index}>
                 <InfoCard>
                   <img src={RicardoSvg} />
                   <div>
-                    <EstrelaCards />
-                    <EstrelaCards />
-                    <EstrelaCards />
-                    <EstrelaCards />
-                    <EstrelaCards />
+                    {Array.from({ length: user.stars }, (v, k) => k).map(
+                      (key) => {
+                        return <EstrelaCards key={key} />;
+                      }
+                    )}
                   </div>
-                  <p>12 avaliações</p>
+                  <p>{user.avaliations} avaliações</p>
                   <h1>{user.name}</h1>
                   <h1>{user.service}</h1>
                 </InfoCard>
