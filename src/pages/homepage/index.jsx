@@ -64,7 +64,6 @@ const Homepage = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(sortProfissas(feedbacks, users));
 
   const [showLogin, setShowLogin] = useState(false);
   console.log(users);
@@ -210,19 +209,19 @@ const Homepage = () => {
       <DivProfileCards>
         <h1>Outros profissas</h1>
         <DivCard>
-          {users ? (
-            users.map((user, index) => (
+          {users && feedbacks ? (
+            sortProfissas(feedbacks, users).map((user, index) => (
               <Card className="card" key={index}>
                 <InfoCard>
                   <img src={RicardoSvg} />
                   <div>
-                    <EstrelaCards />
-                    <EstrelaCards />
-                    <EstrelaCards />
-                    <EstrelaCards />
-                    <EstrelaCards />
+                    {Array.from({ length: user.stars }, (v, k) => k).map(
+                      (key) => {
+                        return <EstrelaCards key={key} />;
+                      }
+                    )}
                   </div>
-                  <p>12 avaliações</p>
+                  <p>{user.avaliations} avaliações</p>
                   <h1>{user.name}</h1>
                   <h1>{user.service}</h1>
                 </InfoCard>

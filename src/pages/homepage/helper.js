@@ -16,12 +16,29 @@ export const sortProfissas = (feedbacks, profissas) => {
       if (star.profissaId === profissa.id) {
         profissasSorted.push({
           ...profissa,
-          stars:
-            star.stars.reduce((accum, curr) => accum + curr) /
-            star.stars.length,
+          avaliations: star.stars.length,
+          stars: parseFloat(
+            (
+              star.stars.reduce((accum, curr) => accum + curr) /
+              star.stars.length
+            ).toFixed(2)
+          ),
         });
       }
     });
   });
-  return profissasSorted;
+  return profissasSorted.sort(function (a, b) {
+    if (a.stars < b.stars) {
+      return 1;
+    }
+    if (a.stars > b.stars) {
+      return -1;
+    }
+    // a must be equal to b
+    return 0;
+  });
 };
+
+// export const renderStars = () =>{
+
+// }
