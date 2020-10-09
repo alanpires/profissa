@@ -135,12 +135,14 @@ const Homepage = () => {
             loadBestRatingByProfession(feedbacks, users).map(
               (profissa, key) => {
                 return (
+                  <div>
                   <BestRating
                     key={key}
                     name={profissa.name}
                     avaliations={profissa.avaliations}
                     stars={profissa.stars}
                   />
+                  </div>
                 );
               }
             )

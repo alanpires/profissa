@@ -176,12 +176,24 @@ export const SectionProfilesPhotos = styled.section`
   display: flex;
   position: absolute;
   top: 100vh;
-
+  @media(max-width: 800px){
+    flex-wrap: wrap;    
+  }
+ 
   h1 {
     position: absolute;
     left: 7vh;
     font-family: Shrikhand;
     font-size: 36px;   
+    @media(max-width: 900px){
+      width: 100vh;
+      left: 18%;       
+  }
+
+  @media(max-width: 590px){
+      width: 100%;
+      left: 10px;
+    }       
   }
 
   div {
@@ -190,6 +202,7 @@ export const SectionProfilesPhotos = styled.section`
     display: flex;
     align-items: center;
     flex-direction: column;
+
     img {
       width: 40vh;
       height: 40vh;
@@ -210,11 +223,10 @@ export const SectionProfilesPhotos = styled.section`
       font-size: 24px;
     }
 
-    @media(max-width: 590px){
-      flex-wrap: wrap;
-      flex-shrink: 1;
-      background-color: red;
-    }
+    @media(max-width: 800px){
+    margin-bottom: -15px;    
+  }
+    
   }
 `;
 
@@ -231,7 +243,7 @@ export const DivProfileCards = styled.div`
   display: flex;
   background-color: #ffffff;
   position: absolute;
-  top: 115vh;
+  top: 130vh;
   width: 100%;
   z-index: -1;
   justify-content: center;
@@ -239,6 +251,9 @@ export const DivProfileCards = styled.div`
     margin-top: 310px;
     font-family: Shrikhand;
     font-size: 48px;
+  }
+  @media(max-width: 900px){
+    top: 2100px;
   }
 `;
 
@@ -248,6 +263,7 @@ export const DivCard = styled.div`
   flex-wrap: wrap;
   position: absolute;
   top: 400px;
+
 `;
 
 export const EstrelaCards = styled(BsStarFill)`
