@@ -5,6 +5,7 @@ import { IoIosPin } from "react-icons/io";
 import { GrUserWorker } from "react-icons/gr";
 
 export const ContainerFlexHomePage = styled.div`
+min-width: 360px;
   width: 100%;
   display: flex;
 `;
@@ -75,11 +76,17 @@ export const DivContentHomepage = styled.div`
 export const IconSearch = styled(AiOutlineSearch)`
   width: 20px;
   height: 20px;
+  @media(max-width: 590px){
+    visibility: hidden;
+  }
 `;
 
 export const IconLocal = styled(IoIosPin)`
   width: 20px;
   height: 20px;
+  @media(max-width: 590px){
+    visibility: hidden;
+  }
 `;
 
 export const ButtomsearchHomepage = styled.button`
@@ -90,6 +97,9 @@ export const ButtomsearchHomepage = styled.button`
   font-size: 24px;
   &:hover {
     background-color: rgba(0, 0, 0, 0.22);
+  }
+  @media(max-width: 590px){
+    height: 70px;
   }
 `;
 
@@ -104,6 +114,9 @@ export const DivHandleInputContent = styled.div`
   @media (max-width: 1260px) {
     margin: auto;
     margin-top: 100px;
+  }
+  @media(max-width: 561px){
+    height: 50px;
   }
 `;
 
@@ -120,20 +133,20 @@ export const ImgHero = styled.div`
 `;
 
 export const SpanSubmitHomepage1 = styled.span`
-  padding: 10px;
   background-color: #eaeaea;
   padding: 20px;
   border-radius: 100px 0px 0px 100px;
   border: 0.5px solid rgba(0, 0, 0, 0.16);
-  input {
-    background-color: #eaeaea;
-    border: none;
-    color: black;
-    ::placeholder {
-      font-size: 24px;
-      color: black;
-    }
+
+  select {    
+      @media(max-width: 590px){
+      width: 50px;
+    }          
   }
+
+  @media(max-width: 590px){
+      height: 70px;
+    }    
 `;
 
 export const SpanSubmitHomepage2 = styled.span`
@@ -148,7 +161,14 @@ export const SpanSubmitHomepage2 = styled.span`
       font-size: 18px;
       color: black;
     }
+    @media(max-width: 590px){
+      width: 120px;
+      margin-left: -20px;
+    }
   }
+  @media(max-width: 590px){
+      height: 70px;
+    }
 `;
 
 export const SectionProfilesPhotos = styled.section`
@@ -156,12 +176,14 @@ export const SectionProfilesPhotos = styled.section`
   display: flex;
   position: absolute;
   top: 100vh;
+
   h1 {
     position: absolute;
     left: 7vh;
     font-family: Shrikhand;
-    font-size: 36px;
+    font-size: 36px;   
   }
+
   div {
     margin-top: 50px;
     width: 100%;
@@ -174,16 +196,24 @@ export const SectionProfilesPhotos = styled.section`
       max-width: 250px;
       max-height: 250px;
     }
+
     p {
       font-weight: 700;
       font-family: Poppins;
       font-size: 24px;
     }
+
     span {
       display: flex;
       align-items: center;
       margin-top: -20px;
       font-size: 24px;
+    }
+
+    @media(max-width: 590px){
+      flex-wrap: wrap;
+      flex-shrink: 1;
+      background-color: red;
     }
   }
 `;
@@ -240,7 +270,7 @@ export const InfoCard = styled.div`
     font-size: 24px;
   }
   img {
-    width: 60px;
+    width: 30%;
   }
   h2 {
     display: flex;
