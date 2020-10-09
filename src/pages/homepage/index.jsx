@@ -1,20 +1,13 @@
 import React from "react";
 import { ReactComponent as ImageHero } from "./image-hero.svg";
-import LisaimgSvg from "./photos/lisa.svg";
-import FernandoimgSvg from "./photos/fernando.svg";
-import RenataimgSvg from "./photos/renata.svg";
-import LucianoSvg from "./photos/luciano.svg";
 import { Card } from "lib-kenzie-academy";
 import Navbar from "../../components/navbar/Navbar";
 import BestRating from "../../components/best-rating";
-// import UserDefault from "./photos/userDefault.jpg";
-import { useHistory, Link } from "react-router-dom";
-import LoginModal from "../../components/login-modal";
+import { useHistory } from "react-router-dom";
 import RicardoSvg from "./photos/ricardo.svg";
 import "./styles.css";
 import {
   ContainerFlexHomePage,
-  StyledIconWork,
   DivContentHomepage,
   ImgHero,
   ButtomsearchHomepage,
@@ -22,7 +15,6 @@ import {
   SpanSubmitHomepage1,
   SpanSubmitHomepage2,
   SectionProfilesPhotos,
-  Estrela,
   DivProfileCards,
   DivCard,
   InfoCard,
@@ -39,30 +31,18 @@ import { sortProfissas, loadBestRatingByProfession } from "./helper";
 const Homepage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  // const [usersHome, setUsersHome] = useState(null);
   const [inputTest, setInputTest] = useState({ serv: "", cep: 0 });
   const [url, setUrl] = useState("https://profissa-server.herokuapp.com/users");
-  // useEffect(() => {
-  //   fetch(url)
-  //     .then((res) => res.json())
-  //     .then((res) => setusers(res));
-  //     .then((res) => setUsersHome(res));
-  // }, [url]);
-
   const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
   const feedbacks = useSelector(
     (state) => state.ProfissaFeedbacks.feedbacksRequest
   );
-
-  const storeHome = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(requestProfissasHomepage());
     dispatch(requestFeedbacks());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const [showLogin, setShowLogin] = useState(false);
 
   const onClickSearch = (e) => {
     const { serv, cep } = inputTest;
