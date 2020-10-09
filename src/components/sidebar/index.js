@@ -1,6 +1,8 @@
 import React from "react";
 import SidebarRow from "./sidebar-row.js";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { cleanToken } from "../../redux/actions/access-actions";
 
 import {
   ClickLogo,
@@ -17,6 +19,8 @@ import {
 
 function Sidebar({ setDiv1, setDiv2, setDiv3 }) {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.access.token);
 
   return (
     <>
@@ -49,10 +53,11 @@ function Sidebar({ setDiv1, setDiv2, setDiv3 }) {
           <SidebarRow title="ETC" />
         </Anchor>
         <AnchorLogout
-          OnClick={() => {
-            window.alert("olá");
+          onClick={() => {
             window.localStorage.clear();
+            dispatch(cleanToken("", {}));
             history.push("/");
+            console.log(token);
           }}
         >
           <SidebarRow title="Logout" />
