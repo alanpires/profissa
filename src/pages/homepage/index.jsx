@@ -3,7 +3,7 @@ import { ReactComponent as ImageHero } from "./image-hero.svg";
 import { Card } from "lib-kenzie-academy";
 import Navbar from "../../components/navbar/Navbar";
 import BestRating from "../../components/best-rating";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import RicardoSvg from "./photos/ricardo.svg";
 import "./styles.css";
 import {
@@ -43,6 +43,8 @@ const Homepage = () => {
     dispatch(requestFeedbacks());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  console.log(users);
+  console.log(feedbacks);
 
   const onClickSearch = (e) => {
     const { serv, cep } = inputTest;
@@ -53,6 +55,7 @@ const Homepage = () => {
 
   return (
     <>
+      <Link to="/client-profile">Client Profile</Link>
       <Navbar />
       <ContainerFlexHomePage>
         <DivContentHomepage>

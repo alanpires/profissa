@@ -1,5 +1,6 @@
 import React from "react";
 import SidebarRow from "./sidebar-row.js";
+import { useHistory } from "react-router-dom";
 
 import {
   ClickLogo,
@@ -14,24 +15,47 @@ import {
   AnchorLogout,
 } from "./style";
 
-function Sidebar() {
+function Sidebar({ setDiv1, setDiv2, setDiv3 }) {
+  const history = useHistory();
+
   return (
     <>
       <MainDiv>
-        <Anchor href="/timeline">
-          <SidebarRow Icon={HomeIcon} title="Serviços Solicitados" />
+        <Anchor
+          onClick={() => {
+            setDiv1(true);
+            setDiv2(false);
+            setDiv3(false);
+          }}
+        >
+          <SidebarRow title="Serviços Solicitados" />
         </Anchor>
-        <Anchor href="/search-books">
-          <SidebarRow Icon={BookIcon} title="Pesquisar" />
+        <Anchor
+          onClick={() => {
+            setDiv1(false);
+            setDiv2(true);
+            setDiv3(false);
+          }}
+        >
+          <SidebarRow title="Avaliações" />
         </Anchor>
-        <Anchor href="/shelves">
-          <SidebarRow Icon={ShelfIcon} title="Estantes" />
+        <Anchor
+          onClick={() => {
+            setDiv1(false);
+            setDiv2(false);
+            setDiv3(true);
+          }}
+        >
+          <SidebarRow title="ETC" />
         </Anchor>
-        <Anchor href="/profile">
-          <SidebarRow Icon={ProfileIcon} title="Perfil" />
-        </Anchor>
-        <AnchorLogout>
-          <SidebarRow Icon={logoutIcon} title="Logout" />
+        <AnchorLogout
+          OnClick={() => {
+            window.alert("olá");
+            window.localStorage.clear();
+            history.push("/");
+          }}
+        >
+          <SidebarRow title="Logout" />
         </AnchorLogout>
       </MainDiv>
     </>

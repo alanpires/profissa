@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MainDiv, LeftDiv, RightDiv, ProfileTitle, DivCard } from "./style.js";
 import AvatarCard from "../../components/avatar-card";
 import Sidebar from "../../components/sidebar";
@@ -22,6 +22,9 @@ const ClientProfile = () => {
   const profissas = useSelector(
     (state) => state.ProfissaHomepage.profissasRequest
   );
+  const [div1, setDiv1] = useState(false);
+  const [div2, setDiv2] = useState(false);
+  const [div3, setDiv3] = useState(false);
 
   useEffect(() => {
     dispatch(serviceRequest(axiosConfig(token)));
@@ -35,39 +38,43 @@ const ClientProfile = () => {
       <MainDiv>
         <LeftDiv>
           <AvatarCard />
-          <Sidebar />
+          <Sidebar setDiv1={setDiv1} setDiv2={setDiv2} setDiv3={setDiv3} />
         </LeftDiv>
-        <RightDiv>
-          <ProfileTitle>Serviços solicitados</ProfileTitle>
-          <DivCard>
-            {profissas && feedbacks ? (
-              servicesRequestClienteCurrent(
-                servicesRequest,
-                user,
-                feedbacks,
-                profissas
-              ).map((user, index) => (
-                <Card className="card" key={index}>
-                  <InfoCard>
-                    <img src={RicardoSvg} />
-                    <div>
-                      {Array.from({ length: user.stars }, (v, k) => k).map(
-                        (key) => {
-                          return <EstrelaCards key={key} />;
-                        }
-                      )}
-                    </div>
-                    <p>{user.avaliations} avaliações</p>
-                    <h1>{user.name}</h1>
-                    <h1>{user.service}</h1>
-                  </InfoCard>
-                </Card>
-              ))
-            ) : (
-              <h1>Carregando</h1>
-            )}
-          </DivCard>
-        </RightDiv>
+        {div3 && <div>"ETC"</div>}
+        {div2 && <div>"Avaliações"</div>}
+        {div1 && (
+          <RightDiv>
+            <ProfileTitle>Serviços solicitados</ProfileTitle>
+            <DivCard>
+              {profissas && feedbacks ? (
+                servicesRequestClienteCurrent(
+                  servicesRequest,
+                  user,
+                  feedbacks,
+                  profissas
+                ).map((user, index) => (
+                  <Card className="card" key={index}>
+                    <InfoCard>
+                      <img src={RicardoSvg} />
+                      <div>
+                        {Array.from({ length: user.stars }, (v, k) => k).map(
+                          (key) => {
+                            return <EstrelaCards key={key} />;
+                          }
+                        )}
+                      </div>
+                      <p>{user.avaliations} avaliações</p>
+                      <h1>{user.name}</h1>
+                      <h1>{user.service}</h1>
+                    </InfoCard>
+                  </Card>
+                ))
+              ) : (
+                <h1>Carregando</h1>
+              )}
+            </DivCard>
+          </RightDiv>
+        )}
       </MainDiv>
     </>
   );
