@@ -5,3 +5,4 @@ export const PROFISSAS = "PROFISSAS";
 export const SCHEDULES = "SCHEDULES";
 export const FEEDBACKS = "FEEDBACKS";
 export const SERVICE_RESQUEST = "SERVICE_RESQUEST";
+export const CLEAN_TOKEN = "CLEAN_TOKEN";
