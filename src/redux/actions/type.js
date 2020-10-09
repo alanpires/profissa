@@ -4,3 +4,4 @@ export const DECODER = "DECODER";
 export const PROFISSAS = "PROFISSAS";
 export const SCHEDULES = "SCHEDULES";
 export const FEEDBACKS = "FEEDBACKS";
+export const SERVICE_RESQUEST = "SERVICE_RESQUEST";
