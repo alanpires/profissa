@@ -16,6 +16,7 @@ export const filterProfissa = (array) => {
             name: profissa.name,
             email: profissa.email,
             service: profissa.service,
+            cep: profissa.cep,
             stars: 0,
           });
         }
