@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { BsStarFill } from "react-icons/bs";
-import { AiOutlineSearch } from "react-icons/ai";
-import { IoIosPin } from "react-icons/io";
 import { GrUserWorker } from "react-icons/gr";
 
 export const ContainerFlexHomePage = styled.div`
 min-width: 360px;
   width: 100%;
   display: flex;
+  justify-content:center;
+  align-items:center;
+  flex-flow: column;
 `;
 
 export const LogoH1homepage = styled.h1`
@@ -47,153 +48,46 @@ export const DivUserTop = styled.div`
 `;
 
 export const DivContentHomepage = styled.div`
-  position: absolute;
-  top: 200px;
-  left: 7vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-top:100px;
+  ${({ searchMode }) => searchMode && `width:100%;`}
   h1 {
-    margin-bottom: -10px;
     align-items: center;
     font-family: Shrikhand;
     font-size: 48px;
   }
-  @media (max-width: 1260px) {
-    position: absolute;
-    top: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    text-align: center;
-    h1 {
-      margin-bottom: -10px;
-      align-items: center;
-      font-family: Shrikhand;
-      font-size: 35px;
-    }
-  }
 `;
 
-export const IconSearch = styled(AiOutlineSearch)`
-  width: 20px;
-  height: 20px;
-  @media(max-width: 590px){
-    visibility: hidden;
-  }
-`;
+export const ContentWraper = styled.div`
+   display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-flow: column;
+  margin-left: 40px;
+  ${({ searchMode }) => searchMode && `width:100%;`}
 
-export const IconLocal = styled(IoIosPin)`
-  width: 20px;
-  height: 20px;
-  @media(max-width: 590px){
-    visibility: hidden;
-  }
-`;
-
-export const ButtomsearchHomepage = styled.button`
-  border-radius: 38px;
-  border: 1px solid grey;
-  transition: 0.3s;
-  margin-left: 20px;
-  font-size: 24px;
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.22);
-  }
-  @media(max-width: 590px){
-    height: 70px;
-  }
-`;
-
-export const DivHandleInputContent = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 60px;
-  border-radius: 18px;
-  form {
-    display: flex;
-  }
-  @media (max-width: 1260px) {
-    margin: auto;
-    margin-top: 100px;
-  }
-  @media(max-width: 561px){
-    height: 50px;
-  }
-`;
+`
 
 export const ImgHero = styled.div`
-  position: absolute;
   display: flex;
   width: 550px;
-  z-index: -1;
-  right: 50px;
-  top: 150px;
+  margin-top:80px;
+  padding-bottom:40px;
   @media (max-width: 1260px) {
     visibility: hidden;
   }
 `;
 
-export const SpanSubmitHomepage1 = styled.span`
-  background-color: #eaeaea;
-  padding: 20px;
-  border-radius: 100px 0px 0px 100px;
-  border: 0.5px solid rgba(0, 0, 0, 0.16);
-
-  select {    
-      @media(max-width: 590px){
-      width: 50px;
-    }          
-  }
-
-  @media(max-width: 590px){
-      height: 70px;
-    }    
-`;
-
-export const SpanSubmitHomepage2 = styled.span`
-  padding: 20px;
-  background-color: #eaeaea;
-  border-radius: 0px 100px 100px 0px;
-  border: 0.5px solid rgba(0, 0, 0, 0.16);
-  input {
-    background-color: #eaeaea;
-    border: none;
-    ::placeholder {
-      font-size: 18px;
-      color: black;
-    }
-    @media(max-width: 590px){
-      width: 120px;
-      margin-left: -20px;
-    }
-  }
-  @media(max-width: 590px){
-      height: 70px;
-    }
-`;
 
 export const SectionProfilesPhotos = styled.section`
   width: 100%;
   display: flex;
-  position: absolute;
-  top: 100vh;
-  @media(max-width: 800px){
-    flex-wrap: wrap;    
-  }
- 
   h1 {
-    position: absolute;
-    left: 7vh;
+    position:absolute;
     font-family: Shrikhand;
-    font-size: 36px;   
-    @media(max-width: 900px){
-      width: 100vh;
-      left: 18%;       
-  }
-
-  @media(max-width: 590px){
-      width: 100%;
-      left: 10px;
-    }       
+    font-size: 36px;
   }
 
   div {
@@ -241,19 +135,15 @@ export const Estrela = styled(BsStarFill)`
 
 export const DivProfileCards = styled.div`
   display: flex;
-  background-color: #ffffff;
-  position: absolute;
-  top: 130vh;
-  width: 100%;
-  z-index: -1;
   justify-content: center;
+  align-items:center;
+  flex-flow:column;
+  background-color: #ffffff;
+  width: 100%;
   h1 {
-    margin-top: 310px;
     font-family: Shrikhand;
     font-size: 48px;
-  }
-  @media(max-width: 900px){
-    top: 2100px;
+    margin-top:50px;
   }
 `;
 
@@ -261,9 +151,6 @@ export const DivCard = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  position: absolute;
-  top: 400px;
-
 `;
 
 export const EstrelaCards = styled(BsStarFill)`

@@ -1,35 +1,21 @@
 import React from "react";
-import UserDefault from "./photos/userDefault.jpg";
 import { Card } from "lib-kenzie-academy";
-import { useHistory } from "react-router-dom";
 import LoginModal from "../../components/login-modal";
 import {
   ContainerFlexHomePage,
-  LogoH1homepage,
-  DivButtonsContainer,
-  ButtonhomePage,
-  DivUserTop,
-  ButtomsearchHomepage,
-  Form,
-  ContainerInput,
   DivProfileCards,
   InfoCard,
-  EstrelaCards,
-  Header,
-  BoxInput
+  EstrelaCards
 } from "./style";
 import RicardoSvg from './photos/ricardo.svg'
 import { useEffect, useState } from "react";
 import { requestProfissasHomepage } from "../../redux/actions/profissas-homepage";
 import { useDispatch, useSelector } from "react-redux";
-import { AiOutlineSearch } from "react-icons/ai";
-import { IoIosPin } from "react-icons/io";
+import InputHome from "../../components/InputHome";
 
 const HomeSearch = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
-  const history = useHistory();
-  const [input, setInput] = useState({ serv: "", cep: 0 });
   const [usersHome, setUsersHome] = useState([])
   const storeHome = useSelector((state) => state);
   const userLoged = storeHome.access.user.name;
@@ -43,7 +29,7 @@ const HomeSearch = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [users]);
 
-  const onSubmit = (e) => {
+  const onSubmit = (e, input) => {
     e.preventDefault()
     setUsersHome(
       users.filter(
@@ -55,94 +41,7 @@ const HomeSearch = () => {
   return (
     <ContainerFlexHomePage>
       {showLogin ? <LoginModal setShowLogin={setShowLogin} /> : null}
-      <Header>
-        <LogoH1homepage>Profissa</LogoH1homepage>
-        <DivButtonsContainer>
-          <ButtonhomePage>Seja um Profissa</ButtonhomePage>
-          <ButtonhomePage onClick={() => history.push("/signup-client")}>
-            Cadastro
-          </ButtonhomePage>
-          <ButtonhomePage onClick={() => setShowLogin(!showLogin)}>
-            login
-          </ButtonhomePage>
-          <ButtonhomePage>informações</ButtonhomePage>
-          <ButtonhomePage>ajuda</ButtonhomePage>
-          {userLoged ? (
-            <DivUserTop>
-              <p>{userLoged}</p>
-              <img src={UserDefault} />
-            </DivUserTop>
-          ) : null}
-        </DivButtonsContainer>
-      </Header>
-      <Form onSubmit={onSubmit}>
-        <ContainerInput>
-          <BoxInput>
-            <AiOutlineSearch />
-            <select onChange={(e) => setInput({ ...input, serv: e.target.value })}>
-              <option value="Serviços">Serviços</option>
-              <optgroup label="Assistência técnica:">
-                <option>Celulares</option>
-                <option>Computadores</option>
-                <option>Eletrodomésticos</option>
-              </optgroup>
-              <optgroup label="Aulas particulares: ">
-                <option>Idiomas</option>
-                <option>Artesanato</option>
-                <option>Reforço escolar</option>
-                <option>Gastronomia</option>
-                <option>Música</option>
-              </optgroup>
-              <optgroup label="Automóveis:">
-                <option>Funilaria</option>
-                <option>Mecânica</option>
-                <option>Guincho</option>
-                <option>Elétrica</option>
-                <option>Limpeza</option>
-              </optgroup>
-              <optgroup label="Reformas e Construções:">
-                <option>Pedreiro</option>
-                <option>Eletricista</option>
-                <option>Jardineiro</option>
-                <option>Engenheiro</option>
-                <option>Vidraceiro</option>
-                <option>Carpinteiro</option>
-                <option>Arquiteto</option>
-              </optgroup>
-              <optgroup label="Saúde e beleza:">
-                <option>Cuidador(a)</option>
-                <option>Dentista</option>
-                <option>Cabeleireiro</option>
-                <option>Enfermagem</option>
-                <option>Esteticista</option>
-                <option>Fisioterapeuta</option>
-                <option>Manicure</option>
-                <option>Médico(a)</option>
-                <option>Nutricionista</option>
-                <option>Pedicure</option>
-                <option>Personal Trainer</option>
-                <option>Psicólogo(a)</option>
-              </optgroup>
-              <optgroup label="Serviços domésticos:">
-                <option>Babá</option>
-                <option>Cozinheiro(a)</option>
-                <option>Diarista</option>
-                <option>Passadeira(o)</option>
-              </optgroup>
-            </select>
-          </BoxInput>
-          <BoxInput>
-
-            <IoIosPin />
-            <input
-              pattern="\d{5}\d{3}"
-              placeholder="CEP ex: 00000000"
-              onChange={(e) => setInput({ ...input, cep: e.target.value })}
-            />
-          </BoxInput>
-        </ContainerInput>
-        <ButtomsearchHomepage type="submit">Buscar</ButtomsearchHomepage>
-      </Form>
+      <InputHome onSubmit={onSubmit} />
       <h1>230 Profissas encontrados</h1>
       <DivProfileCards>
         {usersHome ? (
