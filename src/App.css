@@ -1,6 +1,3 @@
-button:focus{
+button:focus,input:focus,select:focus{
 outline: none !important;
 }
-input:focus{
-    outline: none !important;
-    }
