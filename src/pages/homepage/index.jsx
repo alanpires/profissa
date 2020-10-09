@@ -49,9 +49,10 @@ const Homepage = () => {
     setSearchMode(false)
     setUsersHome(
       users.filter(
-        elem => (elem.service === input.serv || input.serv === "Serviços") || (elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50)
+        elem => ((elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50) || elem.cep === 0) || (elem.service === input.serv || input.serv === "Serviços")
+        //  
       ))
-    console.log(usersHome, input)
+    console.log(users, usersHome, input)
   };
 
   return (
@@ -101,10 +102,10 @@ const Homepage = () => {
             </SectionProfilesPhotos>
           </>)}
         <DivProfileCards>
-          {!searchMode ? (
-            <h1>Quantindade de Profissas</h1>
+          {searchMode ? (
+            <h1>Outros Profissas</h1>
           ) : (
-              <h1>Outros Profissa</h1>
+              <h1>{usersHome.length} Profissas encontrado(s)</h1>
 
             )}
           <DivCard>

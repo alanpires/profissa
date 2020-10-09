@@ -70,9 +70,8 @@ const InputHome = ({ onSubmit }) => {
                 <BoxInput>
                     <IoIosPin />
                     <input
-                        pattern="\d{5}\d{3}"
                         placeholder="CEP ex: 00000000"
-                        onChange={(e) => setInput({ ...input, cep: e.target.value })}
+                        onChange={(e) => setInput({ ...input, cep: Number(e.target.value) })}
                     />
                 </BoxInput>
             </ContainerInput>
