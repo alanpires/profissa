@@ -10,7 +10,6 @@ export const serviceRequest = (axiosConfig) => (dispatch) => {
   axios
     .get("https://profissa-server.herokuapp.com/schedule", axiosConfig)
     .then((res) => {
-      console.log(res.data);
       dispatch(services(res.data));
     })
     .catch((res) => {
