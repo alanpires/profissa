@@ -52,7 +52,7 @@ export const DivUserTop = styled.div`
 `;
 
 
-export const DivHandleInputContent = styled.div`
+export const Form = styled.form`
     width: 100%;
     height: 100px; 
     display: flex;
