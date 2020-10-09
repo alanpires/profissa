@@ -19,7 +19,7 @@ function Sidebar() {
     <>
       <MainDiv>
         <Anchor href="/timeline">
-          <SidebarRow Icon={HomeIcon} title="Inicio" />
+          <SidebarRow Icon={HomeIcon} title="Serviços Solicitados" />
         </Anchor>
         <Anchor href="/search-books">
           <SidebarRow Icon={BookIcon} title="Pesquisar" />
