@@ -49,10 +49,10 @@ const Homepage = () => {
     setSearchMode(false)
     setUsersHome(
       users.filter(
-        elem => ((elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50) || elem.cep === 0) || (elem.service === input.serv || input.serv === "Serviços")
-        //  
-      ))
-    console.log(users, usersHome, input)
+        elem =>
+          ((elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50) || (input.cep === 0))
+          &&
+          (elem.service === input.serv || (input.serv === "Serviços" || input.serv === ""))))
   };
 
   return (
