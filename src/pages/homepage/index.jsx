@@ -90,9 +90,8 @@ const Homepage = () => {
                 loadBestRatingByProfession(feedbacks, users).map(
                   (profissa, key) => {
                     return (
-                      <div>
+                      <div key={key} >
                         <BestRating
-                          key={key}
                           name={profissa.name}
                           avaliations={profissa.avaliations}
                           stars={profissa.stars}
@@ -102,8 +101,8 @@ const Homepage = () => {
                   }
                 )
               ) : (
-                <h1>Carregando</h1>
-              )}
+                  <h1>Carregando</h1>
+                )}
             </SectionProfilesPhotos>
           </>
         )}
@@ -111,12 +110,13 @@ const Homepage = () => {
           {searchMode ? (
             <h1>Outros Profissas</h1>
           ) : (
-            <h1>{usersHome.length} Profissas encontrado(s)</h1>
-          )}
+              <h1>{usersHome.length} Profissas encontrado(s)</h1>
+            )}
           <DivCard>
             {usersHome && feedbacks ? (
               sortProfissas(feedbacks, usersHome).map((user, index) => (
                 <div
+                  key={index}
                   onClick={() =>
                     history.push(`/professional-showcase/${user.id}`)
                   }
@@ -139,8 +139,8 @@ const Homepage = () => {
                 </div>
               ))
             ) : (
-              <h1>Carregando</h1>
-            )}
+                <h1>Carregando</h1>
+              )}
           </DivCard>
         </DivProfileCards>
       </ContainerFlexHomePage>
