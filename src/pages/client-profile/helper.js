@@ -13,7 +13,6 @@ export const servicesRequestClienteCurrent = (
     if (serviceCurrent.clienteId === user.id)
       servicesRequestClient.push(serviceCurrent.profissa);
   });
-  console.log(profissasArray, servicesRequestClient);
   servicesRequestClient.map((scheduledProfissa) => {
     profissasArray.map((profissa) => {
       if (profissa.id === scheduledProfissa.id) {
