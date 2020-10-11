@@ -30,7 +30,9 @@ const Homepage = () => {
   const history = useHistory();
   const [usersHome, setUsersHome] = useState([]);
   const [searchMode, setSearchMode] = useState(true);
-  const users = useSelector((state) => state.profissaHomepage.profissasRequest);
+  const profissas = useSelector(
+    (state) => state.profissaHomepage.profissasRequest
+  );
   const feedbacks = useSelector(
     (state) => state.profissaFeedbacks.feedbacksRequest
   );
@@ -39,16 +41,16 @@ const Homepage = () => {
     if (usersHome.length === 0) {
       dispatch(requestProfissasHomepage());
       dispatch(requestFeedbacks());
-      setUsersHome(users);
+      setUsersHome(profissas);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [users]);
+  }, [profissas]);
 
   const onSubmit = (e, input) => {
     e.preventDefault();
     setSearchMode(false);
     setUsersHome(
-      users.filter(
+      profissas.filter(
         (elem) =>
           (elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50) ||
           elem.cep === 0 ||
@@ -57,7 +59,7 @@ const Homepage = () => {
         //
       )
     );
-    console.log(users, usersHome, input);
+    console.log(profissas, usersHome, input);
   };
 
   return (
@@ -86,8 +88,8 @@ const Homepage = () => {
           <>
             <SectionProfilesPhotos>
               <h1>Profissas mais bem avaliados</h1>
-              {users && feedbacks ? (
-                loadBestRatingByProfession(feedbacks, users).map(
+              {profissas && feedbacks ? (
+                loadBestRatingByProfession(feedbacks, profissas).map(
                   (profissa, key) => {
                     return (
                       <div>
