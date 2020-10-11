@@ -118,7 +118,7 @@ const Homepage = () => {
                 <div
                   key={index}
                   onClick={() =>
-                    history.push(`/professional-showcase/${user.id}`)
+                    history.push(`/professional-showcase/${user.id}/${user.cep}`)
                   }
                 >
                   <Card className="card" key={index}>
