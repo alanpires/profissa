@@ -30,9 +30,9 @@ const Homepage = () => {
   const history = useHistory();
   const [usersHome, setUsersHome] = useState([]);
   const [searchMode, setSearchMode] = useState(true);
-  const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
+  const users = useSelector((state) => state.profissaHomepage.profissasRequest);
   const feedbacks = useSelector(
-    (state) => state.ProfissaFeedbacks.feedbacksRequest
+    (state) => state.profissaFeedbacks.feedbacksRequest
   );
 
   useEffect(() => {
