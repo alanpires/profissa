@@ -3,7 +3,7 @@ import { ReactComponent as ImageHero } from "./image-hero.svg";
 import { Card } from "lib-kenzie-academy";
 import Navbar from "../../components/navbar/Navbar";
 import BestRating from "../../components/best-rating";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import RicardoSvg from "./photos/ricardo.svg";
 import "./styles.css";
 import {
@@ -15,7 +15,7 @@ import {
   DivCard,
   InfoCard,
   EstrelaCards,
-  ContentWraper
+  ContentWraper,
 } from "./style";
 
 import { useEffect, useState } from "react";
@@ -28,8 +28,8 @@ import InputHome from "../../components/InputHome";
 const Homepage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [usersHome, setUsersHome] = useState([])
-  const [searchMode, setSearchMode] = useState(true)
+  const [usersHome, setUsersHome] = useState([]);
+  const [searchMode, setSearchMode] = useState(true);
   const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
   const feedbacks = useSelector(
     (state) => state.ProfissaFeedbacks.feedbacksRequest
@@ -39,14 +39,14 @@ const Homepage = () => {
     if (usersHome.length === 0) {
       dispatch(requestProfissasHomepage());
       dispatch(requestFeedbacks());
-      setUsersHome(users)
+      setUsersHome(users);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [users]);
 
   const onSubmit = (e, input) => {
-    e.preventDefault()
-    setSearchMode(false)
+    e.preventDefault();
+    setSearchMode(false);
     setUsersHome(
       users.filter(
         elem =>
@@ -57,24 +57,24 @@ const Homepage = () => {
 
   return (
     <>
+      <Link to="/client-profile">Client Profile</Link>
       <Navbar />
       <ContainerFlexHomePage>
         <DivContentHomepage searchMode={!searchMode}>
           <ContentWraper searchMode={!searchMode}>
-
-            {searchMode &&
+            {searchMode && (
               <>
                 <h1>Você tem um problema,</h1>
                 <h1>Eles tem a solução</h1>
               </>
-            }
+            )}
             <InputHome onSubmit={onSubmit} />
           </ContentWraper>
-          {searchMode &&
+          {searchMode && (
             <ImgHero>
               <ImageHero />
             </ImgHero>
-          }
+          )}
         </DivContentHomepage>
 
         {searchMode && (
@@ -100,13 +100,13 @@ const Homepage = () => {
                   <h1>Carregando</h1>
                 )}
             </SectionProfilesPhotos>
-          </>)}
+          </>
+        )}
         <DivProfileCards>
           {searchMode ? (
             <h1>Outros Profissas</h1>
           ) : (
               <h1>{usersHome.length} Profissas encontrado(s)</h1>
-
             )}
           <DivCard>
             {usersHome && feedbacks ? (
