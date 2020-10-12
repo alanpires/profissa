@@ -8,8 +8,6 @@ const profissasHomepage = (profissa) => ({
 
 export const requestProfissasHomepage = () => (dispatch) => {
   axios.get("https://profissa-server.herokuapp.com/users").then((res) => {
-    console.log(res.data);
-
     dispatch(profissasHomepage(res.data));
   });
 };

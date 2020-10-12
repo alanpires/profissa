@@ -14,13 +14,13 @@ import { servicesRequestClienteCurrent, axiosConfig } from "./helper";
 const ClientProfile = () => {
   const token = useSelector((state) => state.access.token);
   const user = useSelector((state) => state.access.user);
-  const servicesRequest = useSelector((state) => state.Services.services);
+  const servicesRequest = useSelector((state) => state.services.services);
   const dispatch = useDispatch();
   const feedbacks = useSelector(
-    (state) => state.ProfissaFeedbacks.feedbacksRequest
+    (state) => state.profissaFeedbacks.feedbacksRequest
   );
   const profissas = useSelector(
-    (state) => state.ProfissaHomepage.profissasRequest
+    (state) => state.profissaHomepage.profissasRequest
   );
   const [div1, setDiv1] = useState(false);
   const [div2, setDiv2] = useState(false);

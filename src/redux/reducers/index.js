@@ -1,16 +1,16 @@
 import { combineReducers } from "redux";
 import access from "./access";
 import messagesLogin from "./messages-login";
-import ProfissaHomepage from "./profissas-homepage";
+import profissaHomepage from "./profissas-homepage";
 import schedules from "./schedules";
-import ProfissaFeedbacks from "./request-feedback";
-import Services from "./service-request";
+import profissaFeedbacks from "./request-feedback";
+import services from "./service-request";
 
 export default combineReducers({
   access,
   messagesLogin,
-  ProfissaHomepage,
+  profissaHomepage,
   schedules,
-  ProfissaFeedbacks,
-  Services,
+  profissaFeedbacks,
+  services,
 });

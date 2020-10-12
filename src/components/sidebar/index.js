@@ -57,7 +57,6 @@ function Sidebar({ setDiv1, setDiv2, setDiv3 }) {
             window.localStorage.clear();
             dispatch(cleanToken("", {}));
             history.push("/");
-            console.log(token);
           }}
         >
           <SidebarRow title="Logout" />
