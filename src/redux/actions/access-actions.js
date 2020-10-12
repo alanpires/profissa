@@ -1,4 +1,4 @@
-import { DECODER, LOGIN, LOGIN_ERROR } from "./type";
+import { CLEAN_TOKEN, DECODER, LOGIN, LOGIN_ERROR } from "./type";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { axiosConfig } from "../../components/login-modal/helper";
@@ -47,3 +47,9 @@ const requestUserDecoder = (id, token) => (dispatch) => {
       localStorage.setItem("user", JSON.stringify(res.data));
     });
 };
+
+export const cleanToken = (cleanToken, cleanUser) => ({
+  type: CLEAN_TOKEN,
+  cleanToken,
+  cleanUser,
+});
