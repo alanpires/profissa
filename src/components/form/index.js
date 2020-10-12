@@ -6,7 +6,8 @@ import axios from "axios";
 const FormUser = () => {
   const [cep, setCep] = useState("");
   const [input, showInput] = useState(false);
-  const [userData, setuserData] = useState({});
+  const [userData, setuserData] = useState("");
+  const [cepError, setCepError] = useState("");
   const requestApi = () => {
     if (cep.length !== 8) {
       return;
@@ -15,15 +16,22 @@ const FormUser = () => {
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then((res) => res.json())
       .then((data) => {
-        setuserData(data);
-        showInput(true);
+        if (data.erro) {
+          return setCepError("Por favor insira um cep válido!");
+        } else {
+          setuserData(data);
+          showInput(true);
+          setCepError("");
+        }
       });
   };
 
   console.log(userData);
 
   const onFinish = (values) => {
-    SignUp(values);
+    if (userData) {
+      SignUp(values);
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -148,25 +156,38 @@ const FormUser = () => {
         >
           <NewInput placeholder="Digite seu CEP" size="large" />
         </Form.Item>
+        {cepError && <span style={{ color: "red" }}>{cepError}</span>}
         {input && (
           <>
-            <NewInput
-              size="large"
-              value={userData.logradouro}
-              name="logradouro"
-            />
-            <NewInput
-              size="large"
-              value={userData.complemento}
-              name="complemento"
-            />
-            <NewInput size="large" value={userData.bairro} name="bairro" />
-            <NewInput
-              size="large"
-              value={userData.localidade}
-              name="localidade"
-            />
-            <NewInput size="large" value={userData.uf} name="uf" />
+            {userData.logradouro ? (
+              <NewInput
+                size="large"
+                value={userData.logradouro}
+                name="logradouro"
+              />
+            ) : (
+              <NewInput size="large" name="logradouro" />
+            )}
+            <NewInput size="large" name="complemento" />
+            {userData.bairro ? (
+              <NewInput size="large" value={userData.bairro} name="bairro" />
+            ) : (
+              <NewInput size="large" name="bairro" />
+            )}
+            {userData.localidade ? (
+              <NewInput
+                size="large"
+                value={userData.localidade}
+                name="localidade"
+              />
+            ) : (
+              <NewInput size="large" name="localidade" />
+            )}
+            {userData.uf ? (
+              <NewInput size="large" value={userData.uf} name="uf" />
+            ) : (
+              <NewInput size="large" name="uf" />
+            )}
           </>
         )}
         <Form.Item name="select" label="Selecione seu tipo de perfil">
