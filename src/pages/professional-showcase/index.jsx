@@ -19,21 +19,20 @@ import {
   TextSidebarRight,
   ProfissionaisProximos,
 } from "./style";
-import { InfoCard, DivCard } from '../homepage/style'
-import RicardoSvg from '../homepage/photos/ricardo.svg'
+import { InfoCard, DivCard } from "../homepage/style";
+import RicardoSvg from "../homepage/photos/ricardo.svg";
 import { Estrela } from "../homepage/style";
 import LisaimgSvg from "../homepage/photos/lisa.svg";
 import FeedbacksProfissa from "../../components/feedbacks-profissa";
 import Carousel from "../../components/swiperCarousel";
 import ToHireProfessionalModal from "../../components/to-hire-professional-modal";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 
 const ProfessionalShowcase = () => {
   const [showModalProfissa, setShowModalProfissa] = useState(false);
-  const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
+  const users = useSelector((state) => state.profissaHomepage.profissasRequest);
 
   return (
-
     <>
       {showModalProfissa && (
         <ToHireProfessionalModal setShowModalProfissa={setShowModalProfissa} />
@@ -111,29 +110,25 @@ const ProfessionalShowcase = () => {
       </ProfissionaisProximos>
 
       <DivCard>
-        {
-          users.map((user, index) => (
-            <div
-              key={index}
-            >
-              <Card className="card" key={index}>
-                <InfoCard>
-                  <img src={RicardoSvg} />
-                  <div>
-                    {Array.from({ length: user.stars }, (v, k) => k).map(
-                      (key) => {
-                        return <Estrela key={key} />;
-                      }
-                    )}
-                  </div>
-                  <p>{user.avaliations} avaliações</p>
-                  <h1>{user.name}</h1>
-                  <h1>{user.service}</h1>
-                </InfoCard>
-              </Card>
-            </div>
-          ))
-        }
+        {users.map((user, index) => (
+          <div key={index}>
+            <Card className="card" key={index}>
+              <InfoCard>
+                <img src={RicardoSvg} />
+                <div>
+                  {Array.from({ length: user.stars }, (v, k) => k).map(
+                    (key) => {
+                      return <Estrela key={key} />;
+                    }
+                  )}
+                </div>
+                <p>{user.avaliations} avaliações</p>
+                <h1>{user.name}</h1>
+                <h1>{user.service}</h1>
+              </InfoCard>
+            </Card>
+          </div>
+        ))}
       </DivCard>
     </>
   );
