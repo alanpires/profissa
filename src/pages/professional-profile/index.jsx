@@ -78,14 +78,19 @@ const ProfessionalProfile = () => {
   return (
     <Container>
       <ProfileBox>
-        <AvatarCard />
-        {userType === "Profissa" ?
-          <Sidebar
-            setInfos={setInfos}
-            menuBars={["Meus Serviços", "Serviços Solicitados", "Avaliações feitas", "Avaliações recebidas"]} /> :
-          <Sidebar
-            setInfos={setInfos}
-            menuBars={["Serviços Solicitados", "Avaliações feitas", "Avaliações recebidas"]} />}
+        <WrapProfile>
+          <AvatarCard />
+        </WrapProfile>
+        <WrapSideBar>
+          {userType === "Profissa" ?
+            <Sidebar
+              setInfos={setInfos}
+              menuBars={["Meus Serviços", "Serviços Solicitados", "Avaliações feitas", "Avaliações recebidas"]} /> :
+            <Sidebar
+              setInfos={setInfos}
+              menuBars={["Serviços Solicitados", "Avaliações feitas", "Avaliações recebidas"]} />}
+
+        </WrapSideBar>
 
       </ProfileBox>
       <BoxInfos>
@@ -105,28 +110,36 @@ height: 100vh;
 display:flex;
 justify-content:center;
 align-items:center;
+padding:10px;
 `
+const WrapProfile = styled.div`
+width: 100%;
+height: 34%;
+`
+const WrapSideBar = styled.div`
+width: 100%;
+height: 62%;
+`
+
 const ProfileBox = styled.div`
-background:blue;
 flex:1;
 height: 100%;
 display:flex;
-justify-content:center;
-align-items:center;
+justify-content:space-between;
+align-items: space-between; 
 flex-flow: column;
-padding:10px;
+padding: 0 20px;
 `
 const BoxInfos = styled.div`
-background:black;
 flex:5;
 height: 100%;
 display:flex;
 justify-content:center;
 align-items:center;
-padding:10px;
 `
 const Infos = styled.div`
-background:violet;
+background:white;
+
 width: 100%;
 height: 100%;
 display:flex;
@@ -135,7 +148,6 @@ align-items:center;
 flex-flow: wrap;
 `
 const CardInfos = styled.div`
-background:whitesmoke;
 width: 100%;
 height: 100%;
 display:flex;

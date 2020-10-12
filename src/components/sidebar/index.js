@@ -35,7 +35,7 @@ function Sidebar({ setDiv1, setDiv2, setDiv3, setInfos, menuBars }) {
             <SidebarRow title={elem} />
           </Anchor>
         ))}
-        <AnchorLogout
+        <Anchor
           onClick={() => {
             window.localStorage.clear();
             dispatch(cleanToken("", {}));
@@ -43,7 +43,7 @@ function Sidebar({ setDiv1, setDiv2, setDiv3, setInfos, menuBars }) {
           }}
         >
           <SidebarRow title="Logout" />
-        </AnchorLogout>
+        </Anchor>
       </MainDiv>
     </>
   );
