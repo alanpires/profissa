@@ -13,9 +13,7 @@ const profissaFeedback = (feedback) => ({
 });
 
 export const requestFeedbacks = () => (dispatch) => {
-  // console.log(axiosConfig(token));
   axios.get("https://profissa-server.herokuapp.com/feedbacks").then((res) => {
-    console.log(res);
     dispatch(profissaFeedback(res.data));
   });
 };

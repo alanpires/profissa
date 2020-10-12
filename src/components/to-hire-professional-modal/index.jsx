@@ -33,7 +33,6 @@ const ToHireProfessionalModal = ({ setShowModalProfissa }) => {
       .get(`https://profissa-server.herokuapp.com/users/${params.id}`)
       .then((res) => {
         setProfissa(res.data);
-        console.log(res.data);
       });
   }, [params.id]);
 
