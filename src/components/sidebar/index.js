@@ -17,7 +17,7 @@ import {
   AnchorLogout,
 } from "./style";
 
-function Sidebar({ setDiv1, setDiv2, setDiv3 }) {
+function Sidebar({ setDiv1, setDiv2, setDiv3, setInfos, menuBars }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const token = useSelector((state) => state.access.token);
@@ -25,33 +25,16 @@ function Sidebar({ setDiv1, setDiv2, setDiv3 }) {
   return (
     <>
       <MainDiv>
-        <Anchor
-          onClick={() => {
-            setDiv1(true);
-            setDiv2(false);
-            setDiv3(false);
-          }}
-        >
-          <SidebarRow title="Serviços Solicitados" />
-        </Anchor>
-        <Anchor
-          onClick={() => {
-            setDiv1(false);
-            setDiv2(true);
-            setDiv3(false);
-          }}
-        >
-          <SidebarRow title="Avaliações" />
-        </Anchor>
-        <Anchor
-          onClick={() => {
-            setDiv1(false);
-            setDiv2(false);
-            setDiv3(true);
-          }}
-        >
-          <SidebarRow title="ETC" />
-        </Anchor>
+        {menuBars.map((elem, key) => (
+          <Anchor
+            key={key}
+            onClick={() => {
+              setInfos(elem);
+            }}
+          >
+            <SidebarRow title={elem} />
+          </Anchor>
+        ))}
         <AnchorLogout
           onClick={() => {
             window.localStorage.clear();
