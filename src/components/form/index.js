@@ -1,11 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { FormDiv, CheckboxText, NewInput } from "./style.js";
 import { Form, Input, Button, Checkbox } from "antd";
 import axios from "axios";
 
 const FormUser = () => {
+  const [cep, setCep] = useState("");
+  const [input, showInput] = useState(false);
+  const [userData, setuserData] = useState("");
+  const [cepError, setCepError] = useState("");
+  const requestApi = () => {
+    if (cep.length !== 8) {
+      return;
+    }
+
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.erro) {
+          return setCepError("Por favor insira um cep válido!");
+        } else {
+          setuserData(data);
+          showInput(true);
+          setCepError("");
+        }
+      });
+  };
+
+  console.log(userData);
+
   const onFinish = (values) => {
-    SignUp(values);
+    if (userData) {
+      SignUp(values);
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -26,7 +52,9 @@ const FormUser = () => {
     <FormDiv>
       <Form
         name="basic"
-        initialValues={{ "checkbox-group": ["Cliente", "Profissa"] }}
+        initialValues={{
+          "checkbox-group": ["Cliente", "Profissa"],
+        }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
@@ -54,7 +82,7 @@ const FormUser = () => {
           name="email"
           rules={[
             {
-              pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+              type: "email",
               message: "E-mail inválido.",
             },
             {
@@ -88,7 +116,6 @@ const FormUser = () => {
             size="large"
           />
         </Form.Item>
-
         <Form.Item
           name="cpf"
           rules={[
@@ -109,28 +136,71 @@ const FormUser = () => {
           <NewInput placeholder="Digite seu CPF" size="large" />
         </Form.Item>
         <Form.Item
-          name="adress"
+          name="cep"
+          onChange={(e) => setCep(e.target.value)}
+          onBlur={requestApi}
           rules={[
             {
               required: true,
-              message: "Por favor digite seu endereço",
+              message: "Por favor digite seu CEP",
+            },
+            {
+              pattern: /^[0-9]*$/,
+              message: "Deve conter apenas números, sem caracteres especiais",
+            },
+            {
+              min: 8,
+              message: "Deve conter 8 números",
             },
           ]}
         >
-          <NewInput placeholder="Onde você mora?" size="large" />
+          <NewInput placeholder="Digite seu CEP" size="large" />
         </Form.Item>
-
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Cadastrar
-          </Button>
-        </Form.Item>
+        {cepError && <span style={{ color: "red" }}>{cepError}</span>}
+        {input && (
+          <>
+            {userData.logradouro ? (
+              <NewInput
+                size="large"
+                value={userData.logradouro}
+                name="logradouro"
+              />
+            ) : (
+              <NewInput size="large" name="logradouro" />
+            )}
+            <NewInput size="large" name="complemento" />
+            {userData.bairro ? (
+              <NewInput size="large" value={userData.bairro} name="bairro" />
+            ) : (
+              <NewInput size="large" name="bairro" />
+            )}
+            {userData.localidade ? (
+              <NewInput
+                size="large"
+                value={userData.localidade}
+                name="localidade"
+              />
+            ) : (
+              <NewInput size="large" name="localidade" />
+            )}
+            {userData.uf ? (
+              <NewInput size="large" value={userData.uf} name="uf" />
+            ) : (
+              <NewInput size="large" name="uf" />
+            )}
+          </>
+        )}
         <Form.Item name="select" label="Selecione seu tipo de perfil">
           <Checkbox.Group>
             <Checkbox value="Cliente">Cliente</Checkbox>
 
             <Checkbox value="Profissa">Profissa</Checkbox>
           </Checkbox.Group>
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Cadastrar
+          </Button>
         </Form.Item>
       </Form>
     </FormDiv>

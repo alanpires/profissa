@@ -6,6 +6,8 @@ import BestRating from "../../components/best-rating";
 import { useHistory, Link } from "react-router-dom";
 import RicardoSvg from "./photos/ricardo.svg";
 import "./styles.css";
+import { StyledIconWork } from './style'
+
 import {
   ContainerFlexHomePage,
   DivContentHomepage,
@@ -30,25 +32,27 @@ const Homepage = () => {
   const history = useHistory();
   const [usersHome, setUsersHome] = useState([]);
   const [searchMode, setSearchMode] = useState(true);
-  const users = useSelector((state) => state.ProfissaHomepage.profissasRequest);
+  const profissas = useSelector(
+    (state) => state.profissaHomepage.profissasRequest
+  );
   const feedbacks = useSelector(
-    (state) => state.ProfissaFeedbacks.feedbacksRequest
+    (state) => state.profissaFeedbacks.feedbacksRequest
   );
 
   useEffect(() => {
     if (usersHome.length === 0) {
       dispatch(requestProfissasHomepage());
       dispatch(requestFeedbacks());
-      setUsersHome(users);
+      setUsersHome(profissas);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [users]);
+  }, [profissas]);
 
   const onSubmit = (e, input) => {
     e.preventDefault();
     setSearchMode(false);
     setUsersHome(
-      users.filter(
+      profissas.filter(
         (elem) =>
           (elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50) ||
           elem.cep === 0 ||
@@ -57,7 +61,7 @@ const Homepage = () => {
         //
       )
     );
-    console.log(users, usersHome, input);
+    console.log(profissas, usersHome, input);
   };
 
   return (
@@ -86,8 +90,8 @@ const Homepage = () => {
           <>
             <SectionProfilesPhotos>
               <h1>Profissas mais bem avaliados</h1>
-              {users && feedbacks ? (
-                loadBestRatingByProfession(feedbacks, users).map(
+              {profissas && feedbacks ? (
+                loadBestRatingByProfession(feedbacks, profissas).map(
                   (profissa, key) => {
                     return (
                       <div key={key}>
@@ -118,7 +122,7 @@ const Homepage = () => {
                 <div
                   key={key}
                   onClick={() =>
-                    history.push(`/professional-showcase/${user.id}`)
+                    history.push(`/professional-showcase/${user.id}/${user.cep}`)
                   }
                 >
                   <Card className="card">
@@ -133,7 +137,7 @@ const Homepage = () => {
                       </div>
                       <p>{user.avaliations} avaliações</p>
                       <h1>{user.name}</h1>
-                      <h1>{user.service}</h1>
+                      <h1><StyledIconWork />{user.service}</h1>
                     </InfoCard>
                   </Card>
                 </div>

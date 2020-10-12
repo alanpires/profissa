@@ -9,7 +9,6 @@ const App = () => {
   return (
     <div>
       <Authentication />
-      {/* <ProfessionalProfile /> */}
     </div>
   );
 };

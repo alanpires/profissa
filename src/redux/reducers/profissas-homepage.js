@@ -5,7 +5,7 @@ const defaultState = {
   profissasRequest: [],
 };
 
-const ProfissaHomepage = (state = defaultState, action) => {
+const profissaHomepage = (state = defaultState, action) => {
   switch (action.type) {
     case PROFISSAS:
       return { ...state, profissasRequest: filterProfissa(action.profissa) };
@@ -14,4 +14,4 @@ const ProfissaHomepage = (state = defaultState, action) => {
   }
 };
 
-export default ProfissaHomepage;
+export default profissaHomepage;
