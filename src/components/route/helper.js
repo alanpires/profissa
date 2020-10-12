@@ -8,7 +8,7 @@ import SignupProfessional from "../../pages/singup-professional";
 export const restrictedRoutesClient = [
   { path: "/client-profile", name: "ClientProfile", component: ClientProfile },
   {
-    path: "/professional-showcase/:id",
+    path: "/professional-showcase/:id/:cep",
     name: "ProfessionalShowcase",
     component: ProfessionalShowcase,
   },
