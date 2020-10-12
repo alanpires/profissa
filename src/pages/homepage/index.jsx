@@ -6,6 +6,8 @@ import BestRating from "../../components/best-rating";
 import { useHistory, Link } from "react-router-dom";
 import RicardoSvg from "./photos/ricardo.svg";
 import "./styles.css";
+import {StyledIconWork} from './style'
+
 import {
   ContainerFlexHomePage,
   DivContentHomepage,
@@ -135,7 +137,7 @@ const Homepage = () => {
                       </div>
                       <p>{user.avaliations} avaliações</p>
                       <h1>{user.name}</h1>
-                      <h1>{user.service}</h1>
+                      <h1><StyledIconWork />{user.service}</h1>
                     </InfoCard>
                   </Card>
                 </div>
