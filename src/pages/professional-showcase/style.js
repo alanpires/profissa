@@ -249,3 +249,17 @@ export const Container = styled.div`
     align-items: center;
   }
 `;
+
+export const ProfissionaisProximos = styled.div`
+  display: flex;
+  align-items: center;
+
+  h4{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 31px;
+    font-size: 48px;
+    font-family: Shrikhand;
+  }
+
+`
