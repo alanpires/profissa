@@ -10,7 +10,7 @@ import { requestSchedules } from "../../redux/actions/schedules-actions";
 
 const ProfessionalProfile = () => {
   const dispatch = useDispatch();
-  const [user, feedbacks, schedules, state] = useSelector(state => [state.access.user, state.ProfissaFeedbacks.feedbacksRequest, state.schedules, state])
+  const [user, feedbacks, schedules, state] = useSelector(state => [state.access.user, state.profissaFeedbacks.feedbacksRequest, state.schedules, state])
   const [infos, setInfos] = useState("Serviços Solicitados")
   const userType = user.select[0]
 
