@@ -44,7 +44,6 @@ export const loadBestRatingByProfession = (feedbacks, profissas) => {
   let loadProfissas = sortProfissas(feedbacks, profissas);
   const servicesCount = loadProfissas.reduce((current, { service }) => {
     current[service] ? (current[service] += 1) : (current[service] = 1);
-    console.log(current);
     return current;
   }, {});
   let arrayBestRating = [];
@@ -60,7 +59,6 @@ export const loadBestRatingByProfession = (feedbacks, profissas) => {
       });
     });
   }
-  console.log(arrayBestRating);
   return arrayBestRating.map((service) => {
     let bestProfissa = service.professionals.sort(function (a, b) {
       if (a.stars < b.stars) {

@@ -4,7 +4,7 @@ const defaultState = {
   feedbacksRequest: [],
 };
 
-const ProfissaFeedbacks = (state = defaultState, action) => {
+const profissaFeedbacks = (state = defaultState, action) => {
   switch (action.type) {
     case FEEDBACKS:
       return { ...state, feedbacksRequest: action.feedback };
@@ -13,4 +13,4 @@ const ProfissaFeedbacks = (state = defaultState, action) => {
   }
 };
 
-export default ProfissaFeedbacks;
+export default profissaFeedbacks;

@@ -4,7 +4,7 @@ const defaultState = {
   services: [],
 };
 
-const Services = (state = defaultState, action) => {
+const services = (state = defaultState, action) => {
   switch (action.type) {
     case SERVICE_RESQUEST:
       return { ...state, services: action.serviceRequest };
@@ -14,4 +14,4 @@ const Services = (state = defaultState, action) => {
   }
 };
 
-export default Services;
+export default services;
