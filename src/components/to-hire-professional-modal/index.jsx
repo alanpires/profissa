@@ -33,16 +33,16 @@ const ToHireProfessionalModal = ({ setShowModalProfissa }) => {
       .get(`https://profissa-server.herokuapp.com/users/${params.id}`)
       .then((res) => {
         setProfissa(res.data);
+        console.log(res.data);
       });
   }, [params.id]);
-
+  console.log(profissa);
   const onFinish = (values) => {
     console.log("Success:", values);
     const data = {
       clienteId: user.id,
       profissaId: params.id,
       profissa: profissa,
-      typeService: values.typeService,
       details: values.details,
       schedule: values.date,
     };
@@ -61,67 +61,8 @@ const ToHireProfessionalModal = ({ setShowModalProfissa }) => {
           onFinish={onFinish}
         >
           <Title>Precisamos de mais informações</Title>
-          <StyledForm.Item
-            label="Tipo de serviço"
-            name="typeService"
-            validateTrigger={false}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <select>
-              <option value="Serviços">Serviços</option>
-              <optgroup label="Assistência técnica:">
-                <option>Celulares</option>
-                <option>Computadores</option>
-                <option>Eletrodomésticos</option>
-              </optgroup>
-              <optgroup label="Aulas particulares: ">
-                <option>Idiomas</option>
-                <option>Artesanato</option>
-                <option>Reforço escolar</option>
-                <option>Gastronomia</option>
-                <option>Música</option>
-              </optgroup>
-              <optgroup label="Automóveis:">
-                <option>Funilaria</option>
-                <option>Mecânica</option>
-                <option>Guincho</option>
-                <option>Elétrica</option>
-                <option>Limpeza</option>
-              </optgroup>
-              <optgroup label="Reformas e Construções:">
-                <option>Pedreiro</option>
-                <option>Eletricista</option>
-                <option>Jardineiro</option>
-                <option>Engenheiro</option>
-                <option>Vidraceiro</option>
-                <option>Carpinteiro</option>
-                <option>Arquiteto</option>
-              </optgroup>
-              <optgroup label="Saúde e beleza:">
-                <option>Cuidador(a)</option>
-                <option>Dentista</option>
-                <option>Cabeleireiro</option>
-                <option>Enfermagem</option>
-                <option>Esteticista</option>
-                <option>Fisioterapeuta</option>
-                <option>Manicure</option>
-                <option>Médico(a)</option>
-                <option>Nutricionista</option>
-                <option>Pedicure</option>
-                <option>Personal Trainer</option>
-                <option>Psicólogo(a)</option>
-              </optgroup>
-              <optgroup label="Serviços domésticos:">
-                <option>Babá</option>
-                <option>Cozinheiro(a)</option>
-                <option>Diarista</option>
-                <option>Passadeira(o)</option>
-              </optgroup>
-            </select>
+          <StyledForm.Item label="Tipo de serviço" validateTrigger={false}>
+            {profissa && profissa.service}
           </StyledForm.Item>
 
           <StyledForm.Item
