@@ -30,6 +30,8 @@ import ToHireProfessionalModal from "../../components/to-hire-professional-modal
 import { useSelector } from "react-redux";
 import { requestInfosProfissa } from "../../redux/actions/infos-profissa-actions";
 import { useDispatch } from "react-redux";
+import { feedbacksId } from "../../components/feedbacks-profissa/helper";
+import { getStars } from "./helper";
 
 const ProfessionalShowcase = () => {
   const [showModalProfissa, setShowModalProfissa] = useState(false);
@@ -38,6 +40,9 @@ const ProfessionalShowcase = () => {
   const token = useSelector((state) => state.access.token);
   const dispatch = useDispatch();
   const infosProfissa = useSelector((state) => state.infosProfissa);
+  const feedbacks = useSelector(
+    (state) => state.profissaFeedbacks.feedbacksRequest
+  );
 
   const axiosConfig = (token) => ({
     headers: {
@@ -47,9 +52,13 @@ const ProfessionalShowcase = () => {
 
   useEffect(() => {
     dispatch(requestInfosProfissa(id, axiosConfig(token)));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+  console.log(feedbacksId(feedbacks, parseInt(id)));
+  // console.log(infosProfissa);
+  console.log();
 
-  console.log(infosProfissa);
+  // console.log(teste());
 
   return (
     <>
@@ -64,7 +73,9 @@ const ProfessionalShowcase = () => {
             <Container>
               <ProfessionalName>{infosProfissa.name}</ProfessionalName>
               <Stars>
-                5.0 <Estrela /> 12 avaliações
+                {getStars(feedbacksId(feedbacks, parseInt(id)))} <Estrela />
+                {feedbacksId(feedbacks, parseInt(id)).length + " "}
+                Avaliações
               </Stars>
             </Container>
           </ContainerInfos>
@@ -94,7 +105,6 @@ const ProfessionalShowcase = () => {
             </TextSidebarRight>
           </SidebarRight>
         </ProfessionalPersonalSkills>
-        <FeedbacksProfissa />
       </GeneralContainer>
       <Carousel />
       <FeedbacksProfissa />
