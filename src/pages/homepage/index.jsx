@@ -6,11 +6,7 @@ import BestRating from "../../components/best-rating";
 import { useHistory, Link } from "react-router-dom";
 import RicardoSvg from "./photos/ricardo.svg";
 import "./styles.css";
-<<<<<<< HEAD
-import { StyledIconWork } from './style'
-=======
 import { StyledIconWork } from "./style";
->>>>>>> master
 
 import {
   ContainerFlexHomePage,
