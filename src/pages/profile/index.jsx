@@ -30,7 +30,7 @@ const ProfessionalProfile = () => {
       case "Meus Serviços":
         return (
           services
-            .filter(elem => elem.profissaId === user.id || elem.clientId === user.id)
+            .filter(elem => elem.profissaId === user.id)
             .map((elem, key) => (
               <ScheduleCard key={key} infos={elem} />
             ))
@@ -38,7 +38,7 @@ const ProfessionalProfile = () => {
       case "Serviços Solicitados":
         return (
           services
-            .filter(elem => elem.profissaId === user.id || elem.clientId === user.id)
+            .filter(elem => elem.clientId === user.id)
             .map((elem, key) => (
               <ScheduleCard key={key} infos={elem} />
             ))
