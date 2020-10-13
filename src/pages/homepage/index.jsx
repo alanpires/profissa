@@ -6,7 +6,7 @@ import BestRating from "../../components/best-rating";
 import { useHistory, Link } from "react-router-dom";
 import RicardoSvg from "./photos/ricardo.svg";
 import "./styles.css";
-import { StyledIconWork } from "./style";
+import { StyledIconWork } from './style'
 
 import {
   ContainerFlexHomePage,
@@ -105,8 +105,8 @@ const Homepage = () => {
                   }
                 )
               ) : (
-                <h1>Carregando</h1>
-              )}
+                  <h1>Carregando</h1>
+                )}
             </SectionProfilesPhotos>
           </>
         )}
@@ -114,20 +114,20 @@ const Homepage = () => {
           {searchMode ? (
             <h1>Outros Profissas</h1>
           ) : (
-            <h1>{usersHome.length} Profissas encontrado(s)</h1>
-          )}
+              <h1>{usersHome.length} Profissas encontrado(s)</h1>
+            )}
           <DivCard>
             {usersHome && feedbacks ? (
-              sortProfissas(feedbacks, usersHome).map((user, index) => (
+              sortProfissas(feedbacks, usersHome).map((user, key) => (
                 <div
-                  key={index}
+                  key={key}
                   onClick={() =>
                     history.push(
                       `/professional-showcase/${user.id}/${user.cep}`
                     )
                   }
                 >
-                  <Card className="card" key={index}>
+                  <Card className="card">
                     <InfoCard>
                       <img src={RicardoSvg} />
                       <div>
@@ -148,8 +148,8 @@ const Homepage = () => {
                 </div>
               ))
             ) : (
-              <h1>Carregando</h1>
-            )}
+                <h1>Carregando</h1>
+              )}
           </DivCard>
         </DivProfileCards>
       </ContainerFlexHomePage>
