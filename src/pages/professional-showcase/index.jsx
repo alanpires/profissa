@@ -12,7 +12,6 @@ import { useSelector } from "react-redux";
 import { requestInfosProfissa } from "../../redux/actions/infos-profissa-actions";
 import { useDispatch } from "react-redux";
 import InfosProfissa from "../../components/infosProfissa";
-
 const ProfessionalShowcase = () => {
   const [showModalProfissa, setShowModalProfissa] = useState(false);
   const users = useSelector((state) => state.profissaHomepage.profissasRequest);
@@ -23,15 +22,14 @@ const ProfessionalShowcase = () => {
   const feedbacks = useSelector(
     (state) => state.profissaFeedbacks.feedbacksRequest
   );
-
   const axiosConfig = (token) => ({
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
-
   useEffect(() => {
     dispatch(requestInfosProfissa(id, axiosConfig(token)));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (

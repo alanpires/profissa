@@ -57,7 +57,12 @@ const InfosProfissa = ({ setShowModalProfissa, showModalProfissa }) => {
           <Container>
             <ProfessionalName>{infosProfissa.name}</ProfessionalName>
             <Stars>
-              {getStars(feedbacksId(feedbacks, parseInt(id)))} <Estrela />
+              {Array.from(
+                { length: getStars(feedbacksId(feedbacks, parseInt(id))) },
+                (v, k) => k
+              ).map((key) => {
+                return <Estrela key={key} />;
+              })}
               {feedbacksId(feedbacks, parseInt(id)).length + " "}
               Avaliações
             </Stars>
