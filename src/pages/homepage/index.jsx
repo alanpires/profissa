@@ -66,7 +66,6 @@ const Homepage = () => {
 
   return (
     <>
-      <Link to="/client-profile">Client Profile</Link>
       <Navbar />
       <ContainerFlexHomePage>
         <DivContentHomepage searchMode={!searchMode}>
@@ -122,7 +121,9 @@ const Homepage = () => {
                 <div
                   key={key}
                   onClick={() =>
-                    history.push(`/professional-showcase/${user.id}/${user.cep}`)
+                    history.push(
+                      `/professional-showcase/${user.id}/${user.cep}`
+                    )
                   }
                 >
                   <Card className="card">
@@ -137,7 +138,10 @@ const Homepage = () => {
                       </div>
                       <p>{user.avaliations} avaliações</p>
                       <h1>{user.name}</h1>
-                      <h1><StyledIconWork />{user.service}</h1>
+                      <h1>
+                        <StyledIconWork />
+                        {user.service}
+                      </h1>
                     </InfoCard>
                   </Card>
                 </div>
