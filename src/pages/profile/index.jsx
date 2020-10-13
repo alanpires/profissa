@@ -3,72 +3,61 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import AvatarCard from "../../components/avatar-card";
 import Sidebar from "../../components/sidebar";
-import { Card } from "lib-kenzie-academy";
-import { requestProfissasHomepage } from "../../redux/actions/profissas-homepage";
 import { requestFeedbacks } from "../../redux/actions/feedbacks-request";
-import { requestSchedules } from "../../redux/actions/schedules-actions";
+import FeedbackCard from "./feedback-card";
+import ScheduleCard from "./schedule-card";
+import { serviceRequest } from "../../redux/actions/service-request";
 
 const ProfessionalProfile = () => {
   const dispatch = useDispatch();
-  const [user, feedbacks, schedules, state] = useSelector(state => [state.access.user, state.profissaFeedbacks.feedbacksRequest, state.schedules, state])
+  const [user, feedbacks, services, state] = useSelector(state => [state.access.user, state.profissaFeedbacks.feedbacksRequest, state.services.services, state])
   const [infos, setInfos] = useState("Serviços Solicitados")
   const userType = user.select[0]
 
+
   useEffect(() => {
-    if (feedbacks.length === 0 && schedules.length === 0) {
+    if (feedbacks.length === 0 && services.length === 0) {
       dispatch(requestFeedbacks());
-      dispatch(requestSchedules());
+      dispatch(serviceRequest());
     }
     console.log(state)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [feedbacks, schedules]);
+  }, [feedbacks, services]);
 
   const choosedOption = () => {
     switch (infos) {
       case "Meus Serviços":
         return (
-          <Infos>
-            {schedules
-              .filter(elem => elem.profissaId === user.id || elem.clientId === user.id)
-              .map((elem, key) => (
-                <Card key={key}>
-
-                </Card>
-              ))}
-          </Infos>
+          services
+            .filter(elem => elem.profissaId === user.id)
+            .map((elem, key) => (
+              <ScheduleCard key={key} infos={elem} />
+            ))
         )
       case "Serviços Solicitados":
         return (
-          <Infos>
-            {schedules
-              .filter(elem => elem.clientId === user.id || elem.clientId === user.id)
-              .map((elem, key) => (
-                <Card key={key}>
-
-                </Card>
-              ))}
-          </Infos>
+          services
+            .filter(elem => elem.clientId === user.id)
+            .map((elem, key) => (
+              <ScheduleCard key={key} infos={elem} />
+            ))
         )
       case "Avaliações feitas":
         return (
-          <Infos>
-            {feedbacks
-              .filter(elem => elem.creatorId === user.id)
-              .map((elem, key) => (
-                <Card key={key}>
-                </Card>
-              ))}
-          </Infos>
+          feedbacks
+            .filter(elem => elem.creatorId === user.id)
+            .map((elem, key) => (
+              <FeedbackCard key={key}
+                infos={elem}
+                creator={(feedbacks.find(item => item.creatorId === elem.receiverId)).creator} />
+            ))
         )
       case "Avaliações recebidas":
         return (
-          <Infos>
-            {feedbacks.filter(elem => elem.receiverId === user.id).map((elem, key) => (
-              <Card key={key}>
-              </Card>
-            ))}
-          </Infos>
+          feedbacks.filter(elem => elem.receiverId === user.id).map((elem, key) => (
+            <FeedbackCard key={key} infos={elem} creator={elem.creator} />
+          ))
         )
       default:
         break;
@@ -82,19 +71,18 @@ const ProfessionalProfile = () => {
           <AvatarCard />
         </WrapProfile>
         <WrapSideBar>
-          {userType === "Profissa" ?
-            <Sidebar
-              setInfos={setInfos}
-              menuBars={["Meus Serviços", "Serviços Solicitados", "Avaliações feitas", "Avaliações recebidas"]} /> :
-            <Sidebar
-              setInfos={setInfos}
-              menuBars={["Serviços Solicitados", "Avaliações feitas", "Avaliações recebidas"]} />}
-
+          <Sidebar
+            setInfos={setInfos}
+            menuBars={userType === "Profissa" ?
+              ["Meus Serviços", "Serviços Solicitados", "Avaliações feitas", "Avaliações recebidas"] :
+              ["Serviços Solicitados", "Avaliações feitas", "Avaliações recebidas"]} />
         </WrapSideBar>
 
       </ProfileBox>
       <BoxInfos>
-        {choosedOption()}
+        <Infos>
+          {(feedbacks.length > 0 && services.length > 0) && choosedOption()}
+        </Infos>
       </BoxInfos>
     </Container>
   );
