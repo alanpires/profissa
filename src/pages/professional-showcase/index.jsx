@@ -40,7 +40,10 @@ const ProfessionalShowcase = () => {
         <ToHireProfessionalModal setShowModalProfissa={setShowModalProfissa} />
       )}
       <Header>Header Fixo</Header>
-      <InfosProfissa />
+      <InfosProfissa
+        setShowModalProfissa={setShowModalProfissa}
+        showModalProfissa={showModalProfissa}
+      />
       <Carousel images={infosProfissa.previousJob} />
       <FeedbacksProfissa />
       <ProfissionaisProximos>
