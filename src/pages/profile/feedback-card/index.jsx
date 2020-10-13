@@ -7,12 +7,12 @@ import { BsStarFill } from "react-icons/bs";
 
 const FeedbackCard = ({ infos: { feedback, stars }, creator }) => {
   const history = useHistory()
-
+  console.log(creator)
   return (
     <div
-    // onClick={() =>
-    //   history.push(`/professional-showcase/${creator.id}/${creator.cep}`)
-    // }
+      onClick={() =>
+        history.push(`/professional-showcase/${creator.id}/${creator.cep}`)
+      }
     >
       <Card>
         <InfoCard>
