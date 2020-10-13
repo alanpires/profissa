@@ -29,7 +29,8 @@ const ProfessionalShowcase = () => {
   });
   useEffect(() => {
     dispatch(requestInfosProfissa(id, axiosConfig(token)));
-  }, [dispatch, id, token]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   return (
     <>
