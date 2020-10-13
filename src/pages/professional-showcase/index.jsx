@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "lib-kenzie-academy";
 import {
   GeneralContainer,
@@ -19,6 +19,7 @@ import {
   TextSidebarRight,
   ProfissionaisProximos,
 } from "./style";
+import { useParams } from "react-router-dom";
 import { InfoCard, DivCard } from "../homepage/style";
 import RicardoSvg from "../homepage/photos/ricardo.svg";
 import { Estrela } from "../homepage/style";
@@ -27,10 +28,37 @@ import FeedbacksProfissa from "../../components/feedbacks-profissa";
 import Carousel from "../../components/swiperCarousel";
 import ToHireProfessionalModal from "../../components/to-hire-professional-modal";
 import { useSelector } from "react-redux";
+import { requestInfosProfissa } from "../../redux/actions/infos-profissa-actions";
+import { useDispatch } from "react-redux";
+import { feedbacksId } from "../../components/feedbacks-profissa/helper";
+import { getStars } from "./helper";
 
 const ProfessionalShowcase = () => {
   const [showModalProfissa, setShowModalProfissa] = useState(false);
   const users = useSelector((state) => state.profissaHomepage.profissasRequest);
+  const { id } = useParams();
+  const token = useSelector((state) => state.access.token);
+  const dispatch = useDispatch();
+  const infosProfissa = useSelector((state) => state.infosProfissa);
+  const feedbacks = useSelector(
+    (state) => state.profissaFeedbacks.feedbacksRequest
+  );
+
+  const axiosConfig = (token) => ({
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  useEffect(() => {
+    dispatch(requestInfosProfissa(id, axiosConfig(token)));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+  console.log(feedbacksId(feedbacks, parseInt(id)));
+  // console.log(infosProfissa);
+  console.log();
+
+  // console.log(teste());
 
   return (
     <>
@@ -43,9 +71,11 @@ const ProfessionalShowcase = () => {
           <ContainerInfos>
             <Image src={LisaimgSvg} />
             <Container>
-              <ProfessionalName>Lisa Sanchez</ProfessionalName>
+              <ProfessionalName>{infosProfissa.name}</ProfessionalName>
               <Stars>
-                5.0 <Estrela /> 12 avaliações
+                {getStars(feedbacksId(feedbacks, parseInt(id)))} <Estrela />
+                {feedbacksId(feedbacks, parseInt(id)).length + " "}
+                Avaliações
               </Stars>
             </Container>
           </ContainerInfos>
@@ -60,48 +90,21 @@ const ProfessionalShowcase = () => {
         <ProfessionalPersonalSkills>
           <SidebarLeft>
             <SidebarLeftOne>
-              <p>Habilidades:</p>
-              <div>Lorem Ipsum</div>
-              <div>Lorem Ipsum</div>
-              <div>Lorem Ipsum</div>
-              <div>Lorem Ipsum</div>
-              <div>Lorem Ipsum</div>
-              <div>Lorem Ipsum</div>
+              <p>Habilidades Profissionais:</p>
+              <div>{infosProfissa.hardSkills}</div>
             </SidebarLeftOne>
             <SidebarLeftTwo>
-              <p>Outro texto</p>
-              <div>Lorem Ipsum</div>
-              <div>Lorem Ipsum</div>
-              <div>Lorem Ipsum</div>
-              <div>Lorem Ipsum</div>
-              <div>Lorem Ipsum</div>
-              <div>Lorem Ipsum</div>
+              <p>Habilidades Interpessoais</p>
+              <div>{infosProfissa.softSkills}</div>
             </SidebarLeftTwo>
           </SidebarLeft>
           <SidebarRight>
             <TextSidebarRight>
               <p>Sobre o profissional</p>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                vel quam sed augue finibus malesuada vitae at quam. Morbi at
-                tellus molestie, condimentum massa vitae, condimentum nisi.
-                Morbi ullamcorper, quam a vestibulum vulputate, augue felis
-                fringilla quam, eu scelerisque lectus ipsum at sem.
-              </div>
-              <div>
-                Aliquam egestas nisl eu magna dignissim facilisis. Vivamus
-                pulvinar risus tellus, nec congue ex convallis vitae. Mauris
-                imperdiet aliquam sagittis. Sed molestie ornare nulla, ut
-                hendrerit orci ullamcorper in. Mauris iaculis fermentum posuere.
-                Quisque vestibulum lacus sit amet est imperdiet eleifend.
-                Suspendisse pulvinar finibus eleifend. Vestibulum et suscipit
-                metus. Suspendisse et velit tempor, semper nisl ac, tempor nunc.
-                In eleifend semper diam in vehicula.
-              </div>
+              <div>{infosProfissa.about}</div>
             </TextSidebarRight>
           </SidebarRight>
         </ProfessionalPersonalSkills>
-        <FeedbacksProfissa />
       </GeneralContainer>
       <Carousel />
       <FeedbacksProfissa />
