@@ -70,7 +70,6 @@ export const loadBestRatingByProfession = (feedbacks, profissas) => {
 
       return 0;
     });
-    console.log(bestProfissa[0]);
     return bestProfissa[0];
   });
 };
