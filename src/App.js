@@ -4,6 +4,8 @@ import Authentication from "./components/authentication";
 import Homepage from "./pages/homepage";
 import ProfessionalProfile from "./pages/professional-profile";
 
+import "./App.css"
+
 const App = () => {
 
   return (

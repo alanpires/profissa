@@ -1,23 +1,17 @@
-import ClientProfile from "../../pages/client-profile";
 import Homepage from "../../pages/homepage";
-import ProfessionalProfile from "../../pages/professional-profile";
+import ProfessionalProfile from "../../pages/profile";
 import ProfessionalShowcase from "../../pages/professional-showcase";
 import SignupClient from "../../pages/signup-client";
 import SignupProfessional from "../../pages/singup-professional";
 
-export const restrictedRoutesClient = [
-  { path: "/client-profile", name: "ClientProfile", component: ClientProfile },
+export const restrictedRoutes = [
   {
-    path: "/professional-showcase/:id/:cep",
+    path: "/professional-showcase",
     name: "ProfessionalShowcase",
     component: ProfessionalShowcase,
   },
-  { path: "/", name: "Homepage", component: Homepage },
-];
-
-export const restrictedRoutesProfessional = [
   {
-    path: "/professional-profile",
+    path: "/profile",
     name: "ProfessionalProfile",
     component: ProfessionalProfile,
   },
@@ -25,6 +19,11 @@ export const restrictedRoutesProfessional = [
 ];
 
 export const freeRoutes = [
+  {
+    path: "/professional-showcase",
+    name: "ProfessionalShowcase",
+    component: ProfessionalShowcase,
+  },
   { path: "/", name: "Homepage", component: Homepage },
   { path: "/signup-client", name: "SignupClient", component: SignupClient },
 
