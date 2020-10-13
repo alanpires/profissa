@@ -127,10 +127,7 @@ const RightNav = ({ open, setShowLogin, showLogin }) => {
       {userLoged && (
         <div
           className="div-usernavbar"
-          onClick={() =>
-            user.select == "Cliente"
-              ? history.push("/client-profile")
-              : history.push("/professional-profile")
+          onClick={() => history.push("/profile")
           }
         >
           <p>{userLoged}</p>
