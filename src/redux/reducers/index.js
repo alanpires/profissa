@@ -5,6 +5,7 @@ import profissaHomepage from "./profissas-homepage";
 import schedules from "./schedules";
 import profissaFeedbacks from "./request-feedback";
 import services from "./service-request";
+import infosProfissa from "./infos-profissa";
 
 export default combineReducers({
   access,
@@ -13,4 +14,5 @@ export default combineReducers({
   schedules,
   profissaFeedbacks,
   services,
+  infosProfissa,
 });
