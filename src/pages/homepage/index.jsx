@@ -117,16 +117,16 @@ const Homepage = () => {
           )}
           <DivCard>
             {usersHome && feedbacks ? (
-              sortProfissas(feedbacks, usersHome).map((user, index) => (
+              sortProfissas(feedbacks, usersHome).map((user, key) => (
                 <div
-                  key={index}
+                  key={key}
                   onClick={() =>
                     history.push(
                       `/professional-showcase/${user.id}/${user.cep}`
                     )
                   }
                 >
-                  <Card className="card" key={index}>
+                  <Card className="card">
                     <InfoCard>
                       <img src={RicardoSvg} />
                       <div>

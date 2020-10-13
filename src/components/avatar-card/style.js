@@ -4,13 +4,11 @@ import { Input } from "antd";
 export const DivAvatarCard = styled.div`
   background-color: #ffff;
   display: flex;
+  justify-content:center;
+  align-items:center;
   flex-direction: column;
-  margin-top: 12px;
-  margin-left: 16px;
-  height: 318px;
-  width: 351px;
-  align-items: center;
-  justify-content: center;
+  height: 100%;
+  width: 100%;
 `;
 
 export const Username = styled.p`
@@ -20,7 +18,7 @@ export const Username = styled.p`
 `;
 
 export const InputDiv = styled.div`
-display: flex
+display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
