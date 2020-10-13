@@ -25,7 +25,7 @@ import { useDispatch } from "react-redux";
 import { feedbacksId } from "../../components/feedbacks-profissa/helper";
 import { getStars } from "../../pages/professional-showcase/helper";
 
-const InfosProfissa = () => {
+const InfosProfissa = ({ setShowModalProfissa }) => {
   const [showModalProfissa, setShowModalProfissa] = useState(false);
   const { id } = useParams();
   const token = useSelector((state) => state.access.token);
