@@ -25,16 +25,17 @@ function Sidebar({ setDiv1, setDiv2, setDiv3, setInfos, menuBars }) {
   return (
     <>
       <MainDiv>
-        {menuBars.map((elem, key) => (
-          <Anchor
-            key={key}
-            onClick={() => {
-              setInfos(elem);
-            }}
-          >
-            <SidebarRow title={elem} />
-          </Anchor>
-        ))}
+        {menuBars &&
+          menuBars.map((elem, key) => (
+            <Anchor
+              key={key}
+              onClick={() => {
+                setInfos(elem);
+              }}
+            >
+              <SidebarRow title={elem} />
+            </Anchor>
+          ))}
         <Anchor
           onClick={() => {
             window.localStorage.clear();

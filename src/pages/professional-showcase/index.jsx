@@ -1,37 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "lib-kenzie-academy";
-import {
-  GeneralContainer,
-  Header,
-  ProfessionalPersonalInfos,
-  ProfessionalPersonalSkills,
-  SidebarLeft,
-  SidebarLeftOne,
-  SidebarLeftTwo,
-  SidebarRight,
-  Image,
-  ProfessionalName,
-  Stars,
-  ButtonToHireProfessional,
-  Container,
-  ContainerButton,
-  ContainerInfos,
-  TextSidebarRight,
-  ProfissionaisProximos,
-} from "./style";
+import { Header, ProfissionaisProximos } from "./style";
 import { useParams } from "react-router-dom";
 import { InfoCard, DivCard } from "../homepage/style";
 import RicardoSvg from "../homepage/photos/ricardo.svg";
 import { Estrela } from "../homepage/style";
-import LisaimgSvg from "../homepage/photos/lisa.svg";
 import FeedbacksProfissa from "../../components/feedbacks-profissa";
 import Carousel from "../../components/swiperCarousel";
 import ToHireProfessionalModal from "../../components/to-hire-professional-modal";
 import { useSelector } from "react-redux";
 import { requestInfosProfissa } from "../../redux/actions/infos-profissa-actions";
 import { useDispatch } from "react-redux";
-import { feedbacksId } from "../../components/feedbacks-profissa/helper";
-import { getStars } from "./helper";
+import InfosProfissa from "../../components/infosProfissa";
 
 const ProfessionalShowcase = () => {
   const [showModalProfissa, setShowModalProfissa] = useState(false);
@@ -52,13 +32,7 @@ const ProfessionalShowcase = () => {
 
   useEffect(() => {
     dispatch(requestInfosProfissa(id, axiosConfig(token)));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-  console.log(feedbacksId(feedbacks, parseInt(id)));
-  // console.log(infosProfissa);
-  console.log();
-
-  // console.log(teste());
 
   return (
     <>
@@ -66,47 +40,8 @@ const ProfessionalShowcase = () => {
         <ToHireProfessionalModal setShowModalProfissa={setShowModalProfissa} />
       )}
       <Header>Header Fixo</Header>
-      <GeneralContainer>
-        <ProfessionalPersonalInfos>
-          <ContainerInfos>
-            <Image src={LisaimgSvg} />
-            <Container>
-              <ProfessionalName>{infosProfissa.name}</ProfessionalName>
-              <Stars>
-                {getStars(feedbacksId(feedbacks, parseInt(id)))} <Estrela />
-                {feedbacksId(feedbacks, parseInt(id)).length + " "}
-                Avaliações
-              </Stars>
-            </Container>
-          </ContainerInfos>
-          <ContainerButton>
-            <ButtonToHireProfessional
-              onClick={() => setShowModalProfissa(!showModalProfissa)}
-            >
-              Contratar profissional
-            </ButtonToHireProfessional>
-          </ContainerButton>
-        </ProfessionalPersonalInfos>
-        <ProfessionalPersonalSkills>
-          <SidebarLeft>
-            <SidebarLeftOne>
-              <p>Habilidades Profissionais:</p>
-              <div>{infosProfissa.hardSkills}</div>
-            </SidebarLeftOne>
-            <SidebarLeftTwo>
-              <p>Habilidades Interpessoais</p>
-              <div>{infosProfissa.softSkills}</div>
-            </SidebarLeftTwo>
-          </SidebarLeft>
-          <SidebarRight>
-            <TextSidebarRight>
-              <p>Sobre o profissional</p>
-              <div>{infosProfissa.about}</div>
-            </TextSidebarRight>
-          </SidebarRight>
-        </ProfessionalPersonalSkills>
-      </GeneralContainer>
-      <Carousel />
+      <InfosProfissa />
+      <Carousel images={infosProfissa.previousJob} />
       <FeedbacksProfissa />
       <ProfissionaisProximos>
         <h4>Outros profissionais da área</h4>
