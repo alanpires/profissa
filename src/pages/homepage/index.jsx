@@ -6,7 +6,7 @@ import BestRating from "../../components/best-rating";
 import { useHistory, Link } from "react-router-dom";
 import RicardoSvg from "./photos/ricardo.svg";
 import "./styles.css";
-import {StyledIconWork} from './style'
+import { StyledIconWork } from "./style";
 
 import {
   ContainerFlexHomePage,
@@ -66,7 +66,6 @@ const Homepage = () => {
 
   return (
     <>
-      <Link to="/client-profile">Client Profile</Link>
       <Navbar />
       <ContainerFlexHomePage>
         <DivContentHomepage searchMode={!searchMode}>
@@ -94,7 +93,7 @@ const Homepage = () => {
                 loadBestRatingByProfession(feedbacks, profissas).map(
                   (profissa, key) => {
                     return (
-                      <div key={key} >
+                      <div key={key}>
                         <BestRating
                           name={profissa.name}
                           avaliations={profissa.avaliations}
@@ -105,8 +104,8 @@ const Homepage = () => {
                   }
                 )
               ) : (
-                  <h1>Carregando</h1>
-                )}
+                <h1>Carregando</h1>
+              )}
             </SectionProfilesPhotos>
           </>
         )}
@@ -114,15 +113,17 @@ const Homepage = () => {
           {searchMode ? (
             <h1>Outros Profissas</h1>
           ) : (
-              <h1>{usersHome.length} Profissas encontrado(s)</h1>
-            )}
+            <h1>{usersHome.length} Profissas encontrado(s)</h1>
+          )}
           <DivCard>
             {usersHome && feedbacks ? (
               sortProfissas(feedbacks, usersHome).map((user, index) => (
                 <div
                   key={index}
                   onClick={() =>
-                    history.push(`/professional-showcase/${user.id}/${user.cep}`)
+                    history.push(
+                      `/professional-showcase/${user.id}/${user.cep}`
+                    )
                   }
                 >
                   <Card className="card" key={index}>
@@ -137,14 +138,17 @@ const Homepage = () => {
                       </div>
                       <p>{user.avaliations} avaliações</p>
                       <h1>{user.name}</h1>
-                      <h1><StyledIconWork />{user.service}</h1>
+                      <h1>
+                        <StyledIconWork />
+                        {user.service}
+                      </h1>
                     </InfoCard>
                   </Card>
                 </div>
               ))
             ) : (
-                <h1>Carregando</h1>
-              )}
+              <h1>Carregando</h1>
+            )}
           </DivCard>
         </DivProfileCards>
       </ContainerFlexHomePage>
