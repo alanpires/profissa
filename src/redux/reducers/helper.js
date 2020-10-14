@@ -1,7 +1,6 @@
 export const filterProfissa = (array) => {
   const servicesCount = array.reduce((current, { service }) => {
     current[service] ? (current[service] += 1) : (current[service] = 1);
-    console.log(current);
     return current;
   }, {});
   let profissaArrayOrdened = [];
@@ -10,11 +9,17 @@ export const filterProfissa = (array) => {
     Object.keys(servicesCount).map((serviceName) => {
       array.map((profissa) => {
         if (profissa.service === serviceName) {
-          profissaArrayOrdened.push(profissa);
+          profissaArrayOrdened.push({
+            id: profissa.id,
+            name: profissa.name,
+            email: profissa.email,
+            service: profissa.service,
+            cep: profissa.cep,
+            stars: 0,
+          });
         }
       });
     });
   }
-
   return profissaArrayOrdened;
 };

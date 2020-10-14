@@ -5,16 +5,19 @@ import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.scss";
 
 import SwiperCore, { Navigation } from "swiper";
+import Item from "antd/lib/list/Item";
 
 SwiperCore.use([Navigation]);
-const Carousel = () => {
+const Carousel = ({ images }) => {
   const setSlidesPerView = () => {
     if (window.innerWidth <= 732) {
       return [2, 20];
     } else {
-      return [8, 10];
+      return [4, 10];
     }
   };
+
+  console.log(images);
 
   return (
     <StyledSwiper
@@ -24,13 +27,14 @@ const Carousel = () => {
       pagination={{ clickable: true }}
       onSlideChange={(evt) => console.log(evt)}
     >
-      {Array(10).fill(1).map((el, index) => {
-        return (
-          <SwiperSlide key={index}>
-            <Teste></Teste>
-          </SwiperSlide>
-        );
-      })}
+      {images &&
+        images.map((image, index) => {
+          return (
+            <SwiperSlide key={index}>
+              <StyledImg src={image} />
+            </SwiperSlide>
+          );
+        })}
     </StyledSwiper>
   );
 };
@@ -40,7 +44,7 @@ export default Carousel;
 const StyledSwiper = styled(Swiper)`
   width: 95vw;
   margin-left: 4vw;
-  height: 300px;
+  height: 200px;
   padding: 50px;
   display: flex;
   align-items: center;
@@ -59,14 +63,15 @@ const StyledSwiper = styled(Swiper)`
   }
 
   @media (min-width: 532px) {
-    height: 410px;
-  } 
+    height: 350px;
+  }
 
   @media (min-width: 731px) {
   }
 `;
-const Teste = styled.div`
-width: 100%;
-height: 100%;
-background:black;
-`
+
+const StyledImg = styled.img`
+  width: 250px;
+  height: 100%;
+  background-size: fill;
+`;

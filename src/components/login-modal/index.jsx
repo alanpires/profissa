@@ -28,13 +28,7 @@ const LoginModal = ({ setShowLogin }) => {
   const onFinish = (values) => {
     console.log("Success:", values);
     dispatch(requestLogin(values));
-    // if (token) {
-    //   const decoded = jwt_decode(token);
-    //   console.log(decoded);
-    //   dispatch(requestUserDecoder(decoded.sub, axiosConfig(token)));
-    // }
   };
-  console.log(user.type);
   return (
     <StyledModal class="Modal" isOpen={showModal}>
       <AdjustModal>

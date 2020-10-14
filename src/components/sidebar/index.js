@@ -1,5 +1,8 @@
 import React from "react";
 import SidebarRow from "./sidebar-row.js";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { cleanToken } from "../../redux/actions/access-actions";
 
 import {
   ClickLogo,
@@ -14,25 +17,34 @@ import {
   AnchorLogout,
 } from "./style";
 
-function Sidebar() {
+function Sidebar({ setDiv1, setDiv2, setDiv3, setInfos, menuBars }) {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.access.token);
+
   return (
     <>
       <MainDiv>
-        <Anchor href="/timeline">
-          <SidebarRow Icon={HomeIcon} title="Inicio" />
+        {menuBars &&
+          menuBars.map((elem, key) => (
+            <Anchor
+              key={key}
+              onClick={() => {
+                setInfos(elem);
+              }}
+            >
+              <SidebarRow title={elem} />
+            </Anchor>
+          ))}
+        <Anchor
+          onClick={() => {
+            window.localStorage.clear();
+            dispatch(cleanToken("", {}));
+            history.push("/");
+          }}
+        >
+          <SidebarRow title="Logout" />
         </Anchor>
-        <Anchor href="/search-books">
-          <SidebarRow Icon={BookIcon} title="Pesquisar" />
-        </Anchor>
-        <Anchor href="/shelves">
-          <SidebarRow Icon={ShelfIcon} title="Estantes" />
-        </Anchor>
-        <Anchor href="/profile">
-          <SidebarRow Icon={ProfileIcon} title="Perfil" />
-        </Anchor>
-        <AnchorLogout>
-          <SidebarRow Icon={logoutIcon} title="Logout" />
-        </AnchorLogout>
       </MainDiv>
     </>
   );

@@ -1,17 +1,16 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Authentication from "./components/authentication";
-import ProfessionalShowcase from "./pages/professional-showcase";
-import FeedbacksProfissa from "./components/feedbacks-profissa";
-import ClientProfile from "./pages/client-profile";
-import Carousel from "./components/swiperCarousel";
+import Homepage from "./pages/homepage";
+import Profile from "./pages/profile";
+
+import "./App.css"
 
 const App = () => {
+
   return (
     <div>
-      {/* <Authentication /> */}
-      {/* <ProfessionalShowcase />
-      <FeedbacksProfissa /> */}
-      <Carousel />
+      <Authentication />
     </div>
   );
 };

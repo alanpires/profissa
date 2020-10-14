@@ -23,7 +23,7 @@ export const LeftDiv = styled.div`
 `;
 
 export const RightDiv = styled.div`
-  width: 1300px;
+  width: 1200px;
   height: 100vh;
   margin-left: 115px;
   margin-top: 12px;
@@ -31,6 +31,8 @@ export const RightDiv = styled.div`
   background: #ffffff;
   display: flex;
   flex-direction: column;
+  margin-top: -604px;
+  margin-left: 390px;
 `;
 
 export const DivCard = styled.div`
