@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FeedbacksProfissa Test renders correctly 1`] = `
+<div
+  className="sc-hKFyIo dYSuMn"
+>
+  <div
+    className="sc-eCApGN dfAQhT"
+  >
+    <h1>
+      Feedbacks recebidos
+    </h1>
+    <div
+      className="sc-bdnylx jUGZkC"
+    >
+      <div
+        className="sc-gtssRu eEZLDO"
+      >
+        <div
+          className="sc-dlnjPT hDdslF"
+        >
+          <img
+            src="ellipse4.png"
+          />
+        </div>
+        <p>
+          João
+        </p>
+      </div>
+      <span>
+        Excelente profissional, fez um ótimo trabalho, recomendo a todos.
+      </span>
+    </div>
+    <div
+      className="sc-bdnylx jUGZkC"
+    >
+      <div
+        className="sc-gtssRu eEZLDO"
+      >
+        <div
+          className="sc-dlnjPT hDdslF"
+        >
+          <img
+            src="ellipse5.png"
+          />
+        </div>
+        <p>
+          Maria
+        </p>
+      </div>
+      <span>
+        Excelente profissional, fez um ótimo trabalho, recomendo a todos.
+      </span>
+    </div>
+    <div
+      className="sc-bdnylx jUGZkC"
+    >
+      <div
+        className="sc-gtssRu eEZLDO"
+      >
+        <div
+          className="sc-dlnjPT hDdslF"
+        >
+          <img
+            src="ellipse4.png"
+          />
+        </div>
+        <p>
+          Pedro
+        </p>
+      </div>
+      <span>
+        Excelente profissional, fez um ótimo trabalho, recomendo a todos.
+      </span>
+    </div>
+    <div
+      className="sc-bdnylx jUGZkC"
+    >
+      <div
+        className="sc-gtssRu eEZLDO"
+      >
+        <div
+          className="sc-dlnjPT hDdslF"
+        >
+          <img
+            src="ellipse5.png"
+          />
+        </div>
+        <p>
+          Lucas
+        </p>
+      </div>
+      <span>
+        Excelente profissional, fez um ótimo trabalho, recomendo a todos.
+      </span>
+    </div>
+  </div>
+</div>
+`;
