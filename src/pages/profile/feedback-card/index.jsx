@@ -7,14 +7,13 @@ import { BsStarFill } from "react-icons/bs";
 
 const FeedbackCard = ({ infos: { feedback, stars }, creator }) => {
   const history = useHistory()
-  console.log(creator)
   return (
     <div
       onClick={() =>
         history.push(`/professional-showcase/${creator.id}/${creator.cep}`)
       }
     >
-      <Card>
+      <Card styles={CardStyle}>
         <InfoCard>
           <img src={RicardoSvg} />
           <FeedbackStars>
@@ -37,7 +36,13 @@ const FeedbackCard = ({ infos: { feedback, stars }, creator }) => {
 
 export default FeedbackCard;
 
-
+const CardStyle = `
+  transition: 0.2s cubic-bezier(0.17,0.67,0.83,0.67);
+  &:hover{
+    transform: scale(1.2);
+    
+  }
+`
 const FeedbackStars = styled.div`
 display:flex;
 justify-content:center;
@@ -56,12 +61,11 @@ align-items:center;
 `
 
 const FeedbackText = styled.div`
-background: rgba(0,0,0,0.1);
-    overflow-y: auto;
+   overflow-y: auto;
    flex:1;
+   width: 100%;
    p{
-   width: 80%;
-
+    width: 80%;
     font-size: 15px;
     height:80px;
     margin: 0 auto;
@@ -81,7 +85,9 @@ export const InfoCard = styled.div`
     height:80px;
     
   }
-
+  img{
+   margin: 10px 0 5px 0;
+  }
 `;
 
 export const EstrelaCards = styled(BsStarFill)`
