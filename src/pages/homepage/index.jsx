@@ -54,7 +54,7 @@ const Homepage = () => {
     setUsersHome(
       profissas.filter(
         (elem) =>
-          ((elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50) || input.cep === 0)
+          ((elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50) || input.cep === "")
           &&
           (elem.service === input.serv || input.serv === "Serviços" || input.serv === "")
       )
@@ -74,7 +74,7 @@ const Homepage = () => {
                 <h1>Eles tem a solução</h1>
               </>
             )}
-            <InputHome onSubmit={onSubmit} />
+            <InputHome onSubmit={onSubmit} searchMode={!searchMode} />
           </ContentWraper>
           {searchMode && (
             <ImgHero>
