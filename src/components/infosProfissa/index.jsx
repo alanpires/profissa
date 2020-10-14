@@ -70,9 +70,12 @@ const InfosProfissa = ({ setShowModalProfissa, showModalProfissa }) => {
         </ContainerInfos>
         <ContainerButton>
           <ButtonToHireProfessional
+            block={token === ""}
             onClick={() => setShowModalProfissa(!showModalProfissa)}
           >
-            Contratar profissional
+            <p>Contratar </p>
+            <p>Profissa</p>
+
           </ButtonToHireProfessional>
         </ContainerButton>
       </ProfessionalPersonalInfos>
