@@ -5,19 +5,20 @@ import RicardoSvg from "../../../pages/homepage/photos/ricardo.svg";
 import styled from "styled-components";
 import { BsStarFill } from "react-icons/bs";
 import { AiOutlineSchedule } from "react-icons/ai";
-const ScheduleCard = ({ infos: { details, schedule, profissa } }) => {
+const ScheduleCard = ({ infos: { details, schedule, profissa }, creator }) => {
 
-  const history = useHistory()
+  const history = useHistory();
+
   return (
     <div
-    // onClick={() =>
-    //   history.push(`/professional-showcase/${creator.id}/${creator.cep}`)
-    // }
+      onClick={() =>
+        history.push(`/professional-showcase/${profissa.id}/${profissa.cep}`)
+      }
     >
-      <Card>
+      <Card styles={CardStyle}>
         <InfoCard>
           <img src={RicardoSvg} />
-          <h1>{profissa.name}</h1>
+          <h1>{creator && creator.name}</h1>
           <ScheduleDate><AiOutlineSchedule /><p>{schedule.split("-").reverse().join("/")}</p></ScheduleDate>
           <Text><p>{details}</p></Text>
 
@@ -29,6 +30,13 @@ const ScheduleCard = ({ infos: { details, schedule, profissa } }) => {
 
 export default ScheduleCard;
 
+const CardStyle = `
+  transition: 0.2s cubic-bezier(0.17,0.67,0.83,0.67);
+  &:hover{
+    transform: scale(1.2);
+    
+  }
+`
 
 const Text = styled.div`
    overflow-y: auto;
@@ -40,7 +48,6 @@ const Text = styled.div`
     margin: 0 auto;
     text-align:center;
     }
-  
 `
 const ScheduleDate = styled.div`
  display: flex;
@@ -66,7 +73,9 @@ export const InfoCard = styled.div`
  
   h1{
     font-size: 20px;
- 
+  }
+  img{
+   margin: 10px 0 5px 0;
   }
 `;
 
@@ -75,3 +84,5 @@ export const EstrelaCards = styled(BsStarFill)`
   width: 25px;
   height: 24px;
 `;
+
+

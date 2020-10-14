@@ -56,8 +56,17 @@ align-items:center;
 `
 
 const FeedbackText = styled.div`
+background: rgba(0,0,0,0.1);
     overflow-y: auto;
    flex:1;
+   p{
+   width: 80%;
+
+    font-size: 15px;
+    height:80px;
+    margin: 0 auto;
+    text-align:center;
+    }
 
 `
 export const InfoCard = styled.div`

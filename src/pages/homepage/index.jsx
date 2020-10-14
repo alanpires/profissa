@@ -58,7 +58,6 @@ const Homepage = () => {
           elem.cep === 0 ||
           elem.service === input.serv ||
           input.serv === "Serviços"
-        //
       )
     );
     console.log(profissas, usersHome, input);
