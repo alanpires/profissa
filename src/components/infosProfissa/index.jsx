@@ -25,8 +25,8 @@ import { useDispatch } from "react-redux";
 import { feedbacksId } from "../../components/feedbacks-profissa/helper";
 import { getStars } from "../../pages/professional-showcase/helper";
 
-const InfosProfissa = () => {
-  const [showModalProfissa, setShowModalProfissa] = useState(false);
+const InfosProfissa = ({ setShowModalProfissa, showModalProfissa }) => {
+  // const [showModalProfissa, setShowModalProfissa] = useState(false);
   const { id } = useParams();
   const token = useSelector((state) => state.access.token);
   const dispatch = useDispatch();
@@ -57,7 +57,12 @@ const InfosProfissa = () => {
           <Container>
             <ProfessionalName>{infosProfissa.name}</ProfessionalName>
             <Stars>
-              {getStars(feedbacksId(feedbacks, parseInt(id)))} <Estrela />
+              {Array.from(
+                { length: getStars(feedbacksId(feedbacks, parseInt(id))) },
+                (v, k) => k
+              ).map((key) => {
+                return <Estrela key={key} />;
+              })}
               {feedbacksId(feedbacks, parseInt(id)).length + " "}
               Avaliações
             </Stars>
