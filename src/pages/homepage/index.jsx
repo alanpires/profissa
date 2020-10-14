@@ -123,7 +123,7 @@ const Homepage = () => {
                   key={key}
                   onClick={() =>
                     history.push(
-                      `/professional-showcase/${user.id}/${user.cep}`
+                      `/professional-showcase/${user.id}/${user.service}`
                     )
                   }
                 >
