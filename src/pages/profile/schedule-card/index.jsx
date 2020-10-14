@@ -1,5 +1,5 @@
 import React from "react";
-// import { Card } from "lib-kenzie-academy";
+import { Card } from "lib-kenzie-academy";
 import { useHistory } from "react-router-dom";
 import RicardoSvg from "../../../pages/homepage/photos/ricardo.svg";
 import styled from "styled-components";
@@ -29,21 +29,17 @@ const ScheduleCard = ({ infos: { details, schedule, profissa } }) => {
 
 export default ScheduleCard;
 
-const Card = styled.div`
-   width: 300px;
-   height: 400px;
-   margin:30px;
-   padding:30px;
-   background: gray;
-`
 
 const Text = styled.div`
-    overflow-y: auto;
+   overflow-y: auto;
    flex:1;
+   width: 80%;
    p{
     font-size: 15px;
     height:80px;
-  }
+    margin: 0 auto;
+    text-align:center;
+    }
   
 `
 const ScheduleDate = styled.div`

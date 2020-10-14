@@ -1,5 +1,5 @@
 import React from "react";
-// import { Card } from "lib-kenzie-academy";
+import { Card } from "lib-kenzie-academy";
 import { useHistory } from "react-router-dom";
 import RicardoSvg from "../../../pages/homepage/photos/ricardo.svg";
 import styled from "styled-components";
@@ -53,13 +53,6 @@ h1{
 justify-content:center;
 align-items:center;
 }
-`
-const Card = styled.div`
-   width: 300px;
-   height: 400px;
-   margin:30px;
-   padding:30px;
-   background: gray;
 `
 
 const FeedbackText = styled.div`
