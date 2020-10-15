@@ -79,7 +79,19 @@ const InfosProfissa = ({ setShowModalProfissa, showModalProfissa }) => {
           </Container>
         </ContainerInfos>
         <ContainerButton>
-          <Popover content={content} title="Acesso negado">
+          {!token ? (
+            <Popover content={content} title="Acesso negado">
+              <ButtonToHireProfessional
+                type="primary"
+                onClick={() =>
+                  token && setShowModalProfissa(!showModalProfissa)
+                }
+              >
+                <p>Contratar </p>
+                <p>Profissa</p>
+              </ButtonToHireProfessional>
+            </Popover>
+          ) : (
             <ButtonToHireProfessional
               type="primary"
               onClick={() => token && setShowModalProfissa(!showModalProfissa)}
@@ -87,7 +99,7 @@ const InfosProfissa = ({ setShowModalProfissa, showModalProfissa }) => {
               <p>Contratar </p>
               <p>Profissa</p>
             </ButtonToHireProfessional>
-          </Popover>
+          )}
         </ContainerButton>
       </ProfessionalPersonalInfos>
       <ProfessionalPersonalSkills>
