@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Avatar, Button } from "antd";
 import {
   DivAvatarCard,
@@ -11,15 +11,30 @@ import {
 import { UserOutlined } from "@ant-design/icons";
 import { AiFillEdit } from "react-icons/ai";
 import { Modal } from "lib-kenzie-academy";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+// import { axiosConfig } from "./helper";
 
 function AvatarCard() {
+  const token = useSelector((state) => state.access.token);
+  const user = useSelector((state) => state.access.user);
   const [modal, setModal] = useState(false);
+  console.log(token);
+
+  const changeInfo = (data) => {
+    axios
+      .put(`https://profissa-server.herokuapp.com/users/${user.id}`, {
+        ...data.user,
+      })
+      .then((res) => console.log(res));
+  };
+
   return (
     <>
       <DivAvatarCard>
         <Avatar size={100} icon={<UserOutlined />} />
         <Username>
-          <strong>Lucas Duarte</strong>
+          <strong>{user.name}</strong>
         </Username>
         <Button
           type="primary"
@@ -34,22 +49,25 @@ function AvatarCard() {
       {modal && (
         <Modal isOpen={modal}>
           <InputDiv>
-            <ItemsDiv>
-              <NewInput placeholder="Nome completo" />
-            </ItemsDiv>
-            <ItemsDiv>
-              <NewInput placeholder="Email" />
-            </ItemsDiv>
-            <ItemsDiv>
+            <form>
               {" "}
-              <NewInput placeholder="Senha" />
-            </ItemsDiv>
-            <ItemsDiv>
-              <NewInput placeholder="Endereço" />
-            </ItemsDiv>
-            <BtnDiv>
-              <Button type="primary">Alterar Dados</Button>
-            </BtnDiv>
+              <ItemsDiv>
+                <NewInput placeholder="Nome completo" name="name" />
+              </ItemsDiv>
+              <ItemsDiv>
+                <NewInput placeholder="Email" name="email" />
+              </ItemsDiv>
+              <ItemsDiv>
+                {" "}
+                <NewInput placeholder="Senha" type="password" name="password" />
+              </ItemsDiv>
+              <ItemsDiv>
+                <NewInput placeholder="Endereço" name="adress" />
+              </ItemsDiv>
+              <BtnDiv>
+                <Button onClick={changeInfo}>Alterar Dados</Button>
+              </BtnDiv>
+            </form>
           </InputDiv>
         </Modal>
       )}
