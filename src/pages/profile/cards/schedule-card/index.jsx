@@ -16,13 +16,13 @@ const ScheduleCard = ({ infos: { details, schedule, profissa }, creator }) => {
   const history = useHistory();
 
   return (
-    <div
-      onClick={() =>
-        history.push(`/professional-showcase/${profissa.id}/${profissa.cep}`)
-      }
-    >
+    <div>
       <Card styles={CardStyle}>
-        <InfoCard>
+        <InfoCard
+          onClick={() =>
+            history.push(`/professional-showcase/${profissa.id}/${profissa.cep}`)
+          }
+        >
           <img src={RicardoSvg} />
           <h1>{creator && creator.name}</h1>
           <ScheduleDate><AiOutlineSchedule /><p>{schedule.split("-").reverse().join("/")}</p></ScheduleDate>
