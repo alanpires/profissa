@@ -13,20 +13,15 @@ import { AiFillEdit } from "react-icons/ai";
 import { Modal } from "lib-kenzie-academy";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-// import { axiosConfig } from "./helper";
 
 function AvatarCard() {
+  const dispatch = useDispatch();
   const token = useSelector((state) => state.access.token);
   const user = useSelector((state) => state.access.user);
   const [modal, setModal] = useState(false);
-  console.log(token);
 
-  const changeInfo = (data) => {
-    axios
-      .put(`https://profissa-server.herokuapp.com/users/${user.id}`, {
-        ...data.user,
-      })
-      .then((res) => console.log(res));
+  const changeInfo = () => {
+    setModal(false);
   };
 
   return (
@@ -52,17 +47,29 @@ function AvatarCard() {
             <form>
               {" "}
               <ItemsDiv>
-                <NewInput placeholder="Nome completo" name="name" />
+                <NewInput
+                  placeholder="Nome completo"
+                  name="name"
+                  defaultValue={user.name}
+                />
               </ItemsDiv>
               <ItemsDiv>
-                <NewInput placeholder="Email" name="email" />
+                <NewInput
+                  placeholder="Email"
+                  name="email"
+                  defaultValue={user.email}
+                />
               </ItemsDiv>
               <ItemsDiv>
                 {" "}
                 <NewInput placeholder="Senha" type="password" name="password" />
               </ItemsDiv>
               <ItemsDiv>
-                <NewInput placeholder="Endereço" name="adress" />
+                <NewInput
+                  placeholder="Endereço"
+                  name="adress"
+                  defaultValue={user.adress}
+                />
               </ItemsDiv>
               <BtnDiv>
                 <Button onClick={changeInfo}>Alterar Dados</Button>
