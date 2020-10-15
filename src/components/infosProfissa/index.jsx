@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Popover } from "antd";
+import { Link } from "react-router-dom";
 import {
   GeneralContainer,
   ProfessionalPersonalInfos,
@@ -49,6 +51,14 @@ const InfosProfissa = ({ setShowModalProfissa, showModalProfissa }) => {
 
   console.log(infosProfissa);
 
+  const content = (
+    <div>
+      <p>Para contratar um profissa você precisa estar logado.</p>
+      <Link to="/signup-client">Cadastre-se</Link> ou
+      <Link to="/"> Faça o login</Link>
+    </div>
+  );
+
   return (
     <GeneralContainer>
       <ProfessionalPersonalInfos>
@@ -69,14 +79,15 @@ const InfosProfissa = ({ setShowModalProfissa, showModalProfissa }) => {
           </Container>
         </ContainerInfos>
         <ContainerButton>
-          <ButtonToHireProfessional
-            block={token === ""}
-            onClick={() => setShowModalProfissa(!showModalProfissa)}
-          >
-            <p>Contratar </p>
-            <p>Profissa</p>
-
-          </ButtonToHireProfessional>
+          <Popover content={content} title="Acesso negado">
+            <ButtonToHireProfessional
+              type="primary"
+              onClick={() => token && setShowModalProfissa(!showModalProfissa)}
+            >
+              <p>Contratar </p>
+              <p>Profissa</p>
+            </ButtonToHireProfessional>
+          </Popover>
         </ContainerButton>
       </ProfessionalPersonalInfos>
       <ProfessionalPersonalSkills>

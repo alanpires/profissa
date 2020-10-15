@@ -54,22 +54,24 @@ export const ButtonToHireProfessional = styled.button`
   height: 5rem;
   width: 10rem;
   border-radius: 25px;
-  outline:none;
-  border:none;
-  background: #4EFFD4;
+  outline: none;
+  border: none;
+  background: #4effd4;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-flow:column;
-  p{
-    margin:0;
-    font-size:1rem;
+  flex-flow: column;
+  p {
+    margin: 0;
+    font-size: 1rem;
   }
   @media (max-width: 425px) {
     width: 18rem;
     height: 3rem;
   }
-  ${({ block }) => block && `
+  ${({ block }) =>
+    block &&
+    `
      pointer-events: none;
   `}
 `;
