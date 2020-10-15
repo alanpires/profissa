@@ -24,22 +24,19 @@ export const LeftDiv = styled.div`
 
 export const RightDiv = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   background-color: #575757;
   width: 50vw;
   height: 100vh;
   padding: 0;
   margin: 0;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  overflow-y: scroll;
+  background-color: #40476D;
   @media (max-width: 725px) {
     width: 100vw;
     height: 100vh;
-  }
-
-  @media (max-width: 320px) {
-    width: 110vw;
-    height: 110vh;
   }
 `;
 
@@ -62,26 +59,8 @@ export const Title = styled.div`
 `;
 
 export const WorkerImg = styled.img`
-  width: 640px;
-  height: 640px;
-  @media (max-width: 1270px) {
-    width: 480px;
-    height: 480px;
-  }
-  @media (max-width: 954px) {
-    width: 360px;
-    height: 360px;
-  }
-
-  @media (max-width: 725px) {
-    width: 0px;
-    height: 0px;
-  }
-
-  @media (max-width: 425px) {
-    width: 0px;
-    height: 0px;
-  }
+ width:60%;
+ height: 60%;
 `;
 
 export const FormTitle = styled.div`
@@ -89,9 +68,9 @@ export const FormTitle = styled.div`
   font-size: 48px;
   width: 35vw;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   @media (max-width: 1270px) {
     font-size: 36px;
   }
