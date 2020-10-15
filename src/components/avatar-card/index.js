@@ -7,6 +7,7 @@ import {
   BtnDiv,
   ItemsDiv,
   NewInput,
+  Container
 } from "./style.js";
 import { UserOutlined } from "@ant-design/icons";
 import { AiFillEdit } from "react-icons/ai";
@@ -15,7 +16,7 @@ import { Modal } from "lib-kenzie-academy";
 function AvatarCard() {
   const [modal, setModal] = useState(false);
   return (
-    <>
+    <Container>
       <DivAvatarCard>
         <Avatar size={100} icon={<UserOutlined />} />
         <Username>
@@ -53,7 +54,7 @@ function AvatarCard() {
           </InputDiv>
         </Modal>
       )}
-    </>
+    </Container>
   );
 }
 

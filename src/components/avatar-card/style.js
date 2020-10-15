@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import { Input } from "antd";
 
+export const Container = styled.div`
+ height: 100%;
+  width: 100%;
+`
+
 export const DivAvatarCard = styled.div`
   background-color: #ffff;
   display: flex;
@@ -9,26 +14,28 @@ export const DivAvatarCard = styled.div`
   flex-direction: column;
   height: 100%;
   width: 100%;
+  padding:20px;
+  border-radius:5px;
 `;
 
 export const Username = styled.p`
   margin-top: 20px;
-  font-family: "Roboto", sans-serif;
   font-size: 20px;
+  font-family: "Roboto", sans-serif;
 `;
 
 export const InputDiv = styled.div`
 display: flex;
-flex-direction: column;
 align-items: center;
 justify-content: center;
+flex-direction: column;
 `;
 
 export const ItemsDiv = styled.div`
-  margin-top: 15px;
-  margin-bottom: 15px;
   display: flex;
   justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
 `;
 
 export const BtnDiv = styled.div`
