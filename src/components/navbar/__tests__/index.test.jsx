@@ -1,8 +1,6 @@
 import React from "react";
 import Nav from "../nav";
 import renderer from "react-test-renderer";
-import enzyme from 'enzyme'
-import {useDispatch, useSelector } from 'react-redux'
 
 
 jest.mock("react-redux", () => ({
