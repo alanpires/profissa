@@ -14,8 +14,11 @@ import {
   WrapProfile,
   WrapSideBar,
   BoxInfos,
-  Infos
+  Infos,
+  OptionsBox,
+  ButtonOption
 } from "./style"
+import styled from "styled-components";
 
 const ProfessionalProfile = () => {
   const dispatch = useDispatch();
@@ -28,8 +31,6 @@ const ProfessionalProfile = () => {
     dispatch(requestFeedbacks());
     dispatch(serviceRequest())
     dispatch(requestUsers());
-    console.log(state)
-    console.log(users)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -74,6 +75,12 @@ const ProfessionalProfile = () => {
     }
   }
 
+  const optionsForBar = () => {
+    let options = ["Serviços Solicitados", "Avaliações feitas", "Avaliações recebidas"]
+    return userType === "Profissa" ? ["Meus Serviços", ...options] : options
+  }
+  console.log("AQUI ESTA O QUE VOCÊ PROCURA", optionsForBar())
+
   return (
     <Container>
       <ProfileBox>
@@ -83,14 +90,20 @@ const ProfessionalProfile = () => {
         <WrapSideBar>
           <Sidebar
             setInfos={setInfos}
-            menuBars={userType === "Profissa" ?
-              ["Meus Serviços", "Serviços Solicitados", "Avaliações feitas", "Avaliações recebidas"] :
-              ["Serviços Solicitados", "Avaliações feitas", "Avaliações recebidas"]} />
+            menuBars={optionsForBar()} />
         </WrapSideBar>
 
       </ProfileBox>
       <BoxInfos>
+        <OptionsBox>
+          {optionsForBar().map((elem, key) =>
+            <ButtonOption
+              onClick={() => setInfos(elem)}
+              key={key}>{elem}
+            </ButtonOption>)}
+        </OptionsBox>
         <Infos>
+
           {(feedbacks.length > 0 && services.length > 0) && choosedOption()}
         </Infos>
       </BoxInfos>
@@ -99,3 +112,4 @@ const ProfessionalProfile = () => {
 };
 
 export default ProfessionalProfile;
+
