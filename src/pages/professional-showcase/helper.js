@@ -12,3 +12,4 @@ export const getStars = (array) => {
   }
   return grade;
 };
+
