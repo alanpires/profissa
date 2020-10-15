@@ -6,7 +6,7 @@ import SignupProfessional from "../../pages/singup-professional";
 
 export const restrictedRoutes = [
   {
-    path: "/professional-showcase/:id/:cep",
+    path: "/professional-showcase/:id/:service",
     name: "ProfessionalShowcase",
     component: ProfessionalShowcase,
   },
@@ -20,7 +20,7 @@ export const restrictedRoutes = [
 
 export const freeRoutes = [
   {
-    path: "/professional-showcase/:id/:cep",
+    path: "/professional-showcase/:id/:service",
     name: "ProfessionalShowcase",
     component: ProfessionalShowcase,
   },
