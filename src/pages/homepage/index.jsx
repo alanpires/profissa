@@ -3,10 +3,10 @@ import { ReactComponent as ImageHero } from "./image-hero.svg";
 import { Card } from "lib-kenzie-academy";
 import Navbar from "../../components/navbar/Navbar";
 import BestRating from "../../components/best-rating";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import RicardoSvg from "./photos/ricardo.svg";
 import "./styles.css";
-import { StyledIconWork } from './style'
+import { StyledIconWork } from "./style";
 
 import {
   ContainerFlexHomePage,
@@ -54,9 +54,11 @@ const Homepage = () => {
     setUsersHome(
       profissas.filter(
         (elem) =>
-          ((elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50) || input.cep === 0)
-          &&
-          (elem.service === input.serv || input.serv === "Serviços" || input.serv === "")
+          ((elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50) ||
+            input.cep === 0) &&
+          (elem.service === input.serv ||
+            input.serv === "Serviços" ||
+            input.serv === "")
       )
     );
     console.log(profissas, usersHome, input);
@@ -103,8 +105,8 @@ const Homepage = () => {
                   }
                 )
               ) : (
-                  <h1>Carregando</h1>
-                )}
+                <h1>Carregando</h1>
+              )}
             </SectionProfilesPhotos>
           </>
         )}
@@ -112,8 +114,8 @@ const Homepage = () => {
           {searchMode ? (
             <h1>Outros Profissas</h1>
           ) : (
-              <h1>{usersHome.length} Profissas encontrado(s)</h1>
-            )}
+            <h1>{usersHome.length} Profissas encontrado(s)</h1>
+          )}
           <DivCard>
             {usersHome && feedbacks ? (
               sortProfissas(feedbacks, usersHome).map((user, key) => (
@@ -146,8 +148,8 @@ const Homepage = () => {
                 </div>
               ))
             ) : (
-                <h1>Carregando</h1>
-              )}
+              <h1>Carregando</h1>
+            )}
           </DivCard>
         </DivProfileCards>
       </ContainerFlexHomePage>
