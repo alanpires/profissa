@@ -17,4 +17,13 @@ export const ProfissionaisProximos = styled.div`
     font-size: 48px;
     font-family: Shrikhand;
   }
+
+  @media (max-width: 425px) {
+    h4 {
+      font-size: 28px;
+      text-align: center;
+    }
+  }
 `;
+
+export const Infos = styled.div``;

@@ -3,15 +3,15 @@ import { ButtomsearchHomepage, Form, ContainerInput, BoxInput } from "./style";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosPin } from "react-icons/io";
 
-const defaultInput = { serv: "", cep: "" }
+const defaultInput = { serv: "", cep: "" };
 
 const InputHome = ({ onSubmit, searchMode }) => {
   const [input, setInput] = useState(defaultInput);
 
   const refresh = (e) => {
-    onSubmit(e, defaultInput)
-    setInput(defaultInput)
-  }
+    onSubmit(e, defaultInput);
+    setInput(defaultInput);
+  };
 
   return (
     <Form onSubmit={(e) => onSubmit(e, input)}>
@@ -42,15 +42,14 @@ const InputHome = ({ onSubmit, searchMode }) => {
               <option>Elétrica</option>
               <option>Limpeza</option>
             </optgroup>
-            <optgroup label="Automóveis:">
-              <option>Funilaria</option>
-              <option>Mecânica</option>
-              <option>Guincho</option>
-              <option>Elétrica</option>
-              <option>Limpeza</option>
-            </optgroup>
+
             <optgroup label="Desenvolvimento web">
               <option>Programador</option>
+            </optgroup>
+            <optgroup label="Reforma:">
+              <option>Pedreiro</option>
+              <option>Pintor</option>
+              <option>Jardineiro</option>
             </optgroup>
             <optgroup label="Saúde e beleza:">
               <option>Cuidador(a)</option>
@@ -86,8 +85,11 @@ const InputHome = ({ onSubmit, searchMode }) => {
         </BoxInput>
       </ContainerInput>
       <ButtomsearchHomepage type="submit">Buscar</ButtomsearchHomepage>
-      {searchMode && <ButtomsearchHomepage onClick={(e) => refresh(e)}>Refresh</ButtomsearchHomepage>}
-
+      {searchMode && (
+        <ButtomsearchHomepage onClick={(e) => refresh(e)}>
+          Refresh
+        </ButtomsearchHomepage>
+      )}
     </Form>
   );
 };
