@@ -50,6 +50,30 @@ export const ContainerButton = styled.div`
   align-items: center;
 `;
 
+export const ButtonToHireProfessional = styled.button`
+  height: 5rem;
+  width: 10rem;
+  border-radius: 25px;
+  outline:none;
+  border:none;
+  background: #4EFFD4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow:column;
+  p{
+    margin:0;
+    font-size:1rem;
+  }
+  @media (max-width: 425px) {
+    width: 18rem;
+    height: 3rem;
+  }
+  ${({ block }) => block && `
+     pointer-events: none;
+  `}
+`;
+
 export const ProfessionalPersonalSkills = styled.div`
   display: flex;
   @media (max-width: 425px) {
@@ -228,15 +252,6 @@ export const Stars = styled.div`
 
   @media (max-width: 768px) {
     font-size: 1rem;
-  }
-`;
-
-export const ButtonToHireProfessional = styled.button`
-  height: 5rem;
-  border-radius: 25px;
-  @media (max-width: 425px) {
-    width: 18rem;
-    height: 3rem;
   }
 `;
 
