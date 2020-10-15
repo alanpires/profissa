@@ -36,6 +36,14 @@ export const RightDiv = styled.div`
     width: 100vw;
     height: 100vh;
   }
+<<<<<<< HEAD
+=======
+
+  @media (max-width: 320px) {
+    width: 110vw;
+    height: 110vh;
+  }
+>>>>>>> 8ee9b320e08230d3b4390ee19b702ad19a6de025
 `;
 
 export const Title = styled.div`
@@ -84,6 +92,10 @@ export const FormTitle = styled.div`
   font-size: 48px;
   width: 35vw;
   display: flex;
+<<<<<<< HEAD
+=======
+  flex-direction: column;
+>>>>>>> 8ee9b320e08230d3b4390ee19b702ad19a6de025
   align-items: center;
   justify-content: center;
   @media (max-width: 1270px) {

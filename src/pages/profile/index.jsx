@@ -7,23 +7,23 @@ import { requestFeedbacks } from "../../redux/actions/feedbacks-request";
 import FeedbackCard from "./feedback-card";
 import ScheduleCard from "./schedule-card";
 import { serviceRequest } from "../../redux/actions/service-request";
+import { requestUsers } from "../../redux/actions/users";
 
 const ProfessionalProfile = () => {
   const dispatch = useDispatch();
-  const [user, feedbacks, services, state] = useSelector(state => [state.access.user, state.profissaFeedbacks.feedbacksRequest, state.services.services, state])
+  const [user, users, feedbacks, services, state] = useSelector(state => [state.access.user, state.users, state.profissaFeedbacks.feedbacksRequest, state.services.services, state])
   const [infos, setInfos] = useState("Serviços Solicitados")
   const userType = user.select[0]
 
 
   useEffect(() => {
-    if (feedbacks.length === 0 && services.length === 0) {
-      dispatch(requestFeedbacks());
-      dispatch(serviceRequest());
-    }
+    dispatch(requestFeedbacks());
+    dispatch(serviceRequest())
+    dispatch(requestUsers());
     console.log(state)
-
+    console.log(users)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [feedbacks, services]);
+  }, []);
 
   const choosedOption = () => {
     switch (infos) {
@@ -32,16 +32,18 @@ const ProfessionalProfile = () => {
           services
             .filter(elem => elem.profissaId === user.id)
             .map((elem, key) => (
-              <ScheduleCard key={key} infos={elem} />
+              <ScheduleCard key={key} infos={elem} creator={users.find(item => item.id === elem.clienteId)} />
             ))
         )
       case "Serviços Solicitados":
         return (
           services
-            .filter(elem => elem.clientId === user.id)
-            .map((elem, key) => (
-              <ScheduleCard key={key} infos={elem} />
-            ))
+            .filter(elem => elem.clienteId === user.id)
+            .map((elem, key) => {
+              return (
+                <ScheduleCard key={key} infos={elem} creator={users.find(item => item.id === elem.profissaId)} />
+              )
+            })
         )
       case "Avaliações feitas":
         return (
@@ -50,13 +52,13 @@ const ProfessionalProfile = () => {
             .map((elem, key) => (
               <FeedbackCard key={key}
                 infos={elem}
-                creator={(feedbacks.find(item => item.creatorId === elem.receiverId)).creator} />
+                creator={users.find(item => item.id === elem.receiverId)} />
             ))
         )
       case "Avaliações recebidas":
         return (
           feedbacks.filter(elem => elem.receiverId === user.id).map((elem, key) => (
-            <FeedbackCard key={key} infos={elem} creator={elem.creator} />
+            <FeedbackCard key={key} infos={elem} creator={users.find(item => item.id === elem.creatorId)} />
           ))
         )
       default:
@@ -127,12 +129,12 @@ align-items:center;
 `
 const Infos = styled.div`
 background:white;
-
+overflow-y: scroll;
 width: 100%;
 height: 100%;
 display:flex;
-justify-content:center;
-align-items:center;
+justify-content:flex-start;
+align-items:flex-start;
 flex-flow: wrap;
 `
 const CardInfos = styled.div`
