@@ -6,3 +6,4 @@ export const SCHEDULES = "SCHEDULES";
 export const FEEDBACKS = "FEEDBACKS";
 export const SERVICE_RESQUEST = "SERVICE_RESQUEST";
 export const CLEAN_TOKEN = "CLEAN_TOKEN";
+export const INFOS_PROFISSA = "INFOS_PROFISSA";

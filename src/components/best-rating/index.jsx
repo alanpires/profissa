@@ -6,19 +6,18 @@ import LucianoSvg from "../../pages/homepage/photos/luciano.svg";
 import { Estrela } from "../../pages/homepage/style";
 
 const spanStyle = {
-  marginTop: '-35px',
-}
+  marginTop: "-35px",
+};
 
 const styleH4 = {
-  marginTop: '10px',
-}
+  marginTop: "10px",
+};
 
 const costyleContent = {
-  marginTop: '-15px'
-}
+  marginTop: "-15px",
+};
 
-
-const BestRating = ({ name, avaliations, stars, key }) => {
+const BestRating = ({ name, avaliations, stars, service, key }) => {
   const arrayImage = [LisaimgSvg, FernandoimgSvg, RenataimgSvg, LucianoSvg];
 
   const handleImage = () => {
@@ -31,11 +30,10 @@ const BestRating = ({ name, avaliations, stars, key }) => {
       <img src={handleImage()} />
       <p>{name}</p>
       <span style={spanStyle}>
+        {service}
         <Estrela /> <h4 style={styleH4}>{stars} </h4>
       </span>
-      <content style={costyleContent}>
-      {avaliations} avaliações
-      </content>
+      <content style={costyleContent}>{avaliations} avaliações</content>
     </div>
   );
 };

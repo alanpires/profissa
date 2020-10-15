@@ -6,7 +6,7 @@ import BestRating from "../../components/best-rating";
 import { useHistory, Link } from "react-router-dom";
 import RicardoSvg from "./photos/ricardo.svg";
 import "./styles.css";
-import {StyledIconWork} from './style'
+import { StyledIconWork } from './style'
 
 import {
   ContainerFlexHomePage,
@@ -54,11 +54,9 @@ const Homepage = () => {
     setUsersHome(
       profissas.filter(
         (elem) =>
-          (elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50) ||
-          elem.cep === 0 ||
-          elem.service === input.serv ||
-          input.serv === "Serviços"
-        //
+          ((elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50) || input.cep === 0)
+          &&
+          (elem.service === input.serv || input.serv === "Serviços" || input.serv === "")
       )
     );
     console.log(profissas, usersHome, input);
@@ -66,7 +64,6 @@ const Homepage = () => {
 
   return (
     <>
-      <Link to="/client-profile">Client Profile</Link>
       <Navbar />
       <ContainerFlexHomePage>
         <DivContentHomepage searchMode={!searchMode}>
@@ -94,11 +91,12 @@ const Homepage = () => {
                 loadBestRatingByProfession(feedbacks, profissas).map(
                   (profissa, key) => {
                     return (
-                      <div key={key} >
+                      <div key={key}>
                         <BestRating
                           name={profissa.name}
                           avaliations={profissa.avaliations}
                           stars={profissa.stars}
+                          service={profissa.service}
                         />
                       </div>
                     );
@@ -118,14 +116,16 @@ const Homepage = () => {
             )}
           <DivCard>
             {usersHome && feedbacks ? (
-              sortProfissas(feedbacks, usersHome).map((user, index) => (
+              sortProfissas(feedbacks, usersHome).map((user, key) => (
                 <div
-                  key={index}
+                  key={key}
                   onClick={() =>
-                    history.push(`/professional-showcase/${user.id}/${user.cep}`)
+                    history.push(
+                      `/professional-showcase/${user.id}/${user.service}`
+                    )
                   }
                 >
-                  <Card className="card" key={index}>
+                  <Card className="card">
                     <InfoCard>
                       <img src={RicardoSvg} />
                       <div>
@@ -137,7 +137,10 @@ const Homepage = () => {
                       </div>
                       <p>{user.avaliations} avaliações</p>
                       <h1>{user.name}</h1>
-                      <h1><StyledIconWork />{user.service}</h1>
+                      <h1>
+                        <StyledIconWork />
+                        {user.service}
+                      </h1>
                     </InfoCard>
                   </Card>
                 </div>

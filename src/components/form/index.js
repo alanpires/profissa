@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FormDiv, CheckboxText, NewInput } from "./style.js";
 import { Form, Input, Button, Checkbox } from "antd";
 import axios from "axios";
+import { notification } from "antd";
+import { SmileOutlined, FrownOutlined } from "@ant-design/icons";
 
 const FormUser = () => {
   const [cep, setCep] = useState("");
@@ -26,8 +28,6 @@ const FormUser = () => {
       });
   };
 
-  console.log(userData);
-
   const onFinish = (values) => {
     if (userData) {
       SignUp(values);
@@ -39,12 +39,31 @@ const FormUser = () => {
   };
 
   const SignUp = (data) => {
+    const openNotificationFailed = (data) => {
+      notification.open({
+        message: "Erro inesperado",
+        description: data,
+        icon: <FrownOutlined style={{ color: "red" }} />,
+      });
+    };
+    const openNotificationSuccess = () => {
+      notification.open({
+        message: "Profissa contrato com sucesso",
+        description: "Parabéns, agora você pode fazer o login!",
+        icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+      });
+    };
     axios
       .post("https://profissa-server.herokuapp.com/register", { ...data })
       .then((res) => {
         if (res.status === 201) {
           console.log("usuario criado", res);
+          openNotificationSuccess();
         }
+      })
+      .catch((res) => {
+        console.log(res.response.data);
+        openNotificationFailed(res.response.data);
       });
   };
 

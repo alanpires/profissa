@@ -59,7 +59,7 @@ export const loadBestRatingByProfession = (feedbacks, profissas) => {
       });
     });
   }
-  return arrayBestRating.map((service) => {
+  return arrayBestRating.slice(0, 4).map((service) => {
     let bestProfissa = service.professionals.sort(function (a, b) {
       if (a.stars < b.stars) {
         return 1;

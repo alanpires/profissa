@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { notification } from "antd";
+import { SmileOutlined, FrownOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 // import { axiosConfig } from "../login-modal/helper";
@@ -28,6 +30,22 @@ const ToHireProfessionalModal = ({ setShowModalProfissa }) => {
     },
   });
 
+  const openNotificationSuccess = () => {
+    notification.open({
+      message: "Profissa contrato com sucesso",
+      description: "Parabéns, o profissa logo entrará em contato com você.",
+      icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+    });
+  };
+
+  const openNotificationFailed = () => {
+    notification.open({
+      message: "Erro inesperado",
+      description: "Poxa vida, ocorreu um erro, tente novamente.",
+      icon: <FrownOutlined style={{ color: "red" }} />,
+    });
+  };
+
   useEffect(() => {
     axios
       .get(`https://profissa-server.herokuapp.com/users/${params.id}`)
@@ -36,7 +54,7 @@ const ToHireProfessionalModal = ({ setShowModalProfissa }) => {
         console.log(res.data);
       });
   }, [params.id]);
-  console.log(profissa);
+
   const onFinish = (values) => {
     console.log("Success:", values);
     const data = {
@@ -47,11 +65,19 @@ const ToHireProfessionalModal = ({ setShowModalProfissa }) => {
       schedule: values.date,
     };
     console.log(data);
-    dispatch(requestSchedules(data, axiosConfig(token)));
+    dispatch(
+      requestSchedules(
+        data,
+        axiosConfig(token),
+        openNotificationSuccess,
+        openNotificationFailed,
+        setShowModal
+      )
+    );
   };
 
   return (
-    <StyledModal class="Modal" isOpen={true}>
+    <StyledModal class="Modal" isOpen={showModal}>
       <AdjustModal>
         <StyledForm
           name="basic"
