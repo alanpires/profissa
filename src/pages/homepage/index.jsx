@@ -54,11 +54,9 @@ const Homepage = () => {
     setUsersHome(
       profissas.filter(
         (elem) =>
-          (elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50) ||
-          elem.cep === 0 ||
-          elem.service === input.serv ||
-          input.serv === "Serviços"
-        //
+          ((elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50) || input.cep === 0)
+          &&
+          (elem.service === input.serv || input.serv === "Serviços" || input.serv === "")
       )
     );
     console.log(profissas, usersHome, input);
@@ -123,7 +121,7 @@ const Homepage = () => {
                   key={key}
                   onClick={() =>
                     history.push(
-                      `/professional-showcase/${user.id}/${user.cep}`
+                      `/professional-showcase/${user.id}/${user.service}`
                     )
                   }
                 >
