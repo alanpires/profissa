@@ -19,9 +19,6 @@ function Layout({ title, subtitle }) {
           <WorkerImg src={MainImg} />
         </LeftDiv>
         <RightDiv>
-          <FormTitle>
-            <Subtitle>{subtitle}</Subtitle>
-          </FormTitle>
           <FormUser />
         </RightDiv>
       </MainDiv>

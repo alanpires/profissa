@@ -3,8 +3,16 @@ import { ButtomsearchHomepage, Form, ContainerInput, BoxInput } from "./style";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosPin } from "react-icons/io";
 
-const InputHome = ({ onSubmit }) => {
-  const [input, setInput] = useState({ serv: "", cep: 0 });
+const defaultInput = { serv: "", cep: "" }
+
+const InputHome = ({ onSubmit, searchMode }) => {
+  const [input, setInput] = useState(defaultInput);
+
+  const refresh = (e) => {
+    onSubmit(e, defaultInput)
+    setInput(defaultInput)
+  }
+
   return (
     <Form onSubmit={(e) => onSubmit(e, input)}>
       <ContainerInput>
@@ -12,6 +20,7 @@ const InputHome = ({ onSubmit }) => {
           <AiOutlineSearch />
           <select
             onChange={(e) => setInput({ ...input, serv: e.target.value })}
+            value={input.serv}
           >
             <option value="Serviços">Serviços</option>
             <optgroup label="Assistência técnica:">
@@ -72,10 +81,13 @@ const InputHome = ({ onSubmit }) => {
             onChange={(e) =>
               setInput({ ...input, cep: Number(e.target.value) })
             }
+            value={input.cep}
           />
         </BoxInput>
       </ContainerInput>
       <ButtomsearchHomepage type="submit">Buscar</ButtomsearchHomepage>
+      {searchMode && <ButtomsearchHomepage onClick={(e) => refresh(e)}>Refresh</ButtomsearchHomepage>}
+
     </Form>
   );
 };

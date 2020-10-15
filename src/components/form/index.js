@@ -185,13 +185,44 @@ const FormUser = () => {
                 name="logradouro"
               />
             ) : (
-              <NewInput size="large" name="logradouro" />
+              <Form.Item
+                name="logradouro"
+                rules={[
+                  {
+                    required: true,
+                    message: "Por favor digite o logradouro",
+                  },
+                ]}
+              >
+                <NewInput size="large" name="logradouro" />
+              </Form.Item>
             )}
-            <NewInput size="large" name="complemento" />
+            <Form.Item
+              name="complemento"
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor digite o complemento",
+                },
+              ]}
+            >
+              <NewInput size="large" name="complemento" />
+            </Form.Item>
+
             {userData.bairro ? (
               <NewInput size="large" value={userData.bairro} name="bairro" />
             ) : (
-              <NewInput size="large" name="bairro" />
+              <Form.Item
+                name="bairro"
+                rules={[
+                  {
+                    required: true,
+                    message: "Por favor digite o bairro",
+                  },
+                ]}
+              >
+                <NewInput size="large" name="bairro" />
+              </Form.Item>
             )}
             {userData.localidade ? (
               <NewInput
@@ -200,12 +231,32 @@ const FormUser = () => {
                 name="localidade"
               />
             ) : (
-              <NewInput size="large" name="localidade" />
+              <Form.Item
+                name="localidade"
+                rules={[
+                  {
+                    required: true,
+                    message: "Por favor digite sua cidade",
+                  },
+                ]}
+              >
+                <NewInput size="large" name="localidade" />
+              </Form.Item>
             )}
             {userData.uf ? (
               <NewInput size="large" value={userData.uf} name="uf" />
             ) : (
-              <NewInput size="large" name="uf" />
+              <Form.Item
+                name="uf"
+                rules={[
+                  {
+                    required: true,
+                    message: "Por favor digite seu estado",
+                  },
+                ]}
+              >
+                <NewInput size="large" name="uf" />
+              </Form.Item>
             )}
           </>
         )}
