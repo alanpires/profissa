@@ -3,10 +3,10 @@ import { ReactComponent as ImageHero } from "./image-hero.svg";
 import { Card } from "lib-kenzie-academy";
 import Navbar from "../../components/navbar/Navbar";
 import BestRating from "../../components/best-rating";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import RicardoSvg from "./photos/ricardo.svg";
 import "./styles.css";
-import { StyledIconWork } from './style'
+import { StyledIconWork } from "./style";
 
 import {
   ContainerFlexHomePage,
@@ -54,11 +54,9 @@ const Homepage = () => {
     setUsersHome(
       profissas.filter(
         (elem) =>
-          (elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50) ||
-          elem.cep === 0 ||
-          elem.service === input.serv ||
-          input.serv === "Serviços"
-        //
+          ((elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50) || input.cep === "")
+          &&
+          (elem.service === input.serv || input.serv === "Serviços" || input.serv === "")
       )
     );
     console.log(profissas, usersHome, input);
@@ -76,7 +74,7 @@ const Homepage = () => {
                 <h1>Eles tem a solução</h1>
               </>
             )}
-            <InputHome onSubmit={onSubmit} />
+            <InputHome onSubmit={onSubmit} searchMode={!searchMode} />
           </ContentWraper>
           {searchMode && (
             <ImgHero>
@@ -123,7 +121,7 @@ const Homepage = () => {
                   key={key}
                   onClick={() =>
                     history.push(
-                      `/professional-showcase/${user.id}/${user.cep}`
+                      `/professional-showcase/${user.id}/${user.service}`
                     )
                   }
                 >
