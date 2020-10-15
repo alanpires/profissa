@@ -111,13 +111,9 @@ const Ul = styled.ul`
 
 const RightNav = ({ open, setShowLogin, showLogin }) => {
   const history = useHistory();
-  const storeHome = useSelector((state) => state);
-  const userLoged = storeHome.access.user.name;
-  const token = useSelector((state) => state.access.token);
-  const user = useSelector((state) => state.access.user);
-
-  console.log(user.select);
-
+  const {token, user} = useSelector((state) => state.access);
+  const userLoged = user.name
+  
   return (
     <Ul open={open}>
       {!token && <li onClick={() => setShowLogin(!showLogin)}>Login</li>}
