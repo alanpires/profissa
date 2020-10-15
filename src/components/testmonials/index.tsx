@@ -1,7 +1,13 @@
 import React from "react";
 import { DivTestmonials, DivImag, DivInfoClient } from "./style";
 
-const Testmonials = ({ image, name, feedback }) => {
+interface Props {
+  image: string;
+  name: string;
+  feedback: string;
+}
+
+const Testmonials = ({ image, name, feedback }: Props) => {
   return (
     <DivTestmonials>
       <DivInfoClient>
