@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import UserDefault from "./userDefault.jpg";
-import { Link } from "react-router-dom";
 
 const Ul = styled.ul`
   list-style: none;
@@ -43,6 +42,7 @@ const Ul = styled.ul`
       border-radius: 18px;
       margin-left: 15px;
       color: black;
+      cursor: pointer;
 
       div {
         display: flex;
@@ -109,6 +109,7 @@ const Ul = styled.ul`
   }
 `;
 
+
 const RightNav = ({ open, setShowLogin, showLogin }) => {
   const history = useHistory();
   const {token, user} = useSelector((state) => state.access);
@@ -121,14 +122,14 @@ const RightNav = ({ open, setShowLogin, showLogin }) => {
         <li onClick={() => history.push("/signup-client")}>Cadastro</li>
       )}
       {userLoged && (
-        <div
+        <testDiv
           className="div-usernavbar"
           onClick={() => history.push("/profile")
           }
         >
           <p>{userLoged}</p>
           <img className="photo-navbar" src={UserDefault} />
-        </div>
+        </testDiv>
       )}
     </Ul>
   );
