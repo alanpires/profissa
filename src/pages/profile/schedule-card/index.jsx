@@ -1,13 +1,11 @@
 import React from "react";
 // import { Card } from "lib-kenzie-academy";
-import { useHistory } from "react-router-dom";
 import RicardoSvg from "../../../pages/homepage/photos/ricardo.svg";
 import styled from "styled-components";
 import { BsStarFill } from "react-icons/bs";
 import { AiOutlineSchedule } from "react-icons/ai";
-const ScheduleCard = ({ infos: { details, schedule, profissa } }) => {
+const ScheduleCard = ({ infos: { details, schedule, profissa }, creator }) => {
 
-  const history = useHistory()
   return (
     <div
     // onClick={() =>
@@ -17,7 +15,7 @@ const ScheduleCard = ({ infos: { details, schedule, profissa } }) => {
       <Card>
         <InfoCard>
           <img src={RicardoSvg} />
-          <h1>{profissa.name}</h1>
+          <h1>{creator && creator.name}</h1>
           <ScheduleDate><AiOutlineSchedule /><p>{schedule.split("-").reverse().join("/")}</p></ScheduleDate>
           <Text><p>{details}</p></Text>
 
