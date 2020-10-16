@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 export const Form = styled.form`
-  width: 100%;
-  height: 100px;
+  position: absolute;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 140px 0 20px 0;
+  left: 20px;
+  top: 470px;
+  width: 100%;
 
   & + h1 {
     font-size: 24px;
@@ -17,7 +16,6 @@ export const Form = styled.form`
 `;
 
 export const ButtomsearchHomepage = styled.button`
-  height: 100%;
   width: 150px;
   border-radius: 38px;
   border: 1px solid gray;
@@ -28,10 +26,15 @@ export const ButtomsearchHomepage = styled.button`
     background-color: rgba(0, 0, 0, 0.22);
     cursor: pointer;
   }
+
+  @media (max-width: 760px) {
+    position: absolute;
+    top: 90px;
+    left: 100px;
+  }
 `;
 
 export const ContainerInput = styled.span`
-  width: 50%;
   height: 100%;
   background-color: #eaeaea;
   padding: 10px 20px;
@@ -56,19 +59,17 @@ export const BoxInput = styled.div`
     background-color: #eaeaea;
     border: none;
     color: black;
-    height: 80%;
-    width: 100%;
-    font-size: 24px;
+    font-size: 18px;
     border-radius: 10px;
     ::placeholder {
-      font-size: 24px;
+      font-size: 18px;
       color: black;
       text-justify: center;
     }
   }
   svg {
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
   }
   input:focus,
   select:focus {

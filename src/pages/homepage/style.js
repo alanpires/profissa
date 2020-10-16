@@ -67,29 +67,65 @@ export const ContentWraper = styled.div`
   flex-flow: column;
   margin-left: 40px;
   ${({ searchMode }) => searchMode && `width:100%;`}
+
+  h1 {
+    position: absolute;
+    left: 20px;
+    width: 100%;
+    top: 160px;
+  }
 `;
 
 export const ImgHero = styled.div`
   display: flex;
   width: 550px;
   margin-top: 80px;
-  padding-bottom: 40px;
+  margin-left: 550px;
+  margin-top: -50px;
   @media (max-width: 1260px) {
     visibility: hidden;
+    display: none;
   }
 `;
 
 export const SectionProfilesPhotos = styled.section`
   width: 100%;
   display: flex;
+  flex-direction: row;
+  margin-top: 50px;
+
+  @media (max-width: 1260px) {
+    margin-top: 500px;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: -15px;
+    flex-direction: column;
+    margin-top: 500px;
+
+    h1 {
+      margin-left: 20px;
+      margin-top: 50px;
+    }
+  }
+
   h1 {
+    margin-top: 40px;
+    margin-left: 20px;
     position: absolute;
     font-family: Shrikhand;
     font-size: 36px;
   }
 
+  section {
+    display: block;
+    flex-direction: row;
+    margin-top: 75px;
+  }
+
   div {
-    margin-top: 50px;
+    margin-top: 100px;
+    margin-bottom: -75px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -114,10 +150,6 @@ export const SectionProfilesPhotos = styled.section`
       margin-top: -20px;
       font-size: 24px;
     }
-
-    @media (max-width: 800px) {
-      margin-bottom: -15px;
-    }
   }
 `;
 
@@ -131,6 +163,8 @@ export const Estrela = styled(BsStarFill)`
 `;
 
 export const DivProfileCards = styled.div`
+  margin-top: 180px;
+  margin-left: 20px;
   display: flex;
   justify-content: center;
   align-items: center;

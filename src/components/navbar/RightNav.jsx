@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import UserDefault from "./userDefault.jpg";
-import { Link } from "react-router-dom";
-import { StyleImg } from "./style";
 
 const Ul = styled.ul`
   list-style: none;
@@ -44,6 +42,7 @@ const Ul = styled.ul`
       border-radius: 18px;
       margin-left: 15px;
       color: black;
+      cursor: pointer;
 
       div {
         display: flex;
@@ -110,10 +109,10 @@ const Ul = styled.ul`
   }
 `;
 
-const StyleLi = styled.li`
-  &:hover {
-    cursor: pointer;
-  }
+export const StyleImg = styled.img`
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
 `;
 
 const RightNav = ({ open, setShowLogin, showLogin }) => {
@@ -123,16 +122,12 @@ const RightNav = ({ open, setShowLogin, showLogin }) => {
 
   return (
     <Ul open={open}>
+      {!token && <li onClick={() => setShowLogin(!showLogin)}>Login</li>}
       {!token && (
-        <StyleLi onClick={() => setShowLogin(!showLogin)}>Login</StyleLi>
-      )}
-      {!token && (
-        <StyleLi onClick={() => history.push("/signup-client")}>
-          Cadastro
-        </StyleLi>
+        <li onClick={() => history.push("/signup-client")}>Cadastro</li>
       )}
       {userLoged && (
-        <div
+        <testDiv
           className="div-usernavbar"
           onClick={() => history.push("/profile")}
         >
@@ -141,7 +136,7 @@ const RightNav = ({ open, setShowLogin, showLogin }) => {
             className="photo-navbar"
             src={user.image ? user.image : UserDefault}
           />
-        </div>
+        </testDiv>
       )}
     </Ul>
   );
