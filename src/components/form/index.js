@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { FormDiv, CheckboxText, NewInput } from "./style.js";
+import { FormDiv, CheckboxText, NewInput, StyledFormItem } from "./style.js";
 import { Form, Input, Button, Checkbox } from "antd";
 import axios from "axios";
 import { notification } from "antd";
 import { SmileOutlined, FrownOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom"
 
 const FormUser = () => {
   const [cep, setCep] = useState("");
@@ -97,6 +98,7 @@ const FormUser = () => {
         >
           <NewInput placeholder="Escreva seu nome completo" size="large" />
         </Form.Item>
+
         <Form.Item
           name="email"
           rules={[
@@ -185,18 +187,18 @@ const FormUser = () => {
                 name="logradouro"
               />
             ) : (
-              <Form.Item
-                name="logradouro"
-                rules={[
-                  {
-                    required: true,
-                    message: "Por favor digite o logradouro",
-                  },
-                ]}
-              >
-                <NewInput size="large" name="logradouro" />
-              </Form.Item>
-            )}
+                <Form.Item
+                  name="logradouro"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Por favor digite o logradouro",
+                    },
+                  ]}
+                >
+                  <NewInput size="large" name="logradouro" />
+                </Form.Item>
+              )}
             <Form.Item
               name="complemento"
               rules={[
@@ -216,18 +218,18 @@ const FormUser = () => {
             {userData.bairro ? (
               <NewInput size="large" value={userData.bairro} name="bairro" />
             ) : (
-              <Form.Item
-                name="bairro"
-                rules={[
-                  {
-                    required: true,
-                    message: "Por favor digite o bairro",
-                  },
-                ]}
-              >
-                <NewInput size="large" name="bairro" />
-              </Form.Item>
-            )}
+                <Form.Item
+                  name="bairro"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Por favor digite o bairro",
+                    },
+                  ]}
+                >
+                  <NewInput size="large" name="bairro" />
+                </Form.Item>
+              )}
             {userData.localidade ? (
               <NewInput
                 size="large"
@@ -235,47 +237,50 @@ const FormUser = () => {
                 name="localidade"
               />
             ) : (
-              <Form.Item
-                name="localidade"
-                rules={[
-                  {
-                    required: true,
-                    message: "Por favor digite sua cidade",
-                  },
-                ]}
-              >
-                <NewInput size="large" name="localidade" />
-              </Form.Item>
-            )}
+                <Form.Item
+                  name="localidade"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Por favor digite sua cidade",
+                    },
+                  ]}
+                >
+                  <NewInput size="large" name="localidade" />
+                </Form.Item>
+              )}
             {userData.uf ? (
               <NewInput size="large" value={userData.uf} name="uf" />
             ) : (
-              <Form.Item
-                name="uf"
-                rules={[
-                  {
-                    required: true,
-                    message: "Por favor digite seu estado",
-                  },
-                ]}
-              >
-                <NewInput size="large" name="uf" />
-              </Form.Item>
-            )}
+                <Form.Item
+                  name="uf"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Por favor digite seu estado",
+                    },
+                  ]}
+                >
+                  <NewInput size="large" name="uf" />
+                </Form.Item>
+              )}
           </>
         )}
-        <Form.Item name="select" label="Selecione seu tipo de perfil">
+        <StyledFormItem name="select" label="Selecione seu tipo de perfil">
           <Checkbox.Group>
             <Checkbox value="Cliente">Cliente</Checkbox>
 
             <Checkbox value="Profissa">Profissa</Checkbox>
           </Checkbox.Group>
-        </Form.Item>
-        <Form.Item>
+        </StyledFormItem>
+        <StyledFormItem>
           <Button type="primary" htmlType="submit">
             Cadastrar
           </Button>
-        </Form.Item>
+          <Button type="primary" htmlType="submit">
+            <Link to="/">Retornar</Link>
+          </Button>
+        </StyledFormItem>
       </Form>
     </FormDiv>
   );

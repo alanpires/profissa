@@ -1,15 +1,16 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { ButtomsearchHomepage, Form, ContainerInput, BoxInput } from "./style";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosPin } from "react-icons/io";
 
 const defaultInput = { serv: "", cep: "" };
 
-const InputHome = ({ onSubmit, searchMode }) => {
+const InputHome = ({ onSubmit, searchMode, setSearchMode }) => {
   const [input, setInput] = useState(defaultInput);
+  const history = useHistory();
 
   const refresh = (e) => {
-    onSubmit(e, defaultInput);
     setInput(defaultInput);
   };
 
@@ -86,8 +87,13 @@ const InputHome = ({ onSubmit, searchMode }) => {
       </ContainerInput>
       <ButtomsearchHomepage type="submit">Buscar</ButtomsearchHomepage>
       {searchMode && (
-        <ButtomsearchHomepage onClick={(e) => refresh(e)}>
-          Refresh
+        <ButtomsearchHomepage
+          onClick={(e) => {
+            setSearchMode(true);
+            refresh(e);
+          }}
+        >
+          Voltar
         </ButtomsearchHomepage>
       )}
     </Form>
