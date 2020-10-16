@@ -17,3 +17,14 @@ export const requestFeedbacks = () => (dispatch) => {
     dispatch(profissaFeedback(res.data));
   });
 };
+
+const postFeedbackProfissa = (feedback) => ({
+  type: FEEDBACKS,
+  feedback,
+});
+
+export const postFeeback = () => (dispatch) => {
+  axios.get("https://profissa-server.herokuapp.com/feedbacks").then((res) => {
+    dispatch(postFeedbackProfissa(res.data));
+  });
+};

@@ -79,5 +79,20 @@ export const ScheduleDate = styled.div`
     margin-right: 10px;
     transform: scale(2)
   }
-  margin-bottom:20px;
+  margin-bottom:10px;
+`
+export const FeebackButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  background:#1890ff;
+  padding:5px;
+  border-radius:5px;
+  margin-bottom:5px;
+  transition: 0.2s;
+  border:none;
+  &:hover{
+  background:#40a9ff;
+  transform: scale(1.08);
+  }
 `

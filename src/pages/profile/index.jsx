@@ -18,7 +18,7 @@ import {
   OptionsBox,
   ButtonOption
 } from "./style"
-import styled from "styled-components";
+
 
 const ProfessionalProfile = () => {
   const dispatch = useDispatch();
