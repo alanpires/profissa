@@ -70,8 +70,8 @@ const Homepage = () => {
           <ContentWraper searchMode={!searchMode}>
             {searchMode && (
               <>
-                <h1>Você tem um problema,</h1>
-                <h1>Eles tem a solução</h1>
+                <h1>Você tem um problema,<br/>
+                Eles tem a solução</h1>
               </>
             )}
             <InputHome onSubmit={onSubmit} searchMode={!searchMode} />

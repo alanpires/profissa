@@ -17,6 +17,10 @@ const costyleContent = {
   marginTop: "-15px",
 };
 
+const imgStyle = {
+  width: "30vh",
+};
+
 const BestRating = ({ name, avaliations, stars, service, key }) => {
   const arrayImage = [LisaimgSvg, FernandoimgSvg, RenataimgSvg, LucianoSvg];
 
@@ -27,7 +31,7 @@ const BestRating = ({ name, avaliations, stars, service, key }) => {
 
   return (
     <div key={key}>
-      <img src={handleImage()} />
+      <img style={imgStyle} src={handleImage()} />
       <p>{name}</p>
       <span style={spanStyle}>
         {service}

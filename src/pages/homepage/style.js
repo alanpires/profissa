@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { BsStarFill } from "react-icons/bs";
 import { GrUserWorker } from "react-icons/gr";
 
+
 export const ContainerFlexHomePage = styled.div`
 min-width: 360px;
   width: 100%;
@@ -61,12 +62,19 @@ export const DivContentHomepage = styled.div`
 `;
 
 export const ContentWraper = styled.div`
-   display:flex;
+  display:flex;
   justify-content:center;
   align-items:center;
   flex-flow: column;
   margin-left: 40px;
   ${({ searchMode }) => searchMode && `width:100%;`}
+
+  h1 {
+    position: absolute;
+    left: 20px;
+    width: 100%;
+    top: 150px;
+  }
 
 `
 
@@ -74,9 +82,11 @@ export const ImgHero = styled.div`
   display: flex;
   width: 550px;
   margin-top:80px;
-  padding-bottom:40px;
+  margin-left: 550px;
+  margin-top: -50px;
   @media (max-width: 1260px) {
     visibility: hidden;
+    display: none;
   }
 `;
 
@@ -84,7 +94,28 @@ export const ImgHero = styled.div`
 export const SectionProfilesPhotos = styled.section`
   width: 100%;
   display: flex;
+  flex-direction: row;
+  margin-top: 50px;
+
+  @media (max-width: 1260px) {
+    margin-top: 500px;
+  }
+
+   @media(max-width: 768px){
+    margin-bottom: -15px;   
+    flex-direction: column;
+    margin-top: 500px;
+
+
+    h1{
+      margin-left: 20px;
+      margin-top: 50px;
+    }
+  }
+
   h1 {
+    margin-top: 40px;
+    margin-left: 20px;
     position:absolute;
     font-family: Shrikhand;
     font-size: 36px;
@@ -117,9 +148,7 @@ export const SectionProfilesPhotos = styled.section`
       font-size: 24px;
     }
 
-    @media(max-width: 800px){
-    margin-bottom: -15px;    
-  }
+   
     
   }
 `;
@@ -184,3 +213,4 @@ export const InfoCard = styled.div`
 export const StyledIconWork = styled(GrUserWorker)`
   margin-right: 5px;
 `;
+
