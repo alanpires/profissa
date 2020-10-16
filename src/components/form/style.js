@@ -18,9 +18,14 @@ export const FormDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+<<<<<<< HEAD
   flex-direction: column;
   width: 40vh;
+=======
+  width: 40vw;
+>>>>>>> master
   padding-top: 50px;
+  overflow-y: scroll;
   @media (max-width: 320px) {
     width: 110vw;
     height: 100vh;

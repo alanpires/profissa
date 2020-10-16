@@ -208,7 +208,11 @@ const FormUser = () => {
                 },
               ]}
             >
-              <NewInput size="large" name="complemento" />
+              <NewInput
+                size="large"
+                name="complemento"
+                placeholder="Complemento"
+              />
             </Form.Item>
 
             {userData.bairro ? (

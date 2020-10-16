@@ -20,6 +20,7 @@ export const MainDiv = styled.div`
 export const LeftDiv = styled.div`
   display: flex;
   flex-direction: column;
+  width: 15vw;
 `;
 
 export const RightDiv = styled.div`

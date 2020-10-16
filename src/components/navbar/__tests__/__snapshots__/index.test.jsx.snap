@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nav Test renders correctly 1`] = `
+<nav
+  className="sc-dlnjPT fwKign"
+>
+  <div
+    className="logo"
+  >
+    Profissa
+  </div>
+  <div
+    className="sc-gtssRu jnAMnz"
+    open={true}
+  >
+    <div />
+    <div />
+    <div />
+  </div>
+  <ul
+    className="sc-bdnylx bYDJbn"
+    open={true}
+  >
+    <div
+      className="div-usernavbar"
+      onClick={[Function]}
+    >
+      <p>
+        name
+      </p>
+      <img
+        className="photo-navbar"
+        src="userDefault.jpg"
+      />
+    </div>
+  </ul>
+</nav>
+`;
+
+exports[`Nav Test renders correctly 2`] = `
+<nav
+  className="sc-dlnjPT fwKign"
+>
+  <div
+    className="logo"
+  >
+    Profissa
+  </div>
+  <div
+    className="sc-gtssRu gWHJkT"
+    open={false}
+  >
+    <div />
+    <div />
+    <div />
+  </div>
+  <ul
+    className="sc-bdnylx duVbUn"
+    open={false}
+  >
+    <div
+      className="div-usernavbar"
+      onClick={[Function]}
+    >
+      <p>
+        name
+      </p>
+      <img
+        className="photo-navbar"
+        src="userDefault.jpg"
+      />
+    </div>
+  </ul>
+</nav>
+`;
