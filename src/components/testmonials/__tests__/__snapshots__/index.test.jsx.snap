@@ -11,6 +11,7 @@ exports[`Testmonials Test renders correctly 1`] = `
       className="sc-dlnjPT hDdslF"
     >
       <img
+        className="sc-hKFyIo fJAUKr"
         src=""
       />
     </div>
@@ -35,6 +36,7 @@ exports[`Testmonials Test renders correctly 2`] = `
       className="sc-dlnjPT hDdslF"
     >
       <img
+        className="sc-hKFyIo fJAUKr"
         src="Com imagem"
       />
     </div>

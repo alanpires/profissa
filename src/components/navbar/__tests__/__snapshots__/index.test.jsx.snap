@@ -2,13 +2,17 @@
 
 exports[`Nav Test renders correctly 1`] = `
 <nav
-  className="sc-dlnjPT fwKign"
+  className="sc-dlnjPT jScYVP"
 >
-  <div
-    className="logo"
+  <a
+    href="/"
   >
-    Profissa
-  </div>
+    <div
+      className="logo"
+    >
+      Profissa
+    </div>
+  </a>
   <div
     className="sc-gtssRu jnAMnz"
     open={true}
@@ -18,10 +22,10 @@ exports[`Nav Test renders correctly 1`] = `
     <div />
   </div>
   <ul
-    className="sc-bdnylx bYDJbn"
+    className="sc-bdnylx faGLEd"
     open={true}
   >
-    <div
+    <testDiv
       className="div-usernavbar"
       onClick={[Function]}
     >
@@ -32,20 +36,24 @@ exports[`Nav Test renders correctly 1`] = `
         className="photo-navbar"
         src="userDefault.jpg"
       />
-    </div>
+    </testDiv>
   </ul>
 </nav>
 `;
 
 exports[`Nav Test renders correctly 2`] = `
 <nav
-  className="sc-dlnjPT fwKign"
+  className="sc-dlnjPT jScYVP"
 >
-  <div
-    className="logo"
+  <a
+    href="/"
   >
-    Profissa
-  </div>
+    <div
+      className="logo"
+    >
+      Profissa
+    </div>
+  </a>
   <div
     className="sc-gtssRu gWHJkT"
     open={false}
@@ -55,10 +63,10 @@ exports[`Nav Test renders correctly 2`] = `
     <div />
   </div>
   <ul
-    className="sc-bdnylx duVbUn"
+    className="sc-bdnylx bcEbrR"
     open={false}
   >
-    <div
+    <testDiv
       className="div-usernavbar"
       onClick={[Function]}
     >
@@ -69,7 +77,7 @@ exports[`Nav Test renders correctly 2`] = `
         className="photo-navbar"
         src="userDefault.jpg"
       />
-    </div>
+    </testDiv>
   </ul>
 </nav>
 `;

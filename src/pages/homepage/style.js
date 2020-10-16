@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { BsStarFill } from "react-icons/bs";
 import { GrUserWorker } from "react-icons/gr";
 
-
 export const ContainerFlexHomePage = styled.div`
   min-width: 360px;
   width: 100%;
@@ -62,9 +61,9 @@ export const DivContentHomepage = styled.div`
 `;
 
 export const ContentWraper = styled.div`
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-flow: column;
   margin-left: 40px;
   ${({ searchMode }) => searchMode && `width:100%;`}
@@ -73,15 +72,14 @@ export const ContentWraper = styled.div`
     position: absolute;
     left: 20px;
     width: 100%;
-    top: 220px;
+    top: 160px;
   }
-
-`
+`;
 
 export const ImgHero = styled.div`
   display: flex;
   width: 550px;
-  margin-top:80px;
+  margin-top: 80px;
   margin-left: 550px;
   margin-top: -50px;
   @media (max-width: 1260px) {
@@ -100,12 +98,12 @@ export const SectionProfilesPhotos = styled.section`
     margin-top: 500px;
   }
 
-   @media(max-width: 768px){
-    margin-bottom: -15px;   
+  @media (max-width: 768px) {
+    margin-bottom: -15px;
     flex-direction: column;
     margin-top: 500px;
 
-    h1{
+    h1 {
       margin-left: 20px;
       margin-top: 50px;
     }
@@ -114,12 +112,12 @@ export const SectionProfilesPhotos = styled.section`
   h1 {
     margin-top: 40px;
     margin-left: 20px;
-    position:absolute;
+    position: absolute;
     font-family: Shrikhand;
     font-size: 36px;
   }
 
-  section{
+  section {
     display: block;
     flex-direction: row;
     margin-top: 75px;
@@ -151,8 +149,7 @@ export const SectionProfilesPhotos = styled.section`
       align-items: center;
       margin-top: -20px;
       font-size: 24px;
-    }   
-    
+    }
   }
 `;
 
@@ -166,7 +163,7 @@ export const Estrela = styled(BsStarFill)`
 `;
 
 export const DivProfileCards = styled.div`
-  margin-top: 50px;
+  margin-top: 180px;
   margin-left: 20px;
   display: flex;
   justify-content: center;

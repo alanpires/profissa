@@ -1,18 +1,23 @@
-button:focus,input:focus,select:focus{
-outline: none !important;
+button:focus,
+input:focus,
+select:focus {
+  outline: none !important;
 }
 
 ::-webkit-scrollbar {
-    width: 12px;
-    background: rgba(24, 33, 58, 0.966);
-    border-radius: 5px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-image: radial-gradient(#d6bb82 50%, #9c8710);
-    border-radius: 6px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background-image: radial-gradient(#f3dd96 , #b8a42f);
-  }
-  
+  width: 12px;
+  background: rgba(24, 33, 58, 0.966);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-image: radial-gradient(#d6bb82 50%, #9c8710);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-image: radial-gradient(#f3dd96, #b8a42f);
+}
+
+html {
+  overflow-x: hidden !important;
+}

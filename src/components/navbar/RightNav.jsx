@@ -109,6 +109,12 @@ const Ul = styled.ul`
   }
 `;
 
+export const StyleImg = styled.img`
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
 const RightNav = ({ open, setShowLogin, showLogin }) => {
   const history = useHistory();
   const { token, user } = useSelector((state) => state.access);
@@ -126,7 +132,10 @@ const RightNav = ({ open, setShowLogin, showLogin }) => {
           onClick={() => history.push("/profile")}
         >
           <p>{userLoged}</p>
-          <img className="photo-navbar" src={UserDefault} />
+          <StyleImg
+            className="photo-navbar"
+            src={user.image ? user.image : UserDefault}
+          />
         </testDiv>
       )}
     </Ul>

@@ -49,8 +49,6 @@ const InfosProfissa = ({ setShowModalProfissa, showModalProfissa }) => {
   }, [id]);
   console.log(feedbacksId(feedbacks, parseInt(id)));
 
-  console.log(infosProfissa);
-
   const content = (
     <div>
       <p>Para contratar um profissa você precisa estar logado.</p>
@@ -66,14 +64,17 @@ const InfosProfissa = ({ setShowModalProfissa, showModalProfissa }) => {
           <Container>
             <ProfessionalName>{infosProfissa.name}</ProfessionalName>
             <Stars>
+              <span>{getStars(feedbacksId(feedbacks, parseInt(id)))}</span>
               {Array.from(
                 { length: getStars(feedbacksId(feedbacks, parseInt(id))) },
                 (v, k) => k
               ).map((key) => {
                 return <Estrela key={key} />;
               })}
-              {feedbacksId(feedbacks, parseInt(id)).length + " "}
-              Avaliações
+              <span>
+                <br />
+                {feedbacksId(feedbacks, parseInt(id)).length + "Avaliações"}
+              </span>
             </Stars>
           </Container>
         </ContainerInfos>
