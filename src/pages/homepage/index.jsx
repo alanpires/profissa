@@ -18,6 +18,7 @@ import {
   InfoCard,
   EstrelaCards,
   ContentWraper,
+  StyleImg,
 } from "./style";
 
 import { useEffect, useState } from "react";
@@ -26,12 +27,15 @@ import { requestFeedbacks } from "../../redux/actions/feedbacks-request";
 import { useDispatch, useSelector } from "react-redux";
 import { sortProfissas, loadBestRatingByProfession } from "./helper";
 import InputHome from "../../components/InputHome";
+import { requestUsers } from "../../redux/actions/users";
 
 const Homepage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [usersHome, setUsersHome] = useState([]);
   const [searchMode, setSearchMode] = useState(true);
+  const users = useSelector((state) => state.users);
+
   const profissas = useSelector(
     (state) => state.profissaHomepage.profissasRequest
   );
@@ -42,6 +46,7 @@ const Homepage = () => {
   useEffect(() => {
     if (usersHome.length === 0) {
       dispatch(requestProfissasHomepage());
+      dispatch(requestUsers());
       dispatch(requestFeedbacks());
       setUsersHome(profissas);
     }
@@ -96,6 +101,9 @@ const Homepage = () => {
               {profissas && feedbacks ? (
                 loadBestRatingByProfession(feedbacks, profissas).map(
                   (profissa, key) => {
+                    let userImage = users.find(
+                      (elem) => elem.id === profissa.id
+                    );
                     return (
                       <div key={key}>
                         <BestRating
@@ -103,6 +111,7 @@ const Homepage = () => {
                           avaliations={profissa.avaliations}
                           stars={profissa.stars}
                           service={profissa.service}
+                          image={userImage}
                         />
                       </div>
                     );
@@ -122,35 +131,42 @@ const Homepage = () => {
           )}
           <DivCard>
             {usersHome && feedbacks ? (
-              sortProfissas(feedbacks, usersHome).map((user, key) => (
-                <div
-                  key={key}
-                  onClick={() =>
-                    history.push(
-                      `/professional-showcase/${user.id}/${user.service}`
-                    )
-                  }
-                >
-                  <Card className="card">
-                    <InfoCard>
-                      <img src={RicardoSvg} />
-                      <div>
-                        {Array.from({ length: user.stars }, (v, k) => k).map(
-                          (key) => {
-                            return <EstrelaCards key={key} />;
-                          }
-                        )}
-                      </div>
-                      <p>{user.avaliations} avaliações</p>
-                      <h1>{user.name}</h1>
-                      <h1>
-                        <StyledIconWork />
-                        {user.service}
-                      </h1>
-                    </InfoCard>
-                  </Card>
-                </div>
-              ))
+              sortProfissas(feedbacks, usersHome).map((user, key) => {
+                let userImage = users.find((elem) => elem.id === user.id);
+                console.log(userImage);
+                return (
+                  <div
+                    key={key}
+                    onClick={() =>
+                      history.push(
+                        `/professional-showcase/${user.id}/${user.service}`
+                      )
+                    }
+                  >
+                    {console.log(user)}
+                    <Card className="card">
+                      <InfoCard>
+                        <StyleImg
+                          src={userImage ? userImage.image : RicardoSvg}
+                        />
+                        <div>
+                          {Array.from({ length: user.stars }, (v, k) => k).map(
+                            (key) => {
+                              return <EstrelaCards key={key} />;
+                            }
+                          )}
+                        </div>
+                        <p>{user.avaliations} avaliações</p>
+                        <h1>{user.name}</h1>
+                        <h1>
+                          <StyledIconWork />
+                          {user.service}
+                        </h1>
+                      </InfoCard>
+                    </Card>
+                  </div>
+                );
+              })
             ) : (
               <h1>Carregando</h1>
             )}
