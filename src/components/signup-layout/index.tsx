@@ -7,12 +7,17 @@ import {
   WorkerImg,
   FormTitle,
   Subtitle,
-} from "./style.js";
+} from "./style";
 import MainImg from "../../assets/workerimg.jpg";
 import FormUser from "../form";
-function Layout({ title, subtitle }) {
+
+interface Props {
+  title: string | React.ReactNode;
+}
+
+const Layout = ({ title }: Props) => {
   return (
-    <>
+    <div>
       <MainDiv>
         <LeftDiv>
           <Title>{title}</Title>
@@ -22,8 +27,8 @@ function Layout({ title, subtitle }) {
           <FormUser />
         </RightDiv>
       </MainDiv>
-    </>
+    </div>
   );
-}
+};
 
 export default Layout;

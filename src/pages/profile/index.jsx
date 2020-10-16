@@ -18,7 +18,6 @@ import {
   OptionsBox,
   ButtonOption,
 } from "./style";
-import styled from "styled-components";
 
 const ProfessionalProfile = () => {
   const dispatch = useDispatch();
@@ -38,28 +37,44 @@ const ProfessionalProfile = () => {
     dispatch(requestUsers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(services);
+
   const choosedOption = () => {
     switch (infos) {
       case "Meus Serviços":
         return services
           .filter((elem) => elem.profissaId === user.id)
-          .map((elem, key) => (
-            <ScheduleCard
-              key={key}
-              infos={elem}
-              creator={users.find((item) => item.id === elem.clienteId)}
-            />
-          ));
-      case "Serviços Solicitados":
-        return services
-          .filter((elem) => elem.clienteId === user.id)
           .map((elem, key) => {
+            console.log(
+              feedbacks.some((element) => element.scheduleId === elem.id)
+            );
             return (
               <ScheduleCard
                 key={key}
                 infos={elem}
-                creator={users.find((item) => item.id === elem.profissaId)}
+                creator={users.find((item) => item.id === elem.clienteId)}
+                feedbacks={feedbacks.some(
+                  (element) => element.scheduleId === elem.id
+                )}
+                user={user}
+              />
+            );
+          });
+      case "Serviços Solicitados":
+        return services
+          .filter((elem) => elem.clienteId === user.id)
+          .map((elem, key) => {
+            console.log(
+              feedbacks.some((element) => element.scheduleId === elem.id)
+            );
+            return (
+              <ScheduleCard
+                key={key}
+                infos={elem}
+                creator={elem.profissa}
+                feedbacks={feedbacks.some(
+                  (element) => element.scheduleId === elem.id
+                )}
+                user={user}
               />
             );
           });
@@ -96,7 +111,6 @@ const ProfessionalProfile = () => {
     ];
     return userType === "Profissa" ? ["Meus Serviços", ...options] : options;
   };
-  console.log("AQUI ESTA O QUE VOCÊ PROCURA", optionsForBar());
 
   return (
     <Container>

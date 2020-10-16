@@ -112,9 +112,9 @@ const Ul = styled.ul`
 
 const RightNav = ({ open, setShowLogin, showLogin }) => {
   const history = useHistory();
-  const {token, user} = useSelector((state) => state.access);
-  const userLoged = user.name
-  
+  const { token, user } = useSelector((state) => state.access);
+  const userLoged = user.name;
+
   return (
     <Ul open={open}>
       {!token && <li onClick={() => setShowLogin(!showLogin)}>Login</li>}
@@ -124,8 +124,7 @@ const RightNav = ({ open, setShowLogin, showLogin }) => {
       {userLoged && (
         <testDiv
           className="div-usernavbar"
-          onClick={() => history.push("/profile")
-          }
+          onClick={() => history.push("/profile")}
         >
           <p>{userLoged}</p>
           <img className="photo-navbar" src={UserDefault} />

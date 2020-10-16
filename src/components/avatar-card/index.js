@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, Button } from "antd";
+import { Avatar, Button, Form } from "antd";
 import {
   DivAvatarCard,
   Username,
@@ -7,13 +7,15 @@ import {
   BtnDiv,
   ItemsDiv,
   NewInput,
-  Container
+  Container,
+  StyleImg,
 } from "./style.js";
 import { UserOutlined } from "@ant-design/icons";
 import { AiFillEdit } from "react-icons/ai";
 import { Modal } from "lib-kenzie-academy";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
+import { changeDataUser } from "../../redux/actions/access-actions";
 
 function AvatarCard() {
   const dispatch = useDispatch();
@@ -21,14 +23,25 @@ function AvatarCard() {
   const user = useSelector((state) => state.access.user);
   const [modal, setModal] = useState(false);
 
-  const changeInfo = () => {
+  const onFinish = (values) => {
+    console.log(values);
     setModal(false);
+    if (values.name || values.email) {
+      !values.name && (values.name = user.name);
+      !values.email && (values.email = user.email);
+      dispatch(changeDataUser(values));
+      localStorage.setItem("user", JSON.stringify({ ...user, ...values }));
+    }
   };
 
   return (
     <Container>
       <DivAvatarCard>
-        <Avatar size={100} icon={<UserOutlined />} />
+        {user.image ? (
+          <StyleImg src={user.image} />
+        ) : (
+          <Avatar size={100} icon={<UserOutlined />} />
+        )}
         <Username>
           <strong>{user.name}</strong>
         </Username>
@@ -45,37 +58,35 @@ function AvatarCard() {
       {modal && (
         <Modal isOpen={modal}>
           <InputDiv>
-            <form>
-              {" "}
+            <Form onFinish={onFinish}>
               <ItemsDiv>
-                <NewInput
-                  placeholder="Nome completo"
-                  name="name"
-                  defaultValue={user.name}
-                />
+                <Form.Item name="name">
+                  <NewInput
+                    placeholder="Nome completo"
+                    defaultValue={user.name}
+                    value={user.name}
+                  />
+                </Form.Item>
               </ItemsDiv>
+
               <ItemsDiv>
-                <NewInput
-                  placeholder="Email"
-                  name="email"
-                  defaultValue={user.email}
-                />
+                <Form.Item name="email">
+                  <NewInput
+                    placeholder="Email"
+                    defaultValue={user.email}
+                    value={user.email}
+                  />
+                </Form.Item>
               </ItemsDiv>
-              <ItemsDiv>
-                {" "}
-                <NewInput placeholder="Senha" type="password" name="password" />
-              </ItemsDiv>
-              <ItemsDiv>
-                <NewInput
-                  placeholder="Endereço"
-                  name="adress"
-                  defaultValue={user.adress}
-                />
-              </ItemsDiv>
+
               <BtnDiv>
-                <Button onClick={changeInfo}>Alterar Dados</Button>
+                <Form.Item>
+                  <Button type="primary" htmlType="submit">
+                    Alterar Dados
+                  </Button>
+                </Form.Item>
               </BtnDiv>
-            </form>
+            </Form>
           </InputDiv>
         </Modal>
       )}

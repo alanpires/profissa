@@ -4,11 +4,11 @@ import { GrUserWorker } from "react-icons/gr";
 
 
 export const ContainerFlexHomePage = styled.div`
-min-width: 360px;
+  min-width: 360px;
   width: 100%;
   display: flex;
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
   flex-flow: column;
 `;
 
@@ -49,10 +49,10 @@ export const DivUserTop = styled.div`
 `;
 
 export const DivContentHomepage = styled.div`
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  margin-top:100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
   ${({ searchMode }) => searchMode && `width:100%;`}
   h1 {
     align-items: center;
@@ -89,7 +89,6 @@ export const ImgHero = styled.div`
     display: none;
   }
 `;
-
 
 export const SectionProfilesPhotos = styled.section`
   width: 100%;
@@ -171,14 +170,14 @@ export const DivProfileCards = styled.div`
   margin-left: 20px;
   display: flex;
   justify-content: center;
-  align-items:center;
-  flex-flow:column;
+  align-items: center;
+  flex-flow: column;
   background-color: #ffffff;
   width: 100%;
   h1 {
     font-family: Shrikhand;
     font-size: 48px;
-    margin-top:50px;
+    margin-top: 50px;
   }
 `;
 
@@ -207,9 +206,6 @@ export const InfoCard = styled.div`
     font-family: Shrikhand;
     font-size: 24px;
   }
-  img {
-    width: 30%;
-  }
   h2 {
     display: flex;
     align-items: center;
@@ -220,3 +216,10 @@ export const StyledIconWork = styled(GrUserWorker)`
   margin-right: 5px;
 `;
 
+export const StyleImg = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 5px;
+`;

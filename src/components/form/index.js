@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { FormDiv, CheckboxText, NewInput } from "./style.js";
+import { FormDiv, CheckboxText, NewInput, StyledFormItem } from "./style.js";
 import { Form, Input, Button, Checkbox } from "antd";
 import axios from "axios";
 import { notification } from "antd";
 import { SmileOutlined, FrownOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const FormUser = () => {
   const [cep, setCep] = useState("");
   const [input, showInput] = useState(false);
   const [userData, setuserData] = useState("");
   const [cepError, setCepError] = useState("");
+  const [checked, setChecked] = useState(true);
   const requestApi = () => {
     if (cep.length !== 8) {
       return;
@@ -48,7 +50,7 @@ const FormUser = () => {
     };
     const openNotificationSuccess = () => {
       notification.open({
-        message: "Profissa contrato com sucesso",
+        message: "Usuário criado com sucesso",
         description: "Parabéns, agora você pode fazer o login!",
         icon: <SmileOutlined style={{ color: "#108ee9" }} />,
       });
@@ -97,6 +99,7 @@ const FormUser = () => {
         >
           <NewInput placeholder="Escreva seu nome completo" size="large" />
         </Form.Item>
+
         <Form.Item
           name="email"
           rules={[
@@ -140,7 +143,7 @@ const FormUser = () => {
           rules={[
             {
               min: 11,
-              message: "O CPF deve conter no minimo 8 digitos",
+              message: "O CPF deve conter no minimo 11 digitos",
             },
             {
               pattern: /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/,
@@ -264,18 +267,30 @@ const FormUser = () => {
             )}
           </>
         )}
-        <Form.Item name="select" label="Selecione seu tipo de perfil">
-          <Checkbox.Group>
-            <Checkbox value="Cliente">Cliente</Checkbox>
-
-            <Checkbox value="Profissa">Profissa</Checkbox>
-          </Checkbox.Group>
-        </Form.Item>
-        <Form.Item>
+        <StyledFormItem name="select" label="Selecione seu tipo de perfil">
+          <Checkbox
+            value="Cliente"
+            checked={checked}
+            onChange={() => setChecked(!checked)}
+          >
+            Cliente
+          </Checkbox>
+          <Checkbox
+            value="Profissa"
+            checked={!checked}
+            onChange={() => setChecked(!checked)}
+          >
+            Profissa
+          </Checkbox>
+        </StyledFormItem>
+        <StyledFormItem>
           <Button type="primary" htmlType="submit">
             Cadastrar
           </Button>
-        </Form.Item>
+          <Button type="primary" htmlType="submit">
+            <Link to="/">Retornar</Link>
+          </Button>
+        </StyledFormItem>
       </Form>
     </FormDiv>
   );

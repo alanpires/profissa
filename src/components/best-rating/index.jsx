@@ -4,6 +4,7 @@ import FernandoimgSvg from "../../pages/homepage/photos/fernando.svg";
 import RenataimgSvg from "../../pages/homepage/photos/renata.svg";
 import LucianoSvg from "../../pages/homepage/photos/luciano.svg";
 import { Estrela } from "../../pages/homepage/style";
+import { StyleImg } from "./style";
 
 const spanStyle = {
   marginTop: "-35px",

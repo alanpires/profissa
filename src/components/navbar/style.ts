@@ -17,3 +17,9 @@ export const StyledNav = styled.nav`
     margin-left: 15px;
   }
 `;
+
+export const StyleImg = styled.img`
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+`;
