@@ -2,7 +2,7 @@ import Homepage from "../../pages/homepage";
 import ProfessionalProfile from "../../pages/profile";
 import ProfessionalShowcase from "../../pages/professional-showcase";
 import SignupClient from "../../pages/signup-client";
-import SignupProfessional from "../../pages/singup-professional";
+import ClientProfile from "../../pages/client-profile";
 
 export const restrictedRoutes = [
   {
@@ -16,6 +16,11 @@ export const restrictedRoutes = [
     component: ProfessionalProfile,
   },
   { path: "/", name: "Homepage", component: Homepage },
+  {
+    path: "/user-profile",
+    name: "ClientProfile",
+    component: ClientProfile,
+  },
 ];
 
 export const freeRoutes = [
@@ -26,10 +31,4 @@ export const freeRoutes = [
   },
   { path: "/", name: "Homepage", component: Homepage },
   { path: "/signup-client", name: "SignupClient", component: SignupClient },
-
-  {
-    path: "/singup-professional",
-    name: "SignupProfessional",
-    component: SignupProfessional,
-  },
 ];
