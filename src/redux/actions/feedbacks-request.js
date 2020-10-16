@@ -1,12 +1,6 @@
 import { FEEDBACKS } from "./type";
 import axios from "axios";
 
-// const axiosConfig = (token) => ({
-//   headers: {
-//     Authorization: "Bearer " + token,
-//   },
-// });
-
 const profissaFeedback = (feedback) => ({
   type: FEEDBACKS,
   feedback,
@@ -18,13 +12,9 @@ export const requestFeedbacks = () => (dispatch) => {
   });
 };
 
-const postFeedbackProfissa = (feedback) => ({
-  type: FEEDBACKS,
-  feedback,
-});
 
-export const postFeeback = () => (dispatch) => {
-  axios.get("https://profissa-server.herokuapp.com/feedbacks").then((res) => {
-    dispatch(postFeedbackProfissa(res.data));
-  });
+export const postFeeback = (data, axiosconfig) => (dispatch) => {
+  axios.post("https://profissa-server.herokuapp.com/feedbacks", data, axiosconfig).then((res) => {
+    console.log(res)
+  }).catch(res => console.log(res))
 };

@@ -4,6 +4,8 @@ import RicardoSvg from "../../../../pages/homepage/photos/ricardo.svg";
 import { AiOutlineSchedule } from "react-icons/ai";
 import { BsPencilSquare } from "react-icons/bs";
 import { Form, Input, Button } from "antd"
+import { useDispatch, useSelector } from "react-redux";
+import { postFeeback } from "../../../../redux/actions/feedbacks-request"
 
 import {
   InfoCard,
@@ -17,11 +19,27 @@ import { Modal } from "lib-kenzie-academy";
 import styled from "styled-components";
 
 const ScheduleCard = ({ infos: { details, schedule, profissa }, creator }) => {
-
+  const dispatch = useDispatch()
   const [modal, setModal] = useState(false)
-
+  const token = useSelector(state => state.access.token)
   const onFinish = (e) => {
+    console.log(e)
+    const axiosConfig = (token) => ({
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
+    let data = {
+      "creatorId": creator.id,
+      "creator": creator,
+      "receiverId": 15,
+      "receiverType": "Profissa",
+      "feedback": e.desc,
+      "stars": e.nota
+    }
+    console.log(token)
+    dispatch(postFeeback(data, axiosConfig(token)))
   }
 
   return (
@@ -47,18 +65,17 @@ const ScheduleCard = ({ infos: { details, schedule, profissa }, creator }) => {
             onFinish={onFinish}
           >
             <StyledForm.Item
-              name="email"
-              placeholder="Dê uma nota para o Profissa"
+              name="nota"
               type="number"
             >
-              <StyledInput />
+              <StyledInput type="number" placeholder="Dê uma nota para o Profissa" />
             </StyledForm.Item>
 
             <StyledForm.Item
-              name="password"
-              placeholder="Deixe um comentario para o Profissa"
+              name="desc"
+
             >
-              <StyledField />
+              <StyledField placeholder="Deixe um comentario para o Profissa" />
             </StyledForm.Item>
 
             <BoxButton>
@@ -89,7 +106,7 @@ export const BoxButton = styled.div`
 display: flex;
 justify-content:space-between;
 align-items:center;
-width: 50%;
+width: 30%;
 `
 
 export const BoxModal = styled.div`
