@@ -12,9 +12,22 @@ export const requestFeedbacks = () => (dispatch) => {
   });
 };
 
-
-export const postFeeback = (data, axiosconfig) => (dispatch) => {
-  axios.post("https://profissa-server.herokuapp.com/feedbacks", data, axiosconfig).then((res) => {
-    console.log(res)
-  }).catch(res => console.log(res))
+export const postFeedback = (
+  data,
+  axiosconfig,
+  openNotificationSuccess,
+  openNotificationFailed,
+  setModal
+) => (dispatch) => {
+  axios
+    .post("https://profissa-server.herokuapp.com/feedbacks", data, axiosconfig)
+    .then((res) => {
+      console.log(res);
+      openNotificationSuccess();
+      setModal(false);
+    })
+    .catch((res) => {
+      console.log(res);
+      openNotificationFailed();
+    });
 };

@@ -7,15 +7,15 @@ import {
   requestUserDecoder,
 } from "../../redux/actions/access-actions";
 
-import { Form, Input, Button } from "antd";
 import {
   Title,
   StyledModal,
   StyledForm,
   AdjustModal,
-  StyledInput,
-  StyledPassword,
+  StyledButton,
+  StyledFormItem
 } from "./style";
+import StylezedInput from "../inputLogin/Input.jsx";
 
 const LoginModal = ({ setShowLogin }) => {
   const user = useSelector((state) => state.access.user);
@@ -40,7 +40,8 @@ const LoginModal = ({ setShowLogin }) => {
           onFinish={onFinish}
         >
           <Title>Conecte-se</Title>
-          <StyledForm.Item
+
+          <StylezedInput
             label="E-mail"
             name="email"
             validateTrigger={false}
@@ -52,11 +53,10 @@ const LoginModal = ({ setShowLogin }) => {
                 type: "email",
               },
             ]}
-          >
-            <StyledInput />
-          </StyledForm.Item>
+            icon="fas fa-user"
+          />
 
-          <StyledForm.Item
+          <StylezedInput
             label="Senha"
             name="password"
             validateTrigger={false}
@@ -73,16 +73,14 @@ const LoginModal = ({ setShowLogin }) => {
                 message: "P.S.: Deve conter ao menos um desses: !@#$%^&*~_-",
               },
             ]}
-          >
-            <StyledInput />
-          </StyledForm.Item>
-
-          <StyledForm.Item>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-            <Button onClick={() => setShowLogin(false)}>Return</Button>
-          </StyledForm.Item>
+            icon="fas fa-lock"
+          />
+          <StyledFormItem>
+            <StyledButton type="primary" htmlType="submit">
+              Enviar
+            </StyledButton>
+            <StyledButton onClick={() => setShowLogin(false)}>Retornar</StyledButton>
+          </StyledFormItem>
         </StyledForm>
       </AdjustModal>
     </StyledModal>

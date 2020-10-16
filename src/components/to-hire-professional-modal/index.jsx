@@ -32,7 +32,7 @@ const ToHireProfessionalModal = ({ setShowModalProfissa }) => {
 
   const openNotificationSuccess = () => {
     notification.open({
-      message: "Profissa contrato com sucesso",
+      message: "Profissa contratado com sucesso",
       description: "Parabéns, o profissa logo entrará em contato com você.",
       icon: <SmileOutlined style={{ color: "#108ee9" }} />,
     });

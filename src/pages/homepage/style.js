@@ -3,11 +3,11 @@ import { BsStarFill } from "react-icons/bs";
 import { GrUserWorker } from "react-icons/gr";
 
 export const ContainerFlexHomePage = styled.div`
-min-width: 360px;
+  min-width: 360px;
   width: 100%;
   display: flex;
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
   flex-flow: column;
 `;
 
@@ -48,10 +48,10 @@ export const DivUserTop = styled.div`
 `;
 
 export const DivContentHomepage = styled.div`
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  margin-top:100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
   ${({ searchMode }) => searchMode && `width:100%;`}
   h1 {
     align-items: center;
@@ -61,31 +61,29 @@ export const DivContentHomepage = styled.div`
 `;
 
 export const ContentWraper = styled.div`
-   display:flex;
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-flow: column;
   margin-left: 40px;
   ${({ searchMode }) => searchMode && `width:100%;`}
-
-`
+`;
 
 export const ImgHero = styled.div`
   display: flex;
   width: 550px;
-  margin-top:80px;
-  padding-bottom:40px;
+  margin-top: 80px;
+  padding-bottom: 40px;
   @media (max-width: 1260px) {
     visibility: hidden;
   }
 `;
 
-
 export const SectionProfilesPhotos = styled.section`
   width: 100%;
   display: flex;
   h1 {
-    position:absolute;
+    position: absolute;
     font-family: Shrikhand;
     font-size: 36px;
   }
@@ -117,10 +115,9 @@ export const SectionProfilesPhotos = styled.section`
       font-size: 24px;
     }
 
-    @media(max-width: 800px){
-    margin-bottom: -15px;    
-  }
-    
+    @media (max-width: 800px) {
+      margin-bottom: -15px;
+    }
   }
 `;
 
@@ -136,14 +133,14 @@ export const Estrela = styled(BsStarFill)`
 export const DivProfileCards = styled.div`
   display: flex;
   justify-content: center;
-  align-items:center;
-  flex-flow:column;
+  align-items: center;
+  flex-flow: column;
   background-color: #ffffff;
   width: 100%;
   h1 {
     font-family: Shrikhand;
     font-size: 48px;
-    margin-top:50px;
+    margin-top: 50px;
   }
 `;
 
@@ -172,9 +169,6 @@ export const InfoCard = styled.div`
     font-family: Shrikhand;
     font-size: 24px;
   }
-  img {
-    width: 30%;
-  }
   h2 {
     display: flex;
     align-items: center;
@@ -183,4 +177,12 @@ export const InfoCard = styled.div`
 
 export const StyledIconWork = styled(GrUserWorker)`
   margin-right: 5px;
+`;
+
+export const StyleImg = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 5px;
 `;
