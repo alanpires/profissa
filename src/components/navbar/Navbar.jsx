@@ -2,24 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Burguer from "./Burguer";
 import LoginModal from "../login-modal";
-
-const Nav = styled.nav`
-  position: absolute;
-  top: 20px;
-  width: 100%;
-  height: 55px;
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-
-  .logo {
-    margin-top: -3px;
-    font-family: Poppins;
-    font-size: 36px;
-    color: #40476d;
-    margin-left: 15px;
-  }
-`;
+import Nav from './nav'
 
 const Divcontainer = styled.div`
   * {
@@ -31,15 +14,14 @@ const Divcontainer = styled.div`
 
 const Navbar = () => {
   const [showLogin, setShowLogin] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
-    <Divcontainer>
+    <Divcontainer onClick={() => setOpen(!open)}>
       {showLogin ? <LoginModal setShowLogin={setShowLogin} /> : null}
 
-      <Nav>
-        <div className="logo">Profissa</div>
-        <Burguer showLogin={showLogin} setShowLogin={setShowLogin} />
-      </Nav>
+      <Nav open={open} showLogin={showLogin} setShowLogin={setShowLogin} />
+       
     </Divcontainer>
   );
 };

@@ -7,6 +7,7 @@ import {
   BtnDiv,
   ItemsDiv,
   NewInput,
+  Container
 } from "./style.js";
 import { UserOutlined } from "@ant-design/icons";
 import { AiFillEdit } from "react-icons/ai";
@@ -25,7 +26,7 @@ function AvatarCard() {
   };
 
   return (
-    <>
+    <Container>
       <DivAvatarCard>
         <Avatar size={100} icon={<UserOutlined />} />
         <Username>
@@ -78,7 +79,7 @@ function AvatarCard() {
           </InputDiv>
         </Modal>
       )}
-    </>
+    </Container>
   );
 }
 

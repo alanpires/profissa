@@ -6,10 +6,15 @@ export const MainDiv = styled.div`
   height: 100%;
   width: 100%;
   background-color:white;
-  display: flex;
   align-items: center;
   justify-content:center;
   flex-flow:column;
+  display:none;
+  border-radius:5px;
+
+  @media(min-width:732px){
+  display:flex;
+  }
 `;
 
 export const ItemsRow = styled.div`
