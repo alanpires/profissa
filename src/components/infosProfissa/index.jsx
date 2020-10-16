@@ -62,7 +62,7 @@ const InfosProfissa = ({ setShowModalProfissa, showModalProfissa }) => {
     <GeneralContainer>
       <ProfessionalPersonalInfos>
         <ContainerInfos>
-          <Image src={LisaimgSvg} />
+          <Image src={infosProfissa.image ? infosProfissa.image : LisaimgSvg} />
           <Container>
             <ProfessionalName>{infosProfissa.name}</ProfessionalName>
             <Stars>

@@ -27,3 +27,10 @@ export const ProfissionaisProximos = styled.div`
 `;
 
 export const Infos = styled.div``;
+
+export const StyleImg = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+`;

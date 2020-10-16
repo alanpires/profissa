@@ -35,3 +35,10 @@ export const DivImag = styled.div`
   height: 70px;
   border-radius: 50px;
 `;
+
+export const StyleImg = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+`;

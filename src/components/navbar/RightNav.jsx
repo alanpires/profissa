@@ -110,6 +110,12 @@ const Ul = styled.ul`
   }
 `;
 
+const StyleLi = styled.li`
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 const RightNav = ({ open, setShowLogin, showLogin }) => {
   const history = useHistory();
   const { token, user } = useSelector((state) => state.access);
@@ -117,9 +123,13 @@ const RightNav = ({ open, setShowLogin, showLogin }) => {
 
   return (
     <Ul open={open}>
-      {!token && <li onClick={() => setShowLogin(!showLogin)}>Login</li>}
       {!token && (
-        <li onClick={() => history.push("/signup-client")}>Cadastro</li>
+        <StyleLi onClick={() => setShowLogin(!showLogin)}>Login</StyleLi>
+      )}
+      {!token && (
+        <StyleLi onClick={() => history.push("/signup-client")}>
+          Cadastro
+        </StyleLi>
       )}
       {userLoged && (
         <div
