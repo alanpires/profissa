@@ -109,7 +109,6 @@ const Ul = styled.ul`
   }
 `;
 
-
 const RightNav = ({ open, setShowLogin, showLogin }) => {
   const history = useHistory();
   const { token, user } = useSelector((state) => state.access);

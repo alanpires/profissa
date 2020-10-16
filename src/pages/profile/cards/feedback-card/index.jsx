@@ -32,6 +32,7 @@ const FeedbackCard = ({ infos: { feedback, stars }, creator }) => {
       <Card styles={CardStyle}>
         <InfoCard
           onClick={() =>
+            creator.select[0] == "Profissa" &&
             history.push(`/professional-showcase/${creator.id}/${creator.cep}`)
           }
         >
