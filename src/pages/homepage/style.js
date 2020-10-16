@@ -73,7 +73,7 @@ export const ContentWraper = styled.div`
     position: absolute;
     left: 20px;
     width: 100%;
-    top: 150px;
+    top: 220px;
   }
 
 `
