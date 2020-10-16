@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "lib-kenzie-academy";
-import { Header, ProfissionaisProximos } from "./style";
+import { ProfissionaisProximos, Infos } from "./style";
 import { useParams } from "react-router-dom";
 import {
   InfoCard,
@@ -16,6 +16,9 @@ import { useSelector } from "react-redux";
 import { requestInfosProfissa } from "../../redux/actions/infos-profissa-actions";
 import { useDispatch } from "react-redux";
 import InfosProfissa from "../../components/infosProfissa";
+
+import Navbar from "../../components/navbar/Navbar";
+
 const ProfessionalShowcase = () => {
   const [showModalProfissa, setShowModalProfissa] = useState(false);
   const users = useSelector((state) => state.profissaHomepage.profissasRequest);
@@ -50,17 +53,19 @@ const ProfessionalShowcase = () => {
       {showModalProfissa && (
         <ToHireProfessionalModal setShowModalProfissa={setShowModalProfissa} />
       )}
-      <Header>Header Fixo</Header>
-      <InfosProfissa
-        setShowModalProfissa={setShowModalProfissa}
-        showModalProfissa={showModalProfissa}
-      />
+      <Navbar />
+      <Infos>
+        <InfosProfissa
+          setShowModalProfissa={setShowModalProfissa}
+          showModalProfissa={showModalProfissa}
+        />
+      </Infos>
+
       <Carousel images={infosProfissa.previousJob} />
       <FeedbacksProfissa />
       <ProfissionaisProximos>
         <h4>Outros profissionais da área</h4>
       </ProfissionaisProximos>
-
       <DivCard>
         {otherUser.map((user, index) => (
           <div key={index}>
