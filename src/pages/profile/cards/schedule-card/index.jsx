@@ -4,30 +4,31 @@ import { useHistory } from "react-router-dom";
 import RicardoSvg from "../../../../pages/homepage/photos/ricardo.svg";
 import { AiOutlineSchedule } from "react-icons/ai";
 
-import {
-  InfoCard,
-  ScheduleDate,
-  Text,
-  CardStyle
-} from "../cardStyle"
+import { InfoCard, ScheduleDate, Text, CardStyle } from "../cardStyle";
 
 const ScheduleCard = ({ infos: { details, schedule, profissa }, creator }) => {
-
   const history = useHistory();
-
+  console.log(creator);
   return (
     <div>
       <Card styles={CardStyle}>
         <InfoCard
           onClick={() =>
-            history.push(`/professional-showcase/${profissa.id}/${profissa.cep}`)
+            history.push(
+              `/professional-showcase/${profissa.id}/${profissa.cep}`
+            )
           }
         >
           <img src={RicardoSvg} />
-          <h1>{creator && creator.name}</h1>
-          <ScheduleDate><AiOutlineSchedule /><p>{schedule.split("-").reverse().join("/")}</p></ScheduleDate>
-          <Text><p>{details}</p></Text>
-
+          <h1>{profissa && profissa.name}</h1>
+          <ScheduleDate>
+            <AiOutlineSchedule />
+            <p>{schedule.split("-").reverse().join("/")}</p>
+          </ScheduleDate>
+          <p>{profissa && profissa.service}</p>
+          <Text>
+            <p>{details}</p>
+          </Text>
         </InfoCard>
       </Card>
     </div>
@@ -35,7 +36,3 @@ const ScheduleCard = ({ infos: { details, schedule, profissa }, creator }) => {
 };
 
 export default ScheduleCard;
-
-
-
-
