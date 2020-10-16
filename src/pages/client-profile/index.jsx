@@ -30,7 +30,6 @@ const ClientProfile = () => {
     dispatch(serviceRequest(axiosConfig(token)));
     dispatch(requestProfissasHomepage());
     dispatch(requestFeedbacks());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
