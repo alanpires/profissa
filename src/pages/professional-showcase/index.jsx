@@ -28,11 +28,13 @@ const ProfessionalShowcase = () => {
   const feedbacks = useSelector(
     (state) => state.profissaFeedbacks.feedbacksRequest
   );
+
   const axiosConfig = (token) => ({
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
+
   useEffect(() => {
     dispatch(requestInfosProfissa(id, axiosConfig(token)));
     // eslint-disable-next-line react-hooks/exhaustive-deps

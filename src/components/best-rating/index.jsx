@@ -4,6 +4,7 @@ import FernandoimgSvg from "../../pages/homepage/photos/fernando.svg";
 import RenataimgSvg from "../../pages/homepage/photos/renata.svg";
 import LucianoSvg from "../../pages/homepage/photos/luciano.svg";
 import { Estrela } from "../../pages/homepage/style";
+import { StyleImg } from "./style";
 
 const spanStyle = {
   marginTop: "-35px",
@@ -17,7 +18,7 @@ const costyleContent = {
   marginTop: "-15px",
 };
 
-const BestRating = ({ name, avaliations, stars, service, key }) => {
+const BestRating = ({ name, avaliations, stars, service, key, image }) => {
   const arrayImage = [LisaimgSvg, FernandoimgSvg, RenataimgSvg, LucianoSvg];
 
   const handleImage = () => {
@@ -27,7 +28,7 @@ const BestRating = ({ name, avaliations, stars, service, key }) => {
 
   return (
     <div key={key}>
-      <img src={handleImage()} />
+      <StyleImg src={image ? image.image : handleImage()} />
       <p>{name}</p>
       <span style={spanStyle}>
         {service}

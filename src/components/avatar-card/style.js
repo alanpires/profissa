@@ -2,20 +2,20 @@ import styled from "styled-components";
 import { Input } from "antd";
 
 export const Container = styled.div`
- height: 100%;
+  height: 100%;
   width: 100%;
-`
+`;
 
 export const DivAvatarCard = styled.div`
   background-color: #ffff;
   display: flex;
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  padding:20px;
-  border-radius:5px;
+  padding: 20px;
+  border-radius: 5px;
 `;
 
 export const Username = styled.p`
@@ -25,10 +25,10 @@ export const Username = styled.p`
 `;
 
 export const InputDiv = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 export const ItemsDiv = styled.div`
@@ -49,4 +49,11 @@ export const NewInput = styled(Input)`
   width: 400px;
   border-radius: 15px;
   margin-bottom: 20px;
+`;
+
+export const StyleImg = styled.img`
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
 `;

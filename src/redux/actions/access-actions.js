@@ -1,4 +1,10 @@
-import { CLEAN_TOKEN, DECODER, LOGIN, LOGIN_ERROR } from "./type";
+import {
+  CLEAN_TOKEN,
+  DECODER,
+  LOGIN,
+  LOGIN_ERROR,
+  CHANGE_USER_DATA,
+} from "./type";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { axiosConfig } from "../../components/login-modal/helper";
@@ -52,4 +58,9 @@ export const cleanToken = (cleanToken, cleanUser) => ({
   type: CLEAN_TOKEN,
   cleanToken,
   cleanUser,
+});
+
+export const changeDataUser = (userData) => ({
+  type: CHANGE_USER_DATA,
+  userData,
 });

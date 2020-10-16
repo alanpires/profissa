@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import UserDefault from "./userDefault.jpg";
 import { Link } from "react-router-dom";
+import { StyleImg } from "./style";
 
 const Ul = styled.ul`
   list-style: none;
@@ -111,9 +112,9 @@ const Ul = styled.ul`
 
 const RightNav = ({ open, setShowLogin, showLogin }) => {
   const history = useHistory();
-  const {token, user} = useSelector((state) => state.access);
-  const userLoged = user.name
-  
+  const { token, user } = useSelector((state) => state.access);
+  const userLoged = user.name;
+
   return (
     <Ul open={open}>
       {!token && <li onClick={() => setShowLogin(!showLogin)}>Login</li>}
@@ -123,11 +124,13 @@ const RightNav = ({ open, setShowLogin, showLogin }) => {
       {userLoged && (
         <div
           className="div-usernavbar"
-          onClick={() => history.push("/profile")
-          }
+          onClick={() => history.push("/profile")}
         >
           <p>{userLoged}</p>
-          <img className="photo-navbar" src={UserDefault} />
+          <StyleImg
+            className="photo-navbar"
+            src={user.image ? user.image : UserDefault}
+          />
         </div>
       )}
     </Ul>
