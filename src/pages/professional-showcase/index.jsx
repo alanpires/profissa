@@ -16,7 +16,6 @@ import { useSelector } from "react-redux";
 import { requestInfosProfissa } from "../../redux/actions/infos-profissa-actions";
 import { useDispatch } from "react-redux";
 import InfosProfissa from "../../components/infosProfissa";
-
 import Navbar from "../../components/navbar/Navbar";
 
 const ProfessionalShowcase = () => {
