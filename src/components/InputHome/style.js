@@ -1,24 +1,24 @@
 import styled from "styled-components";
 
 export const Form = styled.form`
-    width: 100%;
-    height: 100px; 
-    display: flex;
-    align-items:center;
-    justify-content:center;
-    margin: 140px 0 20px 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 140px 0 20px 0;
 
-    &+h1{
-        font-size:24px;
-        font-weight:bold;
-        align-self:flex-start;
-        margin-left:21vw;
-    }
+  & + h1 {
+    font-size: 24px;
+    font-weight: bold;
+    align-self: flex-start;
+    margin-left: 21vw;
+  }
 `;
 
 export const ButtomsearchHomepage = styled.button`
   height: 100%;
-  width:150px;
+  width: 150px;
   border-radius: 38px;
   border: 1px solid gray;
   transition: 0.3s;
@@ -26,6 +26,7 @@ export const ButtomsearchHomepage = styled.button`
   font-size: 1.5rem;
   &:hover {
     background-color: rgba(0, 0, 0, 0.22);
+    cursor: pointer;
   }
 `;
 
@@ -37,20 +38,21 @@ export const ContainerInput = styled.span`
   border-radius: 100px;
   border: 0.5px solid rgba(0, 0, 0, 0.16);
   display: flex;
-  align-items:center;
-  justify-content:space-evenly;
+  align-items: center;
+  justify-content: space-evenly;
 
   div:first-child {
-    padding-right:10px;
-    border-right:2px solid rgba(0, 0, 0, 0.40);
+    padding-right: 10px;
+    border-right: 2px solid rgba(0, 0, 0, 0.4);
   }
 `;
 export const BoxInput = styled.div`
-flex:1;
-height: 100%;
-display: flex;
-align-items:center;
- input,select {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  input,
+  select {
     background-color: #eaeaea;
     border: none;
     color: black;
@@ -61,15 +63,16 @@ align-items:center;
     ::placeholder {
       font-size: 24px;
       color: black;
-      text-justify:center;
+      text-justify: center;
     }
   }
-  svg{
+  svg {
     width: 40px;
     height: 40px;
   }
-  input:focus,select:focus{
-outline: none !important;
-background: rgba(0,0,0,0.1)
-}
-`
+  input:focus,
+  select:focus {
+    outline: none !important;
+    background: rgba(0, 0, 0, 0.1);
+  }
+`;

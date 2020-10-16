@@ -7,6 +7,7 @@ import {
   DivCard,
   EstrelaCards,
   StyledIconWork,
+  StyleImg,
 } from "../homepage/style";
 import RicardoSvg from "../homepage/photos/ricardo.svg";
 import FeedbacksProfissa from "../../components/feedbacks-profissa";
@@ -72,7 +73,7 @@ const ProfessionalShowcase = () => {
           <div key={index}>
             <Card className="card" key={index}>
               <InfoCard>
-                <img src={RicardoSvg} />
+                <StyleImg src={user.image ? user.image : RicardoSvg} />
                 <div>
                   {Array.from({ length: user.stars }, (v, k) => k).map(
                     (key) => {

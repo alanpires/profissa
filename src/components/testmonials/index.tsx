@@ -1,5 +1,5 @@
 import React from "react";
-import { DivTestmonials, DivImag, DivInfoClient } from "./style";
+import { DivTestmonials, DivImag, DivInfoClient, StyleImg } from "./style";
 
 interface Props {
   image: string;
@@ -12,7 +12,7 @@ const Testmonials = ({ image, name, feedback }: Props) => {
     <DivTestmonials>
       <DivInfoClient>
         <DivImag>
-          <img src={image} />
+          <StyleImg src={image} />
         </DivImag>
         <p>{name}</p>
       </DivInfoClient>

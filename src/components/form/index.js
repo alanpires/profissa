@@ -31,6 +31,7 @@ const FormUser = () => {
   };
 
   const onFinish = (values) => {
+    console.log(values);
     if (userData) {
       SignUp(values);
     }
@@ -268,20 +269,10 @@ const FormUser = () => {
           </>
         )}
         <StyledFormItem name="select" label="Selecione seu tipo de perfil">
-          <Checkbox
-            value="Cliente"
-            checked={checked}
-            onChange={() => setChecked(!checked)}
-          >
-            Cliente
-          </Checkbox>
-          <Checkbox
-            value="Profissa"
-            checked={!checked}
-            onChange={() => setChecked(!checked)}
-          >
-            Profissa
-          </Checkbox>
+          <Checkbox.Group>
+            <Checkbox value="Cliente">Cliente</Checkbox>
+            <Checkbox value="Profissa">Profissa</Checkbox>
+          </Checkbox.Group>
         </StyledFormItem>
         <StyledFormItem>
           <Button type="primary" htmlType="submit">
