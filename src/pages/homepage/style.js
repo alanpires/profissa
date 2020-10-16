@@ -106,7 +106,6 @@ export const SectionProfilesPhotos = styled.section`
     flex-direction: column;
     margin-top: 500px;
 
-
     h1{
       margin-left: 20px;
       margin-top: 50px;
@@ -121,8 +120,15 @@ export const SectionProfilesPhotos = styled.section`
     font-size: 36px;
   }
 
+  section{
+    display: block;
+    flex-direction: row;
+    margin-top: 75px;
+  }
+
   div {
-    margin-top: 50px;
+    margin-top: 100px;
+    margin-bottom: -75px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -146,9 +152,7 @@ export const SectionProfilesPhotos = styled.section`
       align-items: center;
       margin-top: -20px;
       font-size: 24px;
-    }
-
-   
+    }   
     
   }
 `;
@@ -163,6 +167,8 @@ export const Estrela = styled(BsStarFill)`
 `;
 
 export const DivProfileCards = styled.div`
+  margin-top: 50px;
+  margin-left: 20px;
   display: flex;
   justify-content: center;
   align-items:center;

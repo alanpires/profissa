@@ -97,6 +97,7 @@ const Homepage = () => {
                           avaliations={profissa.avaliations}
                           stars={profissa.stars}
                           service={profissa.service}
+                          image={profissa.image}
                         />
                       </div>
                     );

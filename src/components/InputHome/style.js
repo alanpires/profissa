@@ -4,7 +4,7 @@ export const Form = styled.form`
     position: absolute;
     display: flex;
     left: 20px;
-    top: 420px;
+    top: 470px;
     width: 100%;  
 
 
@@ -29,7 +29,7 @@ export const ButtomsearchHomepage = styled.button`
 
   @media(max-width: 760px){
     position: absolute;
-    top: 70px;
+    top: 90px;
     left: 100px;
   }
   
