@@ -54,8 +54,7 @@ const InfosProfissa = ({ setShowModalProfissa, showModalProfissa }) => {
   const content = (
     <div>
       <p>Para contratar um profissa você precisa estar logado.</p>
-      <Link to="/signup-client">Cadastre-se</Link> ou
-      <Link to="/"> Faça o login</Link>
+      <p>Faça login ou cadastre-se.</p>
     </div>
   );
 
