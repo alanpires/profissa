@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../components/signup-layout/index.jsx";
+import Layout from "../../components/signup-layout/index.tsx";
 
 function SignUpClient() {
   return (
