@@ -29,11 +29,10 @@ export const RightDiv = styled.div`
   flex-direction: column;
   background-color: #575757;
   width: 50vw;
-  height: 100vh;
   padding: 0;
   margin: 0;
   overflow-y: scroll;
-  background-color: #40476D;
+  background-color: #40476d;
   @media (max-width: 725px) {
     width: 100vw;
     height: 100vh;
@@ -59,8 +58,8 @@ export const Title = styled.div`
 `;
 
 export const WorkerImg = styled.img`
- width:60%;
- height: 60%;
+  width: 60%;
+  height: 60%;
 `;
 
 export const FormTitle = styled.div`

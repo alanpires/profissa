@@ -54,9 +54,11 @@ const Homepage = () => {
     setUsersHome(
       profissas.filter(
         (elem) =>
-          ((elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50) || input.cep === "")
-          &&
-          (elem.service === input.serv || input.serv === "Serviços" || input.serv === "")
+          ((elem.cep <= input.cep + 50 && elem.cep >= input.cep - 50) ||
+            input.cep === "") &&
+          (elem.service === input.serv ||
+            input.serv === "Serviços" ||
+            input.serv === "")
       )
     );
     console.log(profissas, usersHome, input);
@@ -74,7 +76,11 @@ const Homepage = () => {
                 <h1>Eles tem a solução</h1>
               </>
             )}
-            <InputHome onSubmit={onSubmit} searchMode={!searchMode} />
+            <InputHome
+              onSubmit={onSubmit}
+              searchMode={!searchMode}
+              setSearchMode={setSearchMode}
+            />
           </ContentWraper>
           {searchMode && (
             <ImgHero>
@@ -103,8 +109,8 @@ const Homepage = () => {
                   }
                 )
               ) : (
-                  <h1>Carregando</h1>
-                )}
+                <h1>Carregando</h1>
+              )}
             </SectionProfilesPhotos>
           </>
         )}
@@ -112,8 +118,8 @@ const Homepage = () => {
           {searchMode ? (
             <h1>Outros Profissas</h1>
           ) : (
-              <h1>{usersHome.length} Profissas encontrado(s)</h1>
-            )}
+            <h1>{usersHome.length} Profissas encontrado(s)</h1>
+          )}
           <DivCard>
             {usersHome && feedbacks ? (
               sortProfissas(feedbacks, usersHome).map((user, key) => (
@@ -146,8 +152,8 @@ const Homepage = () => {
                 </div>
               ))
             ) : (
-                <h1>Carregando</h1>
-              )}
+              <h1>Carregando</h1>
+            )}
           </DivCard>
         </DivProfileCards>
       </ContainerFlexHomePage>

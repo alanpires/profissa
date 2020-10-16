@@ -18,14 +18,9 @@ export const FormDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-<<<<<<< HEAD
   flex-direction: column;
   width: 40vh;
-=======
-  width: 40vw;
->>>>>>> master
   padding-top: 50px;
-  overflow-y: scroll;
   @media (max-width: 320px) {
     width: 110vw;
     height: 100vh;
@@ -41,17 +36,18 @@ export const FormDiv = styled.div`
     padding-left: 120px;
     padding-bottom: 50px;
   }
-  @media(max-width: 732px){
+  @media (max-width: 732px) {
+    .ant-form-item-label,
+    .ant-form-item-control-input-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
- .ant-form-item-label,.ant-form-item-control-input-content{
-  display: flex;
-  justify-content: center;
-  align-items: center;
- }
-
- .ant-input, .ant-input-lg{
-   width: 100%;
- }
+    .ant-input,
+    .ant-input-lg {
+      width: 100%;
+    }
   }
 `;
 
@@ -65,25 +61,26 @@ export const StyledForm = styled(Form)`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 export const StyledFormItem = styled(StyledForm.Item)`
   width: 100%;
-  
-  .ant-form-item-control-input-content{
+
+  .ant-form-item-control-input-content {
     display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+    justify-content: space-evenly;
+    align-items: center;
   }
-  .ant-btn{
-   font-family: "Poppins", sans-serif;
+  .ant-btn {
+    font-family: "Poppins", sans-serif;
   }
-  .ant-btn-primary{
-     background: #0AFFC3;
-     color:black;
+  .ant-btn-primary {
+    background: #0affc3;
+    color: black;
   }
 
-  .ant-form-item-label > label,.ant-checkbox-group > label{
-    color:#FEFFC9 !important;
+  .ant-form-item-label > label,
+  .ant-checkbox-group > label {
+    color: #feffc9 !important;
   }
 `;
