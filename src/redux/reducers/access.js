@@ -1,4 +1,4 @@
-import { LOGIN, DECODER, CLEAN_TOKEN } from "../actions/type";
+import { LOGIN, DECODER, CLEAN_TOKEN, CHANGE_USER_DATA } from "../actions/type";
 
 const defaultState = {
   token: localStorage.getItem("token") || "",
@@ -15,6 +15,9 @@ const access = (state = defaultState, action) => {
 
     case CLEAN_TOKEN:
       return { ...state, token: action.cleanToken, user: action.cleanUser };
+
+    case CHANGE_USER_DATA:
+      return { ...state, user: { ...state.user, ...action.userData } };
 
     default:
       return state;

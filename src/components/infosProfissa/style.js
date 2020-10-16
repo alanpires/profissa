@@ -20,8 +20,10 @@ export const Header = styled.div`
 `;
 
 export const ProfessionalPersonalInfos = styled.div`
+  margin-top: 10vh;
   height: 40vh;
   display: flex;
+
   justify-content: space-around;
   font-family: Shrikhand;
 
@@ -50,6 +52,32 @@ export const ContainerButton = styled.div`
   align-items: center;
 `;
 
+export const ButtonToHireProfessional = styled.button`
+  height: 5rem;
+  width: 10rem;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  background: #4effd4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  p {
+    margin: 0;
+    font-size: 1rem;
+  }
+  @media (max-width: 425px) {
+    width: 18rem;
+    height: 3rem;
+  }
+  ${({ block }) =>
+    block &&
+    `
+     pointer-events: none;
+  `}
+`;
+
 export const ProfessionalPersonalSkills = styled.div`
   display: flex;
   @media (max-width: 425px) {
@@ -70,11 +98,13 @@ export const SidebarLeft = styled.div`
   padding: 1rem;
 
   @media (max-width: 425px) {
-    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
     height: 100%;
     padding: 0;
     margin-top: 20px;
+    font-size: 1rem;
   }
 
   @media (max-width: 768px) {
@@ -209,8 +239,10 @@ export const Image = styled.img`
 
 export const ProfessionalName = styled.div`
   font-size: 3rem;
+  margin-left: 8vw;
 
   @media (max-width: 425px) {
+    margin-top: 5vh;
     font-size: 2rem;
   }
 
@@ -221,9 +253,11 @@ export const ProfessionalName = styled.div`
 
 export const Stars = styled.div`
   font-size: 1.5rem;
+  margin-left: 8vw;
 
   @media (max-width: 425px) {
     font-size: 1rem;
+    margin-bottom: 5vh;
   }
 
   @media (max-width: 768px) {
@@ -231,20 +265,11 @@ export const Stars = styled.div`
   }
 `;
 
-export const ButtonToHireProfessional = styled.button`
-  height: 5rem;
-  border-radius: 25px;
-  @media (max-width: 425px) {
-    width: 18rem;
-    height: 3rem;
-  }
-`;
-
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 1rem;
+  margin-left: 2rem;
   @media (max-width: 425px) {
     align-items: center;
   }

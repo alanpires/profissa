@@ -7,3 +7,5 @@ export const FEEDBACKS = "FEEDBACKS";
 export const SERVICE_RESQUEST = "SERVICE_RESQUEST";
 export const CLEAN_TOKEN = "CLEAN_TOKEN";
 export const INFOS_PROFISSA = "INFOS_PROFISSA";
+export const USERS = "USERS";
+export const CHANGE_USER_DATA = "CHANGE_USER_DATA";
