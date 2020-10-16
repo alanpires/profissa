@@ -18,17 +18,17 @@ const costyleContent = {
   marginTop: "-15px",
 };
 
-const imgStyle = {
-  width: "200px",
-  height: "200px",
-  borderRadius: "50%"
-};
-
 const BestRating = ({ name, avaliations, stars, service, key, image }) => {
-  console.log(image)
+  const arrayImage = [LisaimgSvg, FernandoimgSvg, RenataimgSvg, LucianoSvg];
+
+  const handleImage = () => {
+    let image = Math.floor(Math.random() * 3);
+    return arrayImage[image];
+  };
+
   return (
     <div key={key}>
-      <img style={imgStyle} src={image} alt="image" />
+      <StyleImg src={image ? image.image : handleImage()} />
       <p>{name}</p>
       <span style={spanStyle}>
         {service}
